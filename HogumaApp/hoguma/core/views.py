@@ -7,3 +7,9 @@ def index(request):
 
 def reservations(request):
     return render(request, 'core/reservations.html')
+
+def rooms(request):
+    return render(request, 'core/rooms.html')
+
+def signUp(request):
+    return render(request, 'core/signUp.html')
