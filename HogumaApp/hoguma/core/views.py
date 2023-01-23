@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import users
-from .models import register_user
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .models import users
+
+
 # Create your views here.
 
 def index(request):
@@ -13,16 +16,16 @@ def reservations(request):
 
 def rooms(request):
     return render(request, 'core/rooms.html')
-
+"""""
 def signUp(request):
     return render(request, 'core/signUp.html')
 
 def register(request):
 
-    form = register_user()
+    form = users()
 
     if request.method == "POST":
-        form = register_user(request.POST)
+        form = users(request.POST)
 
         if form.is_valid():
             print("Valido")
@@ -40,3 +43,18 @@ def register(request):
             print("Invalido")
 
     return render(request, 'core/signUp.html', { 'form' : form})
+"""
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario {username} creado') #no funciona
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request,'core/register.html',{'form' : form})
+
+def login(request):
+    return render(request,'core/login.html')
