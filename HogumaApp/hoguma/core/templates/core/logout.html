@@ -29,13 +29,7 @@
                   <a class="nav-link active" aria-current="page" href={% url 'index' %}>Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href={% url 'register' %}>Regístrate</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'login' %}>Iniciar sesión</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a>
+                  <a class="nav-link" href={% url 'login' %}>RegístIrate</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled">Disabled</a>
@@ -50,23 +44,9 @@
         </nav>
   </header>
   
-  <main class="form-signin w-100 m-auto">
+    <main class="form-signin w-100 m-auto">
 
-  <form action="/register/" method="post">
-
-    {% csrf_token %}
-    {{ form }}
-    <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Registro</h1>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-  </form>
+  <h1>¿Quieres cerrar sesión?</h1>
 
   <div class="my-3">
     <a class="btn btn-secondary" href={% url 'index' %}>Volver al inicio</a>

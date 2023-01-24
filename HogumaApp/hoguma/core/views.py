@@ -49,8 +49,12 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Usuario {username} creado') #no funciona
+            username = form.cleaned_data['username']
+            print(username)
+            message = ('Usuario %(username)s registrado satisfactoriamente.') % {'username' : username}
+            print(message)
+            messages.success(request, message)
+            form.save() 
             return redirect('index')
     else:
         form = UserCreationForm()
