@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.template import Context, Template
+from django.template.loader import get_template
+import json
 from .models import users
-
 
 # Create your views here.
 
@@ -16,34 +18,6 @@ def reservations(request):
 
 def rooms(request):
     return render(request, 'core/rooms.html')
-"""""
-def signUp(request):
-    return render(request, 'core/signUp.html')
-
-def register(request):
-
-    form = users()
-
-    if request.method == "POST":
-        form = users(request.POST)
-
-        if form.is_valid():
-            print("Valido")
-
-            user = users()
-
-            user.name = form.cleaned_data['name']
-            user.surname = form.cleaned_data['surname']
-            user.email = form.cleaned_data['email']
-            user.password = form.cleaned_data['password']
-
-            user.save()
-
-        else:    
-            print("Invalido")
-
-    return render(request, 'core/signUp.html', { 'form' : form})
-"""
 
 def register(request):
     if request.method == 'POST':
@@ -62,3 +36,19 @@ def register(request):
 
 def login(request):
     return render(request,'core/login.html')
+
+def bestfood(request):
+    #return render(request, 'core/bestFood.html')
+    nombre = "por fin ostia"
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/best-food.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/bestFood.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        a =json.load(contenido)
+
+
+    contexto = Context({'nombre': a})
+    documento = template.render(contexto)
+    return HttpResponse(documento)
