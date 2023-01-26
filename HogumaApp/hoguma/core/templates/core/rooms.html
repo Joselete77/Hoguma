@@ -1,41 +1,18 @@
 {% extends 'core/base.html' %}
 
 {% block infoReservation %}
-
-<body>
-    <p class="parrafo">
-        <b>Listado de usuarios:</b>
-    </p>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Correo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Javier</td>
-                <td>La Merced 123</td>
-                <td>javier@mail.com</td>
-            </tr>
-            <tr>
-                <td>Rebeka</td>
-                <td>Amazonas 115</td>
-                <td>rebeka@mail.com</td>
-            </tr>
-            <tr>
-                <td>Ferdinand</td>
-                <td>Ambato 342</td>
-                <td>ferdinand@mail.com</td>
-            </tr>
-        </tbody>
-    </table>
+<head>
+    <title>Habitaciones</title>
+</head>
+<body style="text-align: center;">
+        {% for dic in room %}
+            <h1>{{ dic.name }}</h1>
+            <h2>Precio: {{ dic.price }}€ </h2>
+            <h2>Capacidad de {{ dic.capacity }}.</h2>
+            <h2>Capacidad máxima de {{ dic.capacity_max }}.</h2>
+            <img src="{{ dic.img1 }}" width="300" height="300">
+            <img src="{{ dic.img2 }}" width="300" height="300">
+        {% endfor %}
 </body>
-
-<div class="my-3">
-    <a class="btn btn-secondary" href={% url 'index' %}>Volver al inicio</a>
-</div>
 
 {% endblock %}

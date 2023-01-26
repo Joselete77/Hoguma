@@ -16,9 +16,6 @@ def index(request):
 def reservations(request):
     return render(request, 'core/reservations.html')
 
-def rooms(request):
-    return render(request, 'core/rooms.html')
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -40,9 +37,20 @@ def login(request):
 def restaurant(request):
     return render(request, 'core/indexRestaurant.html')
 
+def room(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/rooms.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/rooms.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+
+    with open(ruta) as contenido:
+        a =json.load(contenido)
+
+    contexto = Context({'room': a})
+    documento = template.render(contexto)
+    return HttpResponse(documento)
+
 def bestfood(request):
-    #return render(request, 'core/bestFood.html')
-    nombre = "por fin ostia"
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/best-food.json'
     plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/bestFood.html")
     template = Template(plantilla.read())
@@ -52,6 +60,6 @@ def bestfood(request):
         a =json.load(contenido)
 
 
-    contexto = Context({'nombre': a})
+    contexto = Context({'best_food': a})
     documento = template.render(contexto)
     return HttpResponse(documento)

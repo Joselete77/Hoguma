@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Habitación individual",
+        "price": "50",
+        "capacity": "1",
+        "capacity_max": "1",
+        "img1": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/MG_7460.jpg",
+        "img2": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/EJECUTIVAcTERRAZA4.jpg"
+    },
+    {
+        "name": "Habitación doble",
+        "price": "70",
+        "capacity": "2",
+        "capacity_max": "2",
+        "img1": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/SUPERIOR1.jpg",
+        "img2": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/EJECUTIVAcTERRAZA4.jpg"   
+    },
+    {
+        "name": "Habitación triple",
+        "price": "90",
+        "capacity": "2",
+        "capacity_max": "3",
+        "img1": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/4408-37.jpg",
+        "img2": "https://www.novotelmadridcenter.com/wp-content/uploads/2015/08/EJECUTIVAcTERRAZA4.jpg"   
+    },
+    {
+        "name": "Suite",
+        "price": "110",
+        "capacity": "2",
+        "capacity_max": "4",
+        "img1": "https://www.novotelmadridcenter.com/wp-content/uploads/2022/12/B1.jpg",
+        "img2": "https://www.novotelmadridcenter.com/wp-content/uploads/2022/12/B2.jpg"   
+    }
+]
