@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'core/base.html' %}
+{% block menuBestFood %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mejor comida</title>
 </head>
 <body>
     <table>
-        <td>
-        {% for dic in nombre %}
+        <thead>
             <tr>
-                <h2>{{ dic.name }}</h2>
-
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Personas</th>
+                <th>Imagen</th>
             </tr>
-            <tr>
-                <p>Precio: {{ dic.price }}€ </p>
-            </tr>
-            <tr>
-                <p>Disponible para {{ dic.rate }} personas</p>
-            </tr>
-            <tr>
-                <img src="{{ dic.img }}" width="100" height="100">
-            </tr>
-        {% endfor %}
-        </td>
+        </thead>
+        <tbody>
+            {% for dic in nombre %}
+                <th>{{ dic.name }}</th>
+                <th>Precio: {{ dic.price }}€ </th>
+                <th>Disponible para {{ dic.rate }} personas</th>
+                <th>
+                    <img src="{{ dic.img }}" width="100" height="100">
+                </th>
+            {% endfor %}
+        </tbody>
     </table>
 </body>
+{% endblock %}
 </html>

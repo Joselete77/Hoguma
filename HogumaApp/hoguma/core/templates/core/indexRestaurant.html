@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block indexRestaurant %}
+
+<head>
+    <title>Restaurante</title>
+</head>
+<body>
+
+<h1>
+    Este es el restaurante de Hoguma.
+</h1>
+
+<p>
+    Pinche en alguna de las siguientes secciones si quiere algo.
+</p>
+    
+<p><a class="btn btn-secondary" href={% url 'bestfood' %}>Menú</a></p>
+<p><a class="btn btn-secondary" href={% url 'rooms' %}>Reservar</a></p>
+</body>
+
+{% endblock %}
+
+</html>
+

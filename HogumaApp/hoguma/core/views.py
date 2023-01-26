@@ -37,6 +37,9 @@ def register(request):
 def login(request):
     return render(request,'core/login.html')
 
+def restaurant(request):
+    return render(request, 'core/indexRestaurant.html')
+
 def bestfood(request):
     #return render(request, 'core/bestFood.html')
     nombre = "por fin ostia"
