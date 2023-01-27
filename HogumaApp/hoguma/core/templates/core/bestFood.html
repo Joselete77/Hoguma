@@ -29,7 +29,7 @@
                     <th>{{ dic.price }}€ </th>
                     <th>{{ dic.country }} </th>
                     <th>
-                        <img src="{{ dic.img }}" width="150" height="150">
+                        <img src="{{ dic.img }}" width="150" height="150" alt="Imagen no disponible">
                     </th>
                 </tr>
                 {% endfor %}
@@ -37,10 +37,6 @@
         </table>
     </div>
 </body>
-
-<div class="my-3">
-    <a class="btn btn-secondary" href={% url 'index' %}>Volver al inicio</a>
-</div>
 
 {% endblock %}
 

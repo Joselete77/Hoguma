@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import Context, Template
 from django.template.loader import get_template
 import json
-from .models import users
-
+from .models import reservationsRestaurant
 # Create your views here.
 
 def index(request):
@@ -39,14 +38,14 @@ def restaurant(request):
 
 def room(request):
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/rooms.json'
-    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/rooms.html")
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/room.html")
     template = Template(plantilla.read())
     plantilla.close()
 
     with open(ruta) as contenido:
-        a =json.load(contenido)
+        document_json =json.load(contenido)
 
-    contexto = Context({'room': a})
+    contexto = Context({'room': document_json})
     documento = template.render(contexto)
     return HttpResponse(documento)
 
@@ -57,9 +56,27 @@ def bestfood(request):
     plantilla.close()
     
     with open(ruta) as contenido:
-        a =json.load(contenido)
+        document_json =json.load(contenido)
 
-
-    contexto = Context({'best_food': a})
+    contexto = Context({'best_food': document_json})
     documento = template.render(contexto)
     return HttpResponse(documento)
+
+def reservationRestaurant(request):
+    if request.method=='POST':
+        email = request.POST.get('email')
+        date = request.POST.get('date')
+        hour = request.POST.get('hour')
+        people = request.POST.get('people')
+        allergy = request.POST.get('allergy')
+        reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
+        messages.success(request, 'Mesa reservada satisfactoriamente para el '+date+' a las '+hour+'.')
+
+        return render(request, 'core/index.html')
+    else:
+        return render(request, 'core/formReservationRestaurant.html')
+
+    
+
+
+
