@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpRequest
-from django import forms
+from django.http import HttpResponse
+from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import Context, Template
@@ -12,9 +12,6 @@ from .models import reservationsRestaurant
 
 def index(request):
     return render(request, 'core/index.html')
-
-def reservations(request):
-    return render(request, 'core/reservations.html')
 
 def register(request):
     if request.method == 'POST':
@@ -33,6 +30,10 @@ def register(request):
 
 def login(request):
     return render(request,'core/login.html')
+
+def function_logout(request):
+    logout(request)
+    return redirect('index')
 
 def restaurant(request):
     return render(request, 'core/indexRestaurant.html')
@@ -82,8 +83,7 @@ def reservationRestaurant(request):
 
         if now.date() < date_convert.date(): #check if date is valid
             if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #check if time is valid
-                if reservationsRestaurant.objects.get(email=email, hour=hour, date=date): #check if the user has a reservation for that moment 
-                    print("Ya hay cita")
+                if reservationsRestaurant.objects.filter(email=email, hour=hour, date=date).count() == 1: #check if the user has a reservation for that moment 
                     return render(request, 'core/formReservationRestaurant.html')
                 else:
                     reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
@@ -97,8 +97,6 @@ def reservationRestaurant(request):
 
     else:
         return render(request, 'core/formReservationRestaurant.html')
-
-
 
     
 
