@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import Context, Template
 from django.template.loader import get_template
+from datetime import datetime, time
 import json
 from .models import reservationsRestaurant
 # Create your views here.
@@ -65,16 +66,39 @@ def bestfood(request):
 def reservationRestaurant(request):
     if request.method=='POST':
         email = request.POST.get('email')
-        date = request.POST.get('date')
         hour = request.POST.get('hour')
         people = request.POST.get('people')
         allergy = request.POST.get('allergy')
-        reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
-        messages.success(request, 'Mesa reservada satisfactoriamente para el '+date+' a las '+hour+'.')
+        date = request.POST.get('date')
 
-        return render(request, 'core/index.html')
+        parts_date = date.split("-")
+        date_convert = "/".join(reversed(parts_date))
+        date_convert = datetime.strptime(date_convert,"%d/%m/%Y")
+        now = datetime.now()
+
+        hour_convert = datetime.strptime(hour,"%H:%M")
+        schedule_work1 = time(9,0)
+        schedule_work2 = time(23,45)
+
+        if now.date() < date_convert.date(): #check if date is valid
+            if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #check if time is valid
+                if reservationsRestaurant.objects.get(email=email, hour=hour, date=date): #check if the user has a reservation for that moment 
+                    print("Ya hay cita")
+                    return render(request, 'core/formReservationRestaurant.html')
+                else:
+                    reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
+                    messages.success(request, 'Mesa reservada satisfactoriamente para el '+date+' a las '+hour+'.')
+                    return redirect('index')
+            else:
+                return render(request, 'core/formReservationRestaurant.html')
+
+        else:
+            return render(request, 'core/formReservationRestaurant.html')
+
     else:
         return render(request, 'core/formReservationRestaurant.html')
+
+
 
     
 
