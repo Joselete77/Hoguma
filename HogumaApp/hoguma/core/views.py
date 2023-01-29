@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.template import Context, Template
+from django.template import Template
+from django.conf import settings
+from django.core.mail import EmailMessage
 from datetime import datetime, time
 import json
+import stripe
 from .models import reservationsRestaurant
+
+stripe.api_key = 'sk_test_51MVao2KwJvB2w7hR0ma0Xf8zlHrrvw6urNyUajWsiMJuOveRLnX0niAWZsAhg8vTXuVnSvjqEIDROHC4joonyuAT00Q0tRYsKK'
+
 # Create your views here.
 
 def index(request):
@@ -86,6 +91,9 @@ def reservationRestaurant(request):
                 else:
                     reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
                     messages.success(request, 'Mesa reservada satisfactoriamente para el '+date+' a las '+hour+'.')
+                    send_message = EmailMessage("Mesa reservada correctamente", "Su mesa para {} está reservada para el día {} a las {}. \n \n Muchas gracias, Hoguma.".format(people, date, hour), 
+                                                'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
+                    send_message.send()
                     return redirect('index')
             else:
                 return render(request, 'core/formReservationRestaurant.html')
@@ -95,8 +103,3 @@ def reservationRestaurant(request):
 
     else:
         return render(request, 'core/formReservationRestaurant.html')
-
-    
-
-
-
