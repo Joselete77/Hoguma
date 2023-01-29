@@ -1,16 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import Template
 from django.conf import settings
 from django.core.mail import EmailMessage
 from datetime import datetime, time
+from .forms import CustomUserCreationForm
 import json
-import stripe
 from .models import reservationsRestaurant
-
-stripe.api_key = 'sk_test_51MVao2KwJvB2w7hR0ma0Xf8zlHrrvw6urNyUajWsiMJuOveRLnX0niAWZsAhg8vTXuVnSvjqEIDROHC4joonyuAT00Q0tRYsKK'
 
 # Create your views here.
 
@@ -19,17 +16,15 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            print(username)
             message = ('Usuario %(username)s registrado satisfactoriamente.') % {'username' : username}
-            print(message)
             messages.success(request, message)
             form.save() 
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request,'core/register.html',{'form' : form})
 
 def login(request):
