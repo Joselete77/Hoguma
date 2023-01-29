@@ -4,7 +4,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.template import Context, Template
-from django.template.loader import get_template
 from datetime import datetime, time
 import json
 from .models import reservationsRestaurant
@@ -47,9 +46,7 @@ def room(request):
     with open(ruta) as contenido:
         document_json =json.load(contenido)
 
-    contexto = Context({'room': document_json})
-    documento = template.render(contexto)
-    return HttpResponse(documento)
+    return render(request, 'core/room.html', {'room': document_json})
 
 def bestfood(request):
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/best-food.json'
@@ -59,10 +56,11 @@ def bestfood(request):
     
     with open(ruta) as contenido:
         document_json =json.load(contenido)
+    
+    return render(request, 'core/bestFood.html', {'best_food': document_json})
 
-    contexto = Context({'best_food': document_json})
-    documento = template.render(contexto)
-    return HttpResponse(documento)
+def bf(request):
+    return render(request, 'core/bestFood.html')
 
 def reservationRestaurant(request):
     if request.method=='POST':
