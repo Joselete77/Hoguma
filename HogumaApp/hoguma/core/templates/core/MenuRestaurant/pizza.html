@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block menuRestaurant %}
+<head>
+    <title>Mejor comida</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <table style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style=" padding: 40px;">
+                        <h1>Nombre</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Precio</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Origen</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Imagen</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dic in pizza %}
+                <tr style="border: 2px solid black;">   
+                    <th>{{ dic.name }}</th>
+                    <th>{{ dic.price }}€ </th>
+                    <th>{{ dic.country }} </th>
+                    <th>
+                        <img src="{{ dic.img }}" width="150" height="150" alt="Imagen no disponible">
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+{% endblock %}
+
+</html>

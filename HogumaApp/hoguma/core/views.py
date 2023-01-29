@@ -53,19 +53,86 @@ def room(request):
 
     return render(request, 'core/room.html', {'room': document_json})
 
-def bestfood(request):
-    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/best-food.json'
-    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/bestFood.html")
+def menuRestaurant(request):
+    return render(request, 'core/indexMenuRestaurant.html')
+
+def drink(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/drinks.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/drinks.html")
     template = Template(plantilla.read())
     plantilla.close()
     
     with open(ruta) as contenido:
         document_json =json.load(contenido)
     
-    return render(request, 'core/bestFood.html', {'best_food': document_json})
+    return render(request, 'core/MenuRestaurant/drinks.html', {'drinks': document_json})
 
-def bf(request):
-    return render(request, 'core/bestFood.html')
+def burger(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/burgers.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/burger.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/burger.html', {'burger': document_json})
+
+def pizza(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/pizzas.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/pizza.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/pizza.html', {'pizza': document_json})
+
+def sandwich(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/sandwiches.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/sandwich.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/sandwich.html', {'sandwich': document_json})
+
+def steak(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/steaks.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/steak.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/steak.html', {'steak': document_json})
+
+def dessert(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/desserts.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/dessert.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/dessert.html', {'dessert': document_json})
+
+def bestfood(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/best-food.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/MenuRestaurant/bestFood.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    
+    return render(request, 'core/MenuRestaurant/bestFood.html', {'best_food': document_json})
+
 
 def reservationRestaurant(request):
     if request.method=='POST':
