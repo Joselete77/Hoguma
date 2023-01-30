@@ -5,16 +5,18 @@
     <title>Habitaciones</title>
 </head>
 <body style="text-align: center;">
-    <img class="bd-placeholder-img" src="https://images.unsplash.com/photo-1578681041175-9717c16b0d66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1460&q=80" width="1846" height="500"/>
+    <div style="display: grid; grid-template: 1fr 1fr; grid-auto-flow: column;">
         {% for dic in room %}
-            <p></p>
+        <div>
             <img src="{{ dic.img1 }}" width="300" height="300">
             <img src="{{ dic.img2 }}" width="300" height="300">
             <h1>{{ dic.name }}</h1>
             <h2>Precio: {{ dic.price }}€ </h2>
             <h2>Capacidad de {{ dic.capacity }}.</h2>
             <h2>Capacidad máxima de {{ dic.capacity_max }}.</h2>
+        </div>
         {% endfor %}
+    </div>
 </body>
 
 {% endblock %}

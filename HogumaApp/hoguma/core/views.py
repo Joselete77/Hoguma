@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib import messages
 from django.template import Template
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.urls import reverse_lazy
 from datetime import datetime, time
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, UpdateUserForm
 import json
 from .models import reservationsRestaurant
 
@@ -32,10 +34,30 @@ def register(request):
             return redirect('index')
     else:
         form = CustomUserCreationForm()
+
     return render(request,'core/register.html',{'form' : form})
 
 def login(request):
     return render(request,'core/login.html')
+
+def editProfile(request):
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            username = request.user.username
+            form.save()
+            message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
+            messages.success(request, message)
+            return redirect('index')
+    else:
+        form = UpdateUserForm()
+        
+    return render(request,'core/editProfile.html',{'form' : form})
+
+class changePassword(PasswordChangeView):
+    template_name = 'core/changePassword.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy('index')
 
 def function_logout(request):
     logout(request)
