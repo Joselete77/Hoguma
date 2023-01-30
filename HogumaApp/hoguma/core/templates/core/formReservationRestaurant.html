@@ -1,99 +1,53 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Jose Angel Dorado Gonzalez">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Reservar mesa</title>
+{% extends 'core/base.html' %}
 
-    <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-  </head>
-
-  <body class="text-center">
-
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Hoguma</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href={% url 'index' %}>Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'restaurant' %}>Restaurante</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled">Disabled</a>
-                </li>
-              </ul>
-              <div style="text-align: right; margin-right: 100px; display: flex; color: white;">
-                {% if user.is_authenticated %}
-                  Hola {{user.username}} &nbsp; &nbsp; <a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a>
-                {% else %}
-                  <a class="nav-link" href={% url 'login' %}>Iniciar sesión</a> &nbsp; &nbsp; <a class="nav-link" href={% url 'register' %}>Registrarse</a>
-                {% endif %}      
-              </div>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </nav>
-  </header>
-  <main class="form-signin w-100 m-auto">
-
-  <form action="/reservationRestaurant/" method="post">
-
-    {% csrf_token %}
-    <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Reservar mesa</h1>
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
-      <label for="floatingInput">Correo electrónico</label>
-    </div>
-    <div class="form-floating">
-      <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="date">
-      <label for="floatingInput">Fecha de reserva</label>
-    </div>
-    <div class="form-floating">
-      <input type="time" class="form-control" id="floatingPassword" placeholder="09:00" name="hour">
-      <label for="floatingPassword">Hora de reserva</label>
-    </div>
-    <div class="form-floating">
-      <input type="number" class="form-control" id="floatingPassword" placeholder="1" name="people">
-      <label for="floatingPassword">Número de personas</label>
-    </div>
-    <div>
-      <p></p>
-      <strong>*¿Es usted alérgico a algún alimento?</strong> 
-      <select name="allergy" style="width: 180px;">
-        <option value="False"> No </option>
-        <option value="True"> Sí </option>
-      </select>
-    </div>
-    <p></p>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Realizar reserva</button>
-  </form>
-
-  <div class="my-3">
-    <a class="btn btn-secondary" href={% url 'index' %}>Volver al inicio</a>
-  </div>
-
-  <footer class="container">
-    <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
+{% block reservationRestaurant %} 
+<head>
+  <title>Reservar mesa</title>
   
-</main>
+  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
+  
+  <!-- Custom styles for this template -->
+</head>
+
+<body class="text-center">  
+  
+  <main class="form-signin w-100 m-auto">
     
-  </body>
-</html>
+    <form action="/reservationRestaurant/" method="post">
+      
+      {% csrf_token %}
+      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Reservar mesa</h1>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
+        <label for="floatingInput">Correo electrónico</label>
+      </div>
+      <div class="form-floating">
+        <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="date">
+        <label for="floatingInput">Fecha de reserva</label>
+      </div>
+      <div class="form-floating">
+        <input type="time" class="form-control" id="floatingPassword" placeholder="09:00" name="hour">
+        <label for="floatingPassword">Hora de reserva</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" class="form-control" id="floatingPassword" placeholder="1" name="people">
+        <label for="floatingPassword">Número de personas</label>
+      </div>
+      <div>
+        <p></p>
+        <strong>*¿Es usted alérgico a algún alimento?</strong>
+        <select name="allergy" style="width: 180px;">
+          <option value="False"> No </option>
+          <option value="True"> Sí </option>
+        </select>
+      </div>
+      <p></p>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Realizar reserva</button>
+    </form>
+  </main>
+  
+</body>
+
+{% endblock %}

@@ -1,81 +1,32 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Jose Angel Dorado Gonzalez">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Registro</title>
+{% extends 'core/base.html' %}
 
-    <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
+{% block login-register %}
 
-    <!-- Custom styles for this template -->
-  </head>
+<head>
+  <title>Iniciar sesión</title>
 
-  <body class="text-center">
+  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Hoguma</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href={% url 'index' %}>Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'restaurant' %}>Restaurante</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled">Disabled</a>
-                </li>
-              </ul>
+  <!-- Custom styles for this template -->
+</head>
 
-              <div style="text-align: right; margin-right: 100px; display: flex; color: white;">
-                {% if user.is_authenticated %}
-                  Hola {{user.username}} &nbsp; &nbsp; <a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a>
-                {% else %}
-                  <a class="nav-link" href={% url 'login' %}>Iniciar sesión</a> &nbsp; &nbsp; <a class="nav-link" href={% url 'register' %}>Registrarse</a>
-                {% endif %}      
-              </div>
-
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </nav>
-  </header>
+<body class="text-center">
 
   <main class="form-signin w-100 m-auto">
 
-  <form method="post">
+    <form method="post">
 
-    <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
+      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
-    {% csrf_token %}
-    {{ form.as_p }}
+      {% csrf_token %}
+      {{ form.as_p }}
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
-  </form>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+    </form>
+  </main>
 
-  <br><br>
-  <div class="my-3">
-    <a class="btn btn-secondary" href={% url 'index' %}>Volver al inicio</a>
-  </div>
+</body>
 
-  <footer class="container">
-    <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-  
-</main>
-    
-  </body>
-</html>
+{% endblock %}
