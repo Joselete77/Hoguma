@@ -19,9 +19,16 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            email = form.cleaned_data['email']
+            first_name = form.cleaned_data['first_name'],
+
             message = ('Usuario %(username)s registrado satisfactoriamente.') % {'username' : username}
             messages.success(request, message)
-            form.save() 
+            form.save()
+            send_message = EmailMessage("Registro de usuario Hoguma", "{} el registro se ha completado satisfactoriamente, a continuación le proporcionamos sus credenciales: \n \n Usuario: {} \n Contraseña: {} \n \n Muchas gracias, Hoguma.".format(first_name,username, password), 
+                                                'hotelhoguma@gmail.com', [email]) 
+            send_message.send()
             return redirect('index')
     else:
         form = CustomUserCreationForm()
