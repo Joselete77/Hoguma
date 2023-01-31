@@ -214,9 +214,37 @@ def reservationRestaurant(request):
             return render(request, 'core/formReservationRestaurant.html')
 
     else:
-        return render(request, 'core/formReservationRestaurant.html')
+        user = request.user
+        return render(request, 'core/formReservationRestaurant.html', {'user':user})
 
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
     return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+
+def deleteReservationHotel(request, id):
+    reservation=reservationsHotel.objects.get(id=id)
+    reservation.delete()
+
+    return redirect(index)
+
+def formUpdateReservationHotel(request, id):
+    reservation=reservationsHotel.objects.get(id=id)
+
+    return render(request, 'core/updateReservationHotel.html', {'reservation': reservation})
+
+def updateReservationHotel(request):
+    id = int(request.POST['id'])
+    email = request.POST['email']
+    entry_date = request.POST['entry_date']
+    departure_date = request.POST['departure_date']
+    typeRoom = request.POST['typeRoom']
+
+    reservation=reservationsHotel.objects.get(id=id)
+    reservation.email = email
+    reservation.entry_date = entry_date
+    reservation.departure_date = departure_date
+    reservation.typeRoom = typeRoom
+    reservation.save()
+
+    return render(request, 'core/index.html')

@@ -23,4 +23,8 @@ urlpatterns = [
     path('reservationRestaurant/', reservationRestaurant, name='reservationRestaurant'),
     path('reservationsRoom/', reservationsRoom, name='reservationsRoom'),
     path('reservationsHotelUser/', reservationsHotelUser, name='reservationsHotelUser'),
+    path('reservationsHotelUser/deleteReservationHotel/<int:id>', deleteReservationHotel, name='deleteReservationHotel'),
+    path('reservationsHotelUser/formUpdateReservationHotel/<int:id>', formUpdateReservationHotel, name='formUpdateReservationHotel'),
+    path('updateReservationHotel/', updateReservationHotel, name='updateReservationHotel')
+
 ]

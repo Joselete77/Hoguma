@@ -18,6 +18,9 @@
                     <th style=" padding: 40px;">
                         <h1>Fecha de salida</h1>
                     </th>
+                    <th style=" padding: 40px;" colspan="2">
+                        <h1>Opciones</h1>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +29,8 @@
                     <th>{{ dic.typeRoom }}</th>
                     <th>{{ dic.entry_date }} </th>
                     <th>{{ dic.departure_date }} </th>
+                    <th><a href="formUpdateReservationHotel/{{dic.id}}" class="btn btn-sm btn-block btn-info">Editar</a></th>
+                    <th><a href="deleteReservationHotel/{{dic.id}}" class="btn btn-sm btn-block btn-danger">Eliminar</a></th>
                 </tr>
                 {% endfor %}
             </tbody>
