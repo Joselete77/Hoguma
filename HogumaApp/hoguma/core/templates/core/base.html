@@ -34,6 +34,9 @@
               <li class="nav-item">
                 <a class="nav-link disabled">Disabled</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Gestionar reservas usuarios no registrados</a>
+              </li>
             </ul>
 
             <div style="text-align: right; margin-right: 100px; display: flex; color: white;">
@@ -43,7 +46,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/3870/3870822.png" alt="img-profile" width="32" height="32" class="rounded-circle">
                   </a>
                   <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="#">Mis reservas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="{% url 'editProfile' %}">Editar perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -82,6 +85,8 @@
     {% block indexRestaurant %} {% endblock %}
     {% block indexMenuRestaurant %} {% endblock %}
     {% block menuRestaurant %} {% endblock %}
+    {%block reservationsUser %} {% endblock %}
+
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-end"><a href={% url 'index' %}>Back to home</a></p>

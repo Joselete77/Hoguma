@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block reservationRestaurant %} 
+<head>
+  <title>Reservar habitación</title>
+  
+  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
+  
+  <!-- Custom styles for this template -->
+</head>
+
+<body class="text-center">  
+  
+  <main class="form-signin w-100 m-auto">
+    
+    <form action="/reservationsRoom/" method="post">
+      
+      {% csrf_token %}
+      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Reservar habitación</h1>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
+        <label for="floatingInput">Correo electrónico</label>
+      </div>
+      <div class="form-floating">
+        <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="entry_date">
+        <label for="floatingInput">Día de entrada</label>
+      </div>
+      <div class="form-floating">
+        <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="departure_date">
+        <label for="floatingInput">Día de salida</label>
+      </div>
+      <div>
+        <p></p>
+        <strong>¿Qué tipo de habitación desea?</strong>
+        <select name="typeRoom" style="width: 180px;">
+          <option value="singleRoom"> Habitación individual </option>
+          <option value="doubleRoom"> Habitación doble </option>
+          <option value="tripleRoom"> Habitación triple </option>
+          <option value="suiteRoom"> Suite </option>
+        </select>
+      </div>
+      <p></p>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Realizar reserva</button>
+    </form>
+  </main>
+  
+</body>
+
+{% endblock %}

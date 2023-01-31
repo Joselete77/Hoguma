@@ -15,3 +15,14 @@ class reservationsRestaurant(models.Model):
     hour=models.TimeField()
     people=models.IntegerField()
     allergy=models.BooleanField()
+
+class reservationsHotel(models.Model):
+    email=models.EmailField()
+    typeRoom=models.CharField(max_length=50)
+    entry_date=models.DateField()
+    departure_date=models.DateField()
+
+class typeRoom(models.Model):
+    type=models.CharField(max_length=50)
+    capacity=models.IntegerField()
+    price=models.IntegerField()

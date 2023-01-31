@@ -14,6 +14,7 @@
             <h2>Precio: {{ dic.price }}€ </h2>
             <h2>Capacidad de {{ dic.capacity }}.</h2>
             <h2>Capacidad máxima de {{ dic.capacity_max }}.</h2>
+            <p><a class="btn btn-secondary" href={% url 'reservationsRoom' %}>Reservar habitación</a></p>
         </div>
         {% endfor %}
     </div>

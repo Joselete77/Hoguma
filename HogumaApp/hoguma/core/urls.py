@@ -21,4 +21,6 @@ urlpatterns = [
     path('restaurant/', restaurant, name='restaurant'),
     path('room/', room, name='room'),
     path('reservationRestaurant/', reservationRestaurant, name='reservationRestaurant'),
+    path('reservationsRoom/', reservationsRoom, name='reservationsRoom'),
+    path('reservationsHotelUser/', reservationsHotelUser, name='reservationsHotelUser'),
 ]

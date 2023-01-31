@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from datetime import datetime, time
 from .forms import CustomUserCreationForm, UpdateUserForm
 import json
-from .models import reservationsRestaurant
+from .models import reservationsRestaurant, typeRoom, reservationsHotel
 
 # Create your views here.
 
@@ -74,8 +74,29 @@ def room(request):
 
     with open(ruta) as contenido:
         document_json =json.load(contenido)
-
     return render(request, 'core/room.html', {'room': document_json})
+
+def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
+    if request.method=='POST':
+        email = request.POST.get('email')
+        entry_date = request.POST.get('entry_date')
+        departure_date = request.POST.get('departure_date')
+        typeRoom = request.POST.get('typeRoom')
+
+        parts_dateEntry = entry_date.split("-")
+        dateEntry_convert = "/".join(reversed(parts_dateEntry))
+        dateEntry_convert = datetime.strptime(dateEntry_convert,"%d/%m/%Y")
+
+        parts_dateDeparture = departure_date.split("-")
+        dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
+        dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
+
+        reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+        messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+        
+        return redirect('index')
+    else:
+        return render(request, 'core/formReservationRoom.html')
 
 def menuRestaurant(request):
     return render(request, 'core/indexMenuRestaurant.html')
@@ -194,3 +215,8 @@ def reservationRestaurant(request):
 
     else:
         return render(request, 'core/formReservationRestaurant.html')
+
+def reservationsHotelUser(request):
+    email = request.user.email
+    reservationsDB = reservationsHotel.objects.filter(email=email)
+    return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})

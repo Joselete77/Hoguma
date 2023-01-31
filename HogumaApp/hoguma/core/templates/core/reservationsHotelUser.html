@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{%block reservationsUser %}
+<head>
+    <title>Mis reservas</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <table style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style=" padding: 40px;">
+                        <h1>Reserva</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Fecha de entrada</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Fecha de salida</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dic in reservationsDB %}
+                <tr style="border: 2px solid black;">   
+                    <th>{{ dic.typeRoom }}</th>
+                    <th>{{ dic.entry_date }} </th>
+                    <th>{{ dic.departure_date }} </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+<br> <br>
+{% endblock %}
