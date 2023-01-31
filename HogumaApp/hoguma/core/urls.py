@@ -6,10 +6,10 @@ from .views import *
 urlpatterns = [
     path('', index, name='index'),
     path('register/', register, name='register'),
-    path('login/', LoginView.as_view(template_name='core/login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='core/User/login.html'), name='login'),
     path('logout/', function_logout, name='logout'),
-    path('editProfile', editProfile, name='editProfile'),
-    path('changePassword', changePassword.as_view(), name='changePassword'),
+    path('editProfile/', editProfile, name='editProfile'),
+    path('changePassword/', changePassword.as_view(), name='changePassword'),
     path('menuRestaurant/', menuRestaurant, name='menuRestaurant'),
     path('bestfood/',bestfood, name='bestfood'),
     path('drink/', drink, name='drink'),

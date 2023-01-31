@@ -35,14 +35,19 @@ def register(request):
     else:
         form = CustomUserCreationForm()
 
-    return render(request,'core/register.html',{'form' : form})
+    return render(request,'core/User/register.html',{'form' : form})
 
 def login(request):
-    return render(request,'core/login.html')
+    return render(request,'core/User/login.html')
+
+def function_logout(request):
+    logout(request)
+    return redirect('index')
 
 def editProfile(request):
     if request.method == 'POST':
-        form = UpdateUserForm(request.POST, instance=request.user)
+        user = request.user
+        form = UpdateUserForm(request.POST, user)
         if form.is_valid():
             username = request.user.username
             form.save()
@@ -52,54 +57,19 @@ def editProfile(request):
     else:
         form = UpdateUserForm()
         
-    return render(request,'core/editProfile.html',{'form' : form})
+    return render(request,'core/User/editProfile.html',{'form' : form})
 
 class changePassword(PasswordChangeView):
-    template_name = 'core/changePassword.html'
+    template_name = 'core/User/changePassword.html'
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('index')
 
-def function_logout(request):
-    logout(request)
-    return redirect('index')
-
+#RESTAURANT
 def restaurant(request):
-    return render(request, 'core/indexRestaurant.html')
-
-def room(request):
-    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/rooms.json'
-    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/room.html")
-    template = Template(plantilla.read())
-    plantilla.close()
-
-    with open(ruta) as contenido:
-        document_json =json.load(contenido)
-    return render(request, 'core/room.html', {'room': document_json})
-
-def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
-    if request.method=='POST':
-        email = request.POST.get('email')
-        entry_date = request.POST.get('entry_date')
-        departure_date = request.POST.get('departure_date')
-        typeRoom = request.POST.get('typeRoom')
-
-        parts_dateEntry = entry_date.split("-")
-        dateEntry_convert = "/".join(reversed(parts_dateEntry))
-        dateEntry_convert = datetime.strptime(dateEntry_convert,"%d/%m/%Y")
-
-        parts_dateDeparture = departure_date.split("-")
-        dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
-        dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
-
-        reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
-        messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
-        
-        return redirect('index')
-    else:
-        return render(request, 'core/formReservationRoom.html')
+    return render(request, 'core/Restaurant/indexRestaurant.html')
 
 def menuRestaurant(request):
-    return render(request, 'core/indexMenuRestaurant.html')
+    return render(request, 'core/Restaurant/indexMenuRestaurant.html')
 
 def drink(request):
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/drinks.json'
@@ -199,7 +169,7 @@ def reservationRestaurant(request):
         if now.date() < date_convert.date(): #check if date is valid
             if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #check if time is valid
                 if reservationsRestaurant.objects.filter(email=email, hour=hour, date=date).count() == 1: #check if the user has a reservation for that moment 
-                    return render(request, 'core/formReservationRestaurant.html')
+                    return render(request, 'core/Restaurant/formReservationRestaurant.html')
                 else:
                     reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
                     reservation = reservationsRestaurant.objects.get(date=date, hour=hour, people=people, allergy=allergy, email=email)
@@ -209,65 +179,19 @@ def reservationRestaurant(request):
                     send_message.send()
                     return redirect('index')
             else:
-                return render(request, 'core/formReservationRestaurant.html')
+                return render(request, 'core/Restaurant/formReservationRestaurant.html')
 
         else:
-            return render(request, 'core/formReservationRestaurant.html')
+            return render(request, 'core/Restaurant/formReservationRestaurant.html')
 
     else:
         user = request.user
-        return render(request, 'core/formReservationRestaurant.html', {'user':user})
+        return render(request, 'core/Restaurant/formReservationRestaurant.html', {'user':user})
 
-#RESERVATIONS HOTEL
-def reservationsHotelUser(request):
-    email = request.user.email
-    reservationsDB = reservationsHotel.objects.filter(email=email)
-    return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
-
-def searchReservationsHotelAnonymous(request):
-    if request.method == 'POST':
-        id_anonymous = request.POST['id']
-        email_anonymous = request.POST['email']
-        reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
-        if reservationsDB.count() > 0:
-            return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
-        else:
-            return render(request, 'core/searchReservationsHotelAnonymous.html')
-    else:
-        return render(request, 'core/searchReservationsHotelAnonymous.html')
-
-def deleteReservationHotel(request, id):
-    reservation=reservationsHotel.objects.get(id=id)
-    reservation.delete()
-
-    return redirect(index)
-
-def formUpdateReservationHotel(request, id):
-    reservation=reservationsHotel.objects.get(id=id)
-
-    return render(request, 'core/updateReservationHotel.html', {'reservation': reservation})
-
-def updateReservationHotel(request):
-    id = int(request.POST['id'])
-    email = request.POST['email']
-    entry_date = request.POST['entry_date']
-    departure_date = request.POST['departure_date']
-    typeRoom = request.POST['typeRoom']
-
-    reservation=reservationsHotel.objects.get(id=id)
-    reservation.email = email
-    reservation.entry_date = entry_date
-    reservation.departure_date = departure_date
-    reservation.typeRoom = typeRoom
-    reservation.save()
-
-    return render(request, 'core/index.html')
-
-#RESERVATIONS RESTAURANT
 def reservationsRestaurantUser(request):
     email = request.user.email
     reservationsDB = reservationsRestaurant.objects.filter(email=email)
-    return render(request, 'core/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
+    return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
 
 def searchReservationsRestaurantAnonymous(request):
     if request.method == 'POST':
@@ -275,11 +199,11 @@ def searchReservationsRestaurantAnonymous(request):
         email_anonymous = request.POST['email']
         reservationsDB = reservationsRestaurant.objects.filter(email=email_anonymous, id=id_anonymous)
         if reservationsDB.count() > 0:
-            return render(request, 'core/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
+            return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
         else:
-            return render(request, 'core/searchReservationsRestaurantAnonymous.html')
+            return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
     else:
-        return render(request, 'core/searchReservationsRestaurantAnonymous.html')
+        return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
 
 def deleteReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
@@ -290,7 +214,7 @@ def deleteReservationRestaurant(request, id):
 def formUpdateReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
 
-    return render(request, 'core/updateReservationRestaurant.html', {'reservation': reservation})
+    return render(request, 'core/Restaurant/updateReservationRestaurant.html', {'reservation': reservation})
 
 def updateReservationRestaurant(request):
     id = int(request.POST['id'])
@@ -307,6 +231,83 @@ def updateReservationRestaurant(request):
     reservation.people = people
     reservation.allergy = allergy
     reservation.date = date   
+    reservation.save()
+
+    return render(request, 'core/index.html')
+
+#HOTEL
+def room(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/rooms.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/Hotel/room.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+    return render(request, 'core/Hotel/room.html', {'room': document_json})
+
+def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
+    if request.method=='POST':
+        email = request.POST.get('email')
+        entry_date = request.POST.get('entry_date')
+        departure_date = request.POST.get('departure_date')
+        typeRoom = request.POST.get('typeRoom')
+
+        parts_dateEntry = entry_date.split("-")
+        dateEntry_convert = "/".join(reversed(parts_dateEntry))
+        dateEntry_convert = datetime.strptime(dateEntry_convert,"%d/%m/%Y")
+
+        parts_dateDeparture = departure_date.split("-")
+        dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
+        dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
+
+        reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+        messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+        
+        return redirect('index')
+    else:
+        return render(request, 'core/Hotel/formReservationRoom.html')
+
+def reservationsHotelUser(request):
+    email = request.user.email
+    reservationsDB = reservationsHotel.objects.filter(email=email)
+    return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+
+def searchReservationsHotelAnonymous(request):
+    if request.method == 'POST':
+        id_anonymous = request.POST['id']
+        email_anonymous = request.POST['email']
+        reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
+        if reservationsDB.count() > 0:
+            return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+        else:
+            return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
+    else:
+        return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
+
+def deleteReservationHotel(request, id):
+    reservation=reservationsHotel.objects.get(id=id)
+    reservation.delete()
+
+    return redirect(index)
+
+def formUpdateReservationHotel(request, id):
+    reservation=reservationsHotel.objects.get(id=id)
+
+    return render(request, 'core/Hotel/updateReservationHotel.html', {'reservation': reservation})
+
+def updateReservationHotel(request):
+    id = int(request.POST['id'])
+    email = request.POST['email']
+    entry_date = request.POST['entry_date']
+    departure_date = request.POST['departure_date']
+    typeRoom = request.POST['typeRoom']
+
+    reservation=reservationsHotel.objects.get(id=id)
+    reservation.email = email
+    reservation.entry_date = entry_date
+    reservation.departure_date = departure_date
+    reservation.typeRoom = typeRoom
     reservation.save()
 
     return render(request, 'core/index.html')

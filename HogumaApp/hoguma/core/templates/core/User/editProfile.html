@@ -21,8 +21,14 @@
             <h1 class="h3 mb-3 fw-normal">Editar perfil</h1>
 
             <div>
-                <label>Username:</label>
-                {{ form.username }}
+                <p>
+                    <b>Username actual:</b> {{ user.username }}
+                </p>
+                <p>
+                    <b>Email actual:</b> {{ user.email }}
+                </p>
+                <label>Username nuevo:</label>
+                {{ form.username }} 
                 <label>Email:</label>
                 {{ form.email }}
             </div>
