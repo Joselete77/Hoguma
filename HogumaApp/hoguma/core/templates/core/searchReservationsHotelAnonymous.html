@@ -11,28 +11,26 @@
   <!-- Custom styles for this template -->
 </head>
 
-<body class="text-center">  
-  
-  <main class="form-signin w-100 m-auto">
+<body class="text-center" style="display: flex; justify-content: center;">  
+    <main class="form-signin w-100 m-auto">
+        <form action="/searchReservationsHotelAnonymous/" method="post">
+            
+            {% csrf_token %}
+            <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Consultar reservas de hotel</h1>
+            <div class="form-floating">
+                <input type="number" class="form-control" id="floatingInput" placeholder="01/01/2000" name="id">
+                <label for="floatingInput">Número identificador</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
+                <label for="floatingInput">Correo electrónico</label>
+            </div>
+            <p></p>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Realizar consulta</button>
+        </form>  
+    </main>
     
-    <form action="/searchReservationsHotelAnonymous/" method="post">
-      
-      {% csrf_token %}
-      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Consultar reservas de hotel</h1>
-      <div class="form-floating">
-        <input type="number" class="form-control" id="floatingInput" placeholder="01/01/2000" name="id">
-        <label for="floatingInput">Número identificador</label>
-      </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
-        <label for="floatingInput">Correo electrónico</label>
-      </div>
-      <p></p>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Realizar consulta</button>
-    </form>
-  </main>
-  
 </body>
 
 {% endblock %}

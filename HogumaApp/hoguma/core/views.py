@@ -202,8 +202,9 @@ def reservationRestaurant(request):
                     return render(request, 'core/formReservationRestaurant.html')
                 else:
                     reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
+                    reservation = reservationsRestaurant.objects.get(date=date, hour=hour, people=people, allergy=allergy, email=email)
                     messages.success(request, 'Mesa reservada satisfactoriamente para el '+date+' a las '+hour+'.')
-                    send_message = EmailMessage("Mesa reservada correctamente", "Su mesa para {} está reservada para el día {} a las {}. \n \n Muchas gracias, Hoguma.".format(people, date, hour), 
+                    send_message = EmailMessage("Mesa reservada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
                                                 'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
                     send_message.send()
                     return redirect('index')
