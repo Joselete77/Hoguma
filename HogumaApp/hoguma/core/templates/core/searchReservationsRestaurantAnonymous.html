@@ -3,7 +3,7 @@
 {% block searchReservationsHotel %}
 
 <head>
-  <title>Consultar reservas hotel</title>
+  <title>Consultar reservas restaurante</title>
   
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -13,11 +13,11 @@
 
 <body class="text-center" style="display: flex; justify-content: center;">  
     <main class="form-signin w-100 m-auto">
-        <form action="/searchReservationsHotelAnonymous/" method="post">
+        <form action="/searchReservationsRestaurantAnonymous/" method="post">
             
             {% csrf_token %}
             <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Consultar reservas de hotel</h1>
+            <h1 class="h3 mb-3 fw-normal">Consultar reservas de resturante</h1>
             <div class="form-floating">
                 <input type="number" class="form-control" id="floatingInput" placeholder="01/01/2000" name="id">
                 <label for="floatingInput">Número identificador</label>

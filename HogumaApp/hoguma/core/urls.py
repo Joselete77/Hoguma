@@ -23,9 +23,18 @@ urlpatterns = [
     path('reservationRestaurant/', reservationRestaurant, name='reservationRestaurant'),
     path('reservationsRoom/', reservationsRoom, name='reservationsRoom'),
     path('reservationsHotelUser/', reservationsHotelUser, name='reservationsHotelUser'),
-    path('reservationsHotelUser/deleteReservationHotel/<int:id>', deleteReservationHotel, name='deleteReservationHotel'),
-    path('reservationsHotelUser/formUpdateReservationHotel/<int:id>', formUpdateReservationHotel, name='formUpdateReservationHotel'),
+    path('reservationsHotelUser/deleteReservationHotel/<int:id>', deleteReservationHotel, name='deleteReservationHotel'), #user registered
+    path('reservationsHotelUser/formUpdateReservationHotel/<int:id>', formUpdateReservationHotel, name='formUpdateReservationHotel'), #user registered
+    path('searchReservationsHotelAnonymous/deleteReservationHotel/<int:id>', deleteReservationHotel, name='deleteReservationHotel'), #anonymous
+    path('searchReservationsHotelAnonymous/formUpdateReservationHotel/<int:id>', formUpdateReservationHotel, name='formUpdateReservationHotel'), #anonymous
+    path('searchReservationsHotelAnonymous/', searchReservationsHotelAnonymous, name='searchReservationsHotelAnonymous'), #anonymous
     path('updateReservationHotel/', updateReservationHotel, name='updateReservationHotel'),
-    path('searchReservationsHotelAnonymous/', searchReservationsHotelAnonymous, name='searchReservationsHotelAnonymous'),
+    path('reservationsRestaurantUser/', reservationsRestaurantUser, name='reservationsRestaurantUser'),
+    path('updateReservationRestaurant/', updateReservationRestaurant, name='updateReservationRestaurant'),
+    path('searchReservationsRestaurantAnonymous/', searchReservationsRestaurantAnonymous, name='searchReservationsRestaurantAnonymous'), #anonymous
+    path('searchReservationsRestaurantAnonymous/deleteReservationRestaurant/<int:id>', deleteReservationRestaurant, name='deleteReservationRestaurant'), #anonymous
+    path('searchReservationsRestaurantAnonymous/formUpdateReservationRestaurant/<int:id>', formUpdateReservationRestaurant, name='formUpdateReservationRestaurant'), #anonymous
+    path('reservationsRestaurantUser/deleteReservationRestaurant/<int:id>', deleteReservationRestaurant, name='deleteReservationRestaurant'), #user registered
+    path('reservationsRestaurantUser/formUpdateReservationRestaurant/<int:id>', formUpdateReservationRestaurant, name='formUpdateReservationRestaurant'), #user registered
 
 ]

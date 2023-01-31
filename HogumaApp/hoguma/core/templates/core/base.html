@@ -35,7 +35,7 @@
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de hotel</a></li>
-                  <li><a class="dropdown-item" href="#">Mis reservas de restaurante</a></li>
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de restaurante</a></li>
                 </ul>
               </li>
             </ul>
@@ -47,7 +47,8 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/3870/3870822.png" alt="img-profile" width="32" height="32" class="rounded-circle">
                   </a>
                   <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas reservas de hotel</a></li>
+                    <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">Mis reservas de restaurante</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="{% url 'editProfile' %}">Editar perfil</a></li>
                     <li><hr class="dropdown-divider"></li>

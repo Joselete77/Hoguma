@@ -218,6 +218,7 @@ def reservationRestaurant(request):
         user = request.user
         return render(request, 'core/formReservationRestaurant.html', {'user':user})
 
+#RESERVATIONS HOTEL
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
@@ -258,6 +259,54 @@ def updateReservationHotel(request):
     reservation.entry_date = entry_date
     reservation.departure_date = departure_date
     reservation.typeRoom = typeRoom
+    reservation.save()
+
+    return render(request, 'core/index.html')
+
+#RESERVATIONS RESTAURANT
+def reservationsRestaurantUser(request):
+    email = request.user.email
+    reservationsDB = reservationsRestaurant.objects.filter(email=email)
+    return render(request, 'core/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
+
+def searchReservationsRestaurantAnonymous(request):
+    if request.method == 'POST':
+        id_anonymous = request.POST['id']
+        email_anonymous = request.POST['email']
+        reservationsDB = reservationsRestaurant.objects.filter(email=email_anonymous, id=id_anonymous)
+        if reservationsDB.count() > 0:
+            return render(request, 'core/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
+        else:
+            return render(request, 'core/searchReservationsRestaurantAnonymous.html')
+    else:
+        return render(request, 'core/searchReservationsRestaurantAnonymous.html')
+
+def deleteReservationRestaurant(request, id):
+    reservation=reservationsRestaurant.objects.get(id=id)
+    reservation.delete()
+
+    return redirect(index)
+
+def formUpdateReservationRestaurant(request, id):
+    reservation=reservationsRestaurant.objects.get(id=id)
+
+    return render(request, 'core/updateReservationRestaurant.html', {'reservation': reservation})
+
+def updateReservationRestaurant(request):
+    id = int(request.POST['id'])
+    email = request.POST.get('email')
+    hour = request.POST.get('hour')
+    people = request.POST.get('people')
+    allergy = request.POST.get('allergy')
+    date = request.POST.get('date')
+    print(id)
+
+    reservation=reservationsRestaurant.objects.get(id=id)
+    reservation.email = email
+    reservation.hour = hour
+    reservation.people = people
+    reservation.allergy = allergy
+    reservation.date = date   
     reservation.save()
 
     return render(request, 'core/index.html')

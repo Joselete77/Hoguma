@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+
+{%block reservationsUser %}
+<head>
+    <title>Mis reservas</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <table style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style=" padding: 40px;">
+                        <h1>Fecha</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Hora</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Personas</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Alergia</h1>
+                    </th>
+                    <th style=" padding: 40px;" colspan="2">
+                        <h1>Opciones</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dic in reservationsDB %}
+                <tr style="border: 2px solid black;">   
+                    <th>{{ dic.date }}</th>
+                    <th>{{ dic.hour }} </th>
+                    <th>{{ dic.people }} </th>
+                    <th>{{ dic.allergy }} </th>
+                    <th><a href="formUpdateReservationRestaurant/{{dic.id}}" class="btn btn-sm btn-block btn-info">Editar</a></th>
+                    <th><a href="deleteReservationRestaurant/{{dic.id}}" class="btn btn-sm btn-block btn-danger">Eliminar</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+<br> <br>
+{% endblock %}
