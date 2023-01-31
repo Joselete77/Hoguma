@@ -31,11 +31,12 @@
               <li class="nav-item">
                 <a class="nav-link" href={% url 'restaurant' %}>Restaurante</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Gestionar reservas usuarios no registrados</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de hotel</a></li>
+                  <li><a class="dropdown-item" href="#">Mis reservas de restaurante</a></li>
+                </ul>
               </li>
             </ul>
 
@@ -86,6 +87,7 @@
     {% block indexMenuRestaurant %} {% endblock %}
     {% block menuRestaurant %} {% endblock %}
     {%block reservationsUser %} {% endblock %}
+    {% block searchReservationsHotel %} {% endblock %}
 
   <!-- FOOTER -->
   <footer class="container">

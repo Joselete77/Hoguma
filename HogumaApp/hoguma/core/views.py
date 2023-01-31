@@ -222,6 +222,18 @@ def reservationsHotelUser(request):
     reservationsDB = reservationsHotel.objects.filter(email=email)
     return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
 
+def searchReservationsHotelAnonymous(request):
+    if request.method == 'POST':
+        id_anonymous = request.POST['id']
+        email_anonymous = request.POST['email']
+        reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
+        if reservationsDB.count() > 0:
+            return render(request, 'core/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+        else:
+            return render(request, 'core/searchReservationsHotelAnonymous.html')
+    else:
+        return render(request, 'core/searchReservationsHotelAnonymous.html')
+
 def deleteReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
     reservation.delete()

@@ -25,6 +25,7 @@ urlpatterns = [
     path('reservationsHotelUser/', reservationsHotelUser, name='reservationsHotelUser'),
     path('reservationsHotelUser/deleteReservationHotel/<int:id>', deleteReservationHotel, name='deleteReservationHotel'),
     path('reservationsHotelUser/formUpdateReservationHotel/<int:id>', formUpdateReservationHotel, name='formUpdateReservationHotel'),
-    path('updateReservationHotel/', updateReservationHotel, name='updateReservationHotel')
+    path('updateReservationHotel/', updateReservationHotel, name='updateReservationHotel'),
+    path('searchReservationsHotelAnonymous/', searchReservationsHotelAnonymous, name='searchReservationsHotelAnonymous'),
 
 ]
