@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block monuments %}
+
+<head>
+    <title>Lugares emblemáticos</title>
+</head>
+<body style="margin-top: 30px;">
+    <div>
+        {% for dic in monuments %}
+        <div style="display: inline-block;">
+            <img src="{{ dic.foto }}" width="300" height="300" style="float: left;">
+            <div>
+                <h1>Nombre: {{ dic.nombre }}</h1>
+                <h2>Tipo: {{ dic.tipo }}€ </h2>
+                <h2>Dirección: {{ dic.direccion }}</h2>
+                <h2>Descripción: {{ dic.descripcion }}.</h2>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock %}

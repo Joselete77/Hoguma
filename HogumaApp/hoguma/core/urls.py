@@ -36,5 +36,6 @@ urlpatterns = [
     path('searchReservationsRestaurantAnonymous/formUpdateReservationRestaurant/<int:id>', formUpdateReservationRestaurant, name='formUpdateReservationRestaurant'), #anonymous
     path('reservationsRestaurantUser/deleteReservationRestaurant/<int:id>', deleteReservationRestaurant, name='deleteReservationRestaurant'), #user registered
     path('reservationsRestaurantUser/formUpdateReservationRestaurant/<int:id>', formUpdateReservationRestaurant, name='formUpdateReservationRestaurant'), #user registered
-
+    path('monuments/', monuments, name='monuments'),
+    path('contact/', contact, name='contact'),
 ]

@@ -31,6 +31,12 @@
               <li class="nav-item">
                 <a class="nav-link" href={% url 'restaurant' %}>Restaurante</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
                 <ul class="dropdown-menu">
@@ -89,6 +95,8 @@
     {% block menuRestaurant %} {% endblock %}
     {%block reservationsUser %} {% endblock %}
     {% block searchReservationsHotel %} {% endblock %}
+    {% block monuments %} {% endblock %}
+    {% block contact %} {% endblock %}
 
   <!-- FOOTER -->
   <footer class="container">

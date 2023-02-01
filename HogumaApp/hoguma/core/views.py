@@ -311,3 +311,32 @@ def updateReservationHotel(request):
     reservation.save()
 
     return render(request, 'core/index.html')
+
+
+def monuments(request):
+    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/monumentos.json'
+    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/monuments.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+
+    with open(ruta) as contenido:
+        document_json =json.load(contenido)
+
+    return render(request, 'core/monuments.html', {'monuments': document_json}) 
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subjectEmail = request.POST['subjectEmail']
+        messageEmail = request.POST['messageEmail'] + ' ' + '\nEmail del remitente: ' + email + '\nNombre del remitente: ' + name
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['hotelhoguma@gmail.com']
+
+        send_message = EmailMessage(subjectEmail, messageEmail, email_from ,recipient_list)
+        send_message.send()
+        
+        return redirect('index')
+
+    else:
+        return render(request, 'core/contact.html')
