@@ -5,11 +5,11 @@
 <head>
     <title>Lugares emblemáticos</title>
 </head>
-<body style="margin-top: 30px;">
-    <div>
+<body>
+    <div style="display: grid; gap: 20px; padding: 30px;">
         {% for dic in monuments %}
-        <div style="display: inline-block;">
-            <img src="{{ dic.foto }}" width="300" height="300" style="float: left;">
+        <div style="display: grid; grid-auto-flow: column; grid-template-columns: 300px 1fr; gap: 20px;">
+            <img src="{{ dic.foto }}" width="100%" height="100%">
             <div>
                 <h1>Nombre: {{ dic.nombre }}</h1>
                 <h2>Tipo: {{ dic.tipo }}€ </h2>
