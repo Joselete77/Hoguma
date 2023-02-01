@@ -23,6 +23,7 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          {% if user.is_authenticated %}
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
@@ -37,14 +38,32 @@
               <li class="nav-item">
                 <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de hotel</a></li>
-                  <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de restaurante</a></li>
-                </ul>
-              </li>
             </ul>
+
+            {% else %}
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href={% url 'index' %}>Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href={% url 'restaurant' %}>Restaurante</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de hotel</a></li>
+                    <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de restaurante</a></li>
+                  </ul>
+                </li>
+              </ul>  
+              {% endif %}      
 
             <div style="text-align: right; margin-right: 100px; display: flex; color: white;">
               {% if user.is_authenticated %}
