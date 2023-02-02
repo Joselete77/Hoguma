@@ -38,4 +38,5 @@ urlpatterns = [
     path('reservationsRestaurantUser/formUpdateReservationRestaurant/<int:id>', formUpdateReservationRestaurant, name='formUpdateReservationRestaurant'), #user registered
     path('monuments/', monuments, name='monuments'),
     path('contact/', contact, name='contact'),
+    path('busStop/', busStop, name='busStop'),
 ]

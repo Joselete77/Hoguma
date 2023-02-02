@@ -26,3 +26,17 @@ class typeRoom(models.Model):
     type=models.CharField(max_length=50)
     capacity=models.IntegerField()
     price=models.IntegerField()
+
+class locationBusStop(models.Model):
+    name=models.CharField(max_length=250, verbose_name='Bus stop')
+    address=models.CharField(max_length=250, verbose_name='Bus stop address')
+    latitude=models.FloatField(verbose_name='Bus stop latitude')
+    longitude=models.FloatField(verbose_name='Bus stop longitude')
+
+    class Meta:
+        verbose_name='Bus stop'
+        ordering=['name']
+    
+    def __str__(self):
+        return self.name
+

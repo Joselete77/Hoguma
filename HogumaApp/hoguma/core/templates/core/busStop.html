@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block bus %}
+
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Paradas de autobús</h3>
+        <p class="lead">Estas son las paradas de autobús próximas a nuestro hotel.</p>
+
+        <ol style="border-right: 1px solid gray; padding: 20px;">
+            {% for location in locations %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold" >{{ location.name }}</div>
+                {{ location.address }}
+              </div>
+            </li>
+            {% endfor %}
+          </ol>
+
+    </div>
+    <div class="col-md-8" style="width: 1200px;">
+        {{ map|safe }}
+    </div>
+</div>
+
+
+{% endblock %}

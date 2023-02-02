@@ -7,9 +7,10 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from datetime import datetime, time
+import folium
 from .forms import CustomUserCreationForm, UpdateUserForm
 import json
-from .models import reservationsRestaurant, typeRoom, reservationsHotel
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop
 
 # Create your views here.
 
@@ -340,3 +341,25 @@ def contact(request):
 
     else:
         return render(request, 'core/contact.html')
+    
+def busStop(request):
+    locations = locationBusStop.objects.all()
+    initialMap = folium.Map(location=[37.6720542,-1.6990989], zoom_start=17)
+    coordinates_initial = (37.6720542,-1.6990989)
+
+    folium.Marker(
+    location=coordinates_initial,
+    popup=folium.Popup('¡Usted se encuentra aquí!', max_width=300),
+    icon=folium.Icon(color="red", icon="home"), 
+    ).add_to(initialMap)
+
+    for location in locations:
+        coordinates = (location.latitude, location.longitude)
+        folium.Marker(
+            location=coordinates,
+            popup=folium.Popup('Parada de autobús: ' + location.name, max_width=300),
+            icon=folium.Icon(color="blue", icon="bus", prefix='fa'), 
+        ).add_to(initialMap)
+
+    context = {'map' : initialMap._repr_html_(), 'locations': locations}
+    return render(request, 'core/busStop.html', context)
