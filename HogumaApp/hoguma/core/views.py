@@ -7,11 +7,10 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from datetime import datetime, time
-from django.contrib.auth.models import User
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm
 import json
-from .models import reservationsRestaurant, reservationsHotel, locationBusStop
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel
 
 # Create your views here.
 
@@ -57,9 +56,8 @@ def profile(request):
             return redirect('index')
     else:
         form = UpdateUserForm()
-        
-    return render(request,'core/User/profile.html',{'form' : form})
 
+    return render(request,'core/User/profile.html',{'form' : form})
 
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
@@ -263,10 +261,30 @@ def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
         dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
         dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
 
-        reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
-        messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+        now = datetime.now()
+        now = now.date()
+        roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
+
+
+        if roomsAvalaible.roomAvailable < 1 : #comprobar si existen habitaciones disponibles
+            roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
+            countRoom = roomsAvalaible2.count()
+            if countRoom > 0:
+                roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom - 1
+                roomsAvalaible.save()
+                reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+                messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+                return redirect('index')
+            else:
+                print("QUE NO HAY")
+                return render(request, 'core/Hotel/formReservationRoom.html')
+        else:
+            roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
+            roomsAvalaible.save()
+            reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+            messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+            return redirect('index')
         
-        return redirect('index')
     else:
         return render(request, 'core/Hotel/formReservationRoom.html')
 

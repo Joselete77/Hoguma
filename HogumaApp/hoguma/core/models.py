@@ -24,9 +24,10 @@ class reservationsHotel(models.Model):
     entry_date=models.DateField()
     departure_date=models.DateField()
 
-class typeRoom(models.Model):
-    type=models.CharField(max_length=50)
+class typeRoomHotel(models.Model):
+    type=models.CharField(max_length=50, default=0)
     capacity=models.IntegerField()
+    roomAvailable=models.IntegerField()
     price=models.IntegerField()
 
 class locationBusStop(models.Model):

@@ -133,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_EXPIRE_SECONDS = 3600  
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = 'index'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True #Close session when the user close the browser
 
 #Configuration email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
