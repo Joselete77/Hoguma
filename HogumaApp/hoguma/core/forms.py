@@ -1,10 +1,8 @@
 from django import forms  
-from django.contrib.auth.models import User  
-from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth.models import User 
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError  
-from django.forms.fields import EmailField  
-from django.forms.forms import Form  
-  
+
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label='Nombre', min_length=2, max_length=150)
     last_name = forms.CharField(label='Apellido', min_length=2, max_length=150)

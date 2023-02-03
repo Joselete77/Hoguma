@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from datetime import datetime, time
+from django.contrib.auth.models import User
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm
 import json
@@ -45,10 +46,9 @@ def function_logout(request):
     logout(request)
     return redirect('index')
 
-def editProfile(request):
+def profile(request):
     if request.method == 'POST':
-        user = request.user
-        form = UpdateUserForm(request.POST, user)
+        form = UpdateUserForm(request.POST, instance=request.user)
         if form.is_valid():
             username = request.user.username
             form.save()
@@ -58,7 +58,8 @@ def editProfile(request):
     else:
         form = UpdateUserForm()
         
-    return render(request,'core/User/editProfile.html',{'form' : form})
+    return render(request,'core/User/profile.html',{'form' : form})
+
 
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
@@ -363,3 +364,6 @@ def busStop(request):
 
     context = {'map' : initialMap._repr_html_(), 'locations': locations}
     return render(request, 'core/busStop.html', context)
+
+
+

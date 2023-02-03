@@ -1,4 +1,6 @@
 from django.db import models
+from django.dispatch import receiver #add this
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -39,4 +41,3 @@ class locationBusStop(models.Model):
     
     def __str__(self):
         return self.name
-

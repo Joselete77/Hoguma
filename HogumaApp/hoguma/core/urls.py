@@ -8,7 +8,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', LoginView.as_view(template_name='core/User/login.html'), name='login'),
     path('logout/', function_logout, name='logout'),
-    path('editProfile/', editProfile, name='editProfile'),
+    path('profile/', profile, name='profile'),
     path('changePassword/', changePassword.as_view(), name='changePassword'),
     path('menuRestaurant/', menuRestaurant, name='menuRestaurant'),
     path('bestfood/',bestfood, name='bestfood'),
