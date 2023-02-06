@@ -6,6 +6,7 @@ from django.template import Template
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User 
 from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
@@ -28,10 +29,16 @@ def register(request):
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
             first_name = form.cleaned_data['first_name'],
+            form.save()
+
+            user = User.objects.get(username=username)
+
+            avatar = "avatar/default.png" #Creation profile
+            profile = Profile(avatar=avatar, user_id=user.id)
+            profile.save()
 
             message = ('Usuario %(username)s registrado satisfactoriamente.') % {'username' : username}
             messages.success(request, message)
-            form.save()
             send_message = EmailMessage("Registro de usuario Hoguma", "{} el registro se ha completado satisfactoriamente, a continuación le proporcionamos sus credenciales: \n \n Usuario: {} \n Contraseña: {} \n \n Muchas gracias, Hoguma.".format(first_name,username, password), 
                                                 'hotelhoguma@gmail.com', [email]) 
             send_message.send()
@@ -63,7 +70,6 @@ def profile(request):
     return render(request,'core/User/profile.html',{'form' : form})
 
 def avatar(request): #change avatar
-    profile = Profile.objects.get(user_id=request.user.id)
     if request.method == 'POST':
         form = UpdateAvatarUser(request.POST, instance=profile, files=request.FILES)
         if form.is_valid():
