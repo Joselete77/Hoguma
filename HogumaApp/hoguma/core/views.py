@@ -8,9 +8,12 @@ from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from datetime import datetime, time
 import folium
-from .forms import CustomUserCreationForm, UpdateUserForm
+from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
-from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile
+import stripe
+
+stripe.api_key = 'sk_test_51MVao2KwJvB2w7hR0ma0Xf8zlHrrvw6urNyUajWsiMJuOveRLnX0niAWZsAhg8vTXuVnSvjqEIDROHC4joonyuAT00Q0tRYsKK'
 
 # Create your views here.
 
@@ -47,7 +50,7 @@ def function_logout(request):
 
 def profile(request):
     if request.method == 'POST':
-        form = UpdateUserForm(request.POST, instance=request.user)
+        form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             username = request.user.username
             form.save()
@@ -58,6 +61,21 @@ def profile(request):
         form = UpdateUserForm()
 
     return render(request,'core/User/profile.html',{'form' : form})
+
+def avatar(request): #change avatar
+    profile = Profile.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        form = UpdateAvatarUser(request.POST, instance=profile, files=request.FILES)
+        if form.is_valid():
+            username = request.user.username
+            form.save()
+            message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
+            messages.success(request, message)
+            return redirect('index')
+    else:
+        form = UpdateAvatarUser()
+
+    return render(request,'core/User/avatar.html',{'form' : form})
 
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
@@ -382,6 +400,3 @@ def busStop(request):
 
     context = {'map' : initialMap._repr_html_(), 'locations': locations}
     return render(request, 'core/busStop.html', context)
-
-
-

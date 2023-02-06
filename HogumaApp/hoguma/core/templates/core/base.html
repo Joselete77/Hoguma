@@ -75,7 +75,7 @@
               {% if user.is_authenticated %}
                 <div class="dropdown text-end">
                   <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3870/3870822.png" alt="img-profile" width="32" height="32" class="rounded-circle">
+                    <img src="../../../../media/{{ user.profile.avatar }}" alt="img-profile" width="32" height="32" class="rounded-circle">
                   </a>
                   <ul class="dropdown-menu text-small">
                     <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas reservas de hotel</a></li>

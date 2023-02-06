@@ -39,4 +39,5 @@ urlpatterns = [
     path('monuments/', monuments, name='monuments'),
     path('contact/', contact, name='contact'),
     path('busStop/', busStop, name='busStop'),
+    path('avatar/', avatar, name='avatar'),
 ]

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError  
+from .models import Profile
 
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label='Nombre', min_length=2, max_length=150)
@@ -58,3 +59,10 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class UpdateAvatarUser(forms.ModelForm):
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = Profile
+        fields = ['avatar']

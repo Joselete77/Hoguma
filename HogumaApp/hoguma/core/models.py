@@ -1,15 +1,6 @@
 from django.db import models
-from django.dispatch import receiver #add this
-from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 # Create your models here.
-
-
-class users(models.Model):
-    name=models.TextField(max_length=30)
-    surname=models.TextField(max_length=70)
-    email=models.EmailField()
-    password=models.TextField(max_length=30)
-    username=models.TextField(max_length=30)
 
 class reservationsRestaurant(models.Model):
     email=models.EmailField()
@@ -42,3 +33,7 @@ class locationBusStop(models.Model):
     
     def __str__(self):
         return self.name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar=models.ImageField(upload_to="avatar", null=True)
