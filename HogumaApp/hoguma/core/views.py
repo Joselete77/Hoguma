@@ -339,9 +339,6 @@ def successPay(request):
 
     return redirect(index)
 
-def cancelPay(request):
-    return render(request, 'core/cancel.html')
-
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
