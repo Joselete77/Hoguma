@@ -43,7 +43,7 @@
 				<div class="col-sm-12 col-md-6 col-lg-4 pb-4">
 					<div class="h-100">
 						<div class="card-body">
-							<h5 class="card-title">{{ p.typeRoom }}</h5>
+							<h5 class="card-title">{{ p.name }}</h5>
 							<p class="card-text text-muted" style="font-size:12px">{{ p.description}}</p>
 							<p class="card-text text-muted" style="font-size:12px">Oferta válida desde {{ p.startDate}} al {{ p.finishDate }}</p>
 							<p>
@@ -72,12 +72,6 @@
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					<div>
-						<p>
-							<b>Username actual:</b> {{ user.username }}
-						</p>
-						<p>
-							<b>Email actual:</b> {{ user.email }}
-						</p>
 						{{ form }}
 					</div>
 					<a href="{% url 'changePassword' %}">Cambiar contraseña</a>

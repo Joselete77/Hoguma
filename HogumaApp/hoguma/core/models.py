@@ -46,13 +46,17 @@ class Profile(models.Model):
     avatar=models.ImageField(upload_to="avatar", null=True)
 
 class promotion(models.Model):
-    typeRoom = models.OneToOneField(typeRoomHotel, on_delete=models.CASCADE)
+    name=models.CharField(max_length=50)
+    typeRoom=models.OneToOneField(typeRoomHotel, on_delete=models.CASCADE)
     description=models.CharField(max_length=250)
     newPrice=models.IntegerField()
     startDate=models.DateField()
     finishDate=models.DateField()
 
     class Meta:
-        ordering=['typeRoom']
+        ordering=['name']
+    
+    def __str__(self):
+        return self.name
 
     
