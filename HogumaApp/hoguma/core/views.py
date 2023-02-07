@@ -7,6 +7,8 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User 
+from django.http import JsonResponse
+from django.views import View
 from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
@@ -176,7 +178,6 @@ def bestfood(request):
     
     return render(request, 'core/MenuRestaurant/bestFood.html', {'best_food': document_json})
 
-
 def reservationRestaurant(request):
     if request.method=='POST':
         email = request.POST.get('email')
@@ -274,7 +275,7 @@ def room(request):
         document_json =json.load(contenido)
     return render(request, 'core/Hotel/room.html', {'room': document_json})
 
-def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
+def reservationsRoom(request): #Store data in session and check availability of room
     if request.method=='POST':
         email = request.POST.get('email')
         entry_date = request.POST.get('entry_date')
@@ -292,29 +293,54 @@ def reservationsRoom(request): #NO ESTÁ ACABADO FALTAN VALIDACIONES
         now = datetime.now()
         now = now.date()
         roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
+        price = roomsAvalaible.price
 
+        request.session['email'] = email
+        request.session['entry_date'] = entry_date
+        request.session['departure_date'] = departure_date
+        request.session['typeRoom'] = typeRoom
 
-        if roomsAvalaible.roomAvailable < 1 : #comprobar si existen habitaciones disponibles
+        if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
             countRoom = roomsAvalaible2.count()
             if countRoom > 0:
-                roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom - 1
-                roomsAvalaible.save()
-                reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
-                messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
-                return redirect('index')
+                return render(request, 'core/checkout.html', {'price' : price})
+
             else:
                 print("QUE NO HAY")
                 return render(request, 'core/Hotel/formReservationRoom.html')
         else:
-            roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
-            roomsAvalaible.save()
-            reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
-            messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
-            return redirect('index')
+            return render(request, 'core/checkout.html', {'price' : price})
         
     else:
         return render(request, 'core/Hotel/formReservationRoom.html')
+
+
+def create_checkout_session(request):
+    return render(request, 'core/checkout.html')
+
+def successPay(request):
+    email = request.session['email']
+    entry_date = request.session['entry_date']
+    departure_date = request.session['departure_date']
+    typeRoom = request.session['typeRoom']
+
+    roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
+    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
+    roomsAvalaible.save()
+
+    reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+    messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+
+    del request.session['email']
+    del request.session['entry_date']
+    del request.session['departure_date']
+    del request.session['typeRoom']
+
+    return redirect(index)
+
+def cancelPay(request):
+    return render(request, 'core/cancel.html')
 
 def reservationsHotelUser(request):
     email = request.user.email
