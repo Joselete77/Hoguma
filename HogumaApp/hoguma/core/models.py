@@ -16,10 +16,17 @@ class reservationsHotel(models.Model):
     departure_date=models.DateField()
 
 class typeRoomHotel(models.Model):
-    type=models.CharField(max_length=50, default=0)
+    type=models.CharField(max_length=50, default=0, verbose_name='Type room')
     capacity=models.IntegerField()
     roomAvailable=models.IntegerField()
     price=models.IntegerField()
+
+    class Meta:
+        verbose_name='Type room'
+        ordering=['type']
+    
+    def __str__(self):
+        return self.type
 
 class locationBusStop(models.Model):
     name=models.CharField(max_length=250, verbose_name='Bus stop')
@@ -37,3 +44,15 @@ class locationBusStop(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar=models.ImageField(upload_to="avatar", null=True)
+
+class promotion(models.Model):
+    typeRoom = models.OneToOneField(typeRoomHotel, on_delete=models.CASCADE)
+    description=models.CharField(max_length=250)
+    newPrice=models.IntegerField()
+    startDate=models.DateField()
+    finishDate=models.DateField()
+
+    class Meta:
+        ordering=['typeRoom']
+
+    

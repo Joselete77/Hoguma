@@ -11,7 +11,7 @@ from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
-from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion
 import stripe
 
 stripe.api_key = 'sk_test_51MVao2KwJvB2w7hR0ma0Xf8zlHrrvw6urNyUajWsiMJuOveRLnX0niAWZsAhg8vTXuVnSvjqEIDROHC4joonyuAT00Q0tRYsKK'
@@ -56,6 +56,10 @@ def function_logout(request):
     return redirect('index')
 
 def profile(request):
+    now = datetime.now()
+    now = now.date()
+    allPromotion= promotion.objects.filter(finishDate__gte=now)
+    
     if request.method == 'POST':
         form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
@@ -67,7 +71,7 @@ def profile(request):
     else:
         form = UpdateUserForm()
 
-    return render(request,'core/User/profile.html',{'form' : form})
+    return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form})
 
 def avatar(request): #change avatar
     if request.method == 'POST':
@@ -406,3 +410,9 @@ def busStop(request):
 
     context = {'map' : initialMap._repr_html_(), 'locations': locations}
     return render(request, 'core/busStop.html', context)
+
+def promotions(request):
+    now = datetime.now()
+    now = now.date()
+    allPromotion= promotion.objects.filter(finishDate__lte=now)
+    return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
