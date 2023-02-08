@@ -290,6 +290,8 @@ def reservationsRoom(request): #Store data in session and check availability of 
         dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
         dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
 
+        totalDays = (dateDeparture_convert - dateEntry_convert).days
+
         now = datetime.now()
         now = now.date()
         roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
@@ -304,17 +306,60 @@ def reservationsRoom(request): #Store data in session and check availability of 
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
             countRoom = roomsAvalaible2.count()
             if countRoom > 0:
-                return render(request, 'core/checkout.html', {'price' : price})
+                return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
             else:
                 print("QUE NO HAY")
                 return render(request, 'core/Hotel/formReservationRoom.html')
         else:
-            return render(request, 'core/checkout.html', {'price' : price})
+            return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
         
     else:
         return render(request, 'core/Hotel/formReservationRoom.html')
 
+def reservationsRoomPromotion(request): #Store data in session and check availability of room
+    if request.method=='POST':
+        id = request.POST.get('idTypeRoomForm')
+        entry_date = request.POST.get('entry_date')
+        departure_date = request.POST.get('departure_date')
+        email = request.user.email
+        id_promotion = promotion.objects.get(id=id)
+        typeRoom = str(id_promotion.typeRoom)
+
+        parts_dateEntry = entry_date.split("-")
+        dateEntry_convert = "/".join(reversed(parts_dateEntry))
+        dateEntry_convert = datetime.strptime(dateEntry_convert,"%d/%m/%Y")
+
+        parts_dateDeparture = departure_date.split("-")
+        dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
+        dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
+
+        totalDays = (dateDeparture_convert - dateEntry_convert).days
+
+        now = datetime.now()
+        now = now.date()
+        roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
+        price = id_promotion.newPrice
+
+        request.session['email'] = email
+        request.session['entry_date'] = entry_date
+        request.session['departure_date'] = departure_date
+        request.session['typeRoom'] = typeRoom
+
+        if roomsAvalaible.roomAvailable < 1 : #check if there is any room
+            roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
+            countRoom = roomsAvalaible2.count()
+            if countRoom > 0:
+                return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+
+            else:
+                print("QUE NO HAY")
+                return render(request, 'core/Hotel/formReservationRoom.html')
+        else:
+            return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+        
+    else:
+        return render(request, 'core/Hotel/formReservationRoom.html')
 
 def create_checkout_session(request):
     return render(request, 'core/checkout.html')
@@ -439,3 +484,4 @@ def promotions(request):
     now = now.date()
     allPromotion= promotion.objects.filter(finishDate__lte=now)
     return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
+

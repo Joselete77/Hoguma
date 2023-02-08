@@ -42,5 +42,6 @@ urlpatterns = [
     path('avatar/', avatar, name='avatar'),
     path('create_checkout_session/', create_checkout_session, name='create_checkout_session'),
     path('successPay/', successPay, name='successPay'),
-
+    path('reservationsRoomPromotion/', reservationsRoomPromotion, name='reservationsRoomPromotion'),
+    
 ]

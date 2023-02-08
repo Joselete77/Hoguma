@@ -11,7 +11,9 @@
   <div id="paypal-button-container"></div>
   <script>
 
-    var total = '{{price}}'
+    var price = '{{price}}'
+    var totalDays = '{{totalDays}}'
+    var total = price * totalDays
 
     paypal.Buttons({
       // Sets up the transaction when a payment button is clicked

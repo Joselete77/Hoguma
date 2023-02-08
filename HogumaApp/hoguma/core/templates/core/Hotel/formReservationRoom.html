@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block reservationRestaurant %} 
+{% block reservationRoom %}
 <head>
   <title>Reservar habitación</title>
   
@@ -20,7 +20,7 @@
       <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Reservar habitación</h1>
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email">
+        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email" value= "{{user.email}}">
         <label for="floatingInput">Correo electrónico</label>
       </div>
       <div class="form-floating">
