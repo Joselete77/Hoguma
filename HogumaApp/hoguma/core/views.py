@@ -301,6 +301,9 @@ def reservationsRoom(request): #Store data in session and check availability of 
         request.session['entry_date'] = entry_date
         request.session['departure_date'] = departure_date
         request.session['typeRoom'] = typeRoom
+        request.session['price'] = roomsAvalaible.price
+        request.session['priceTotal'] = roomsAvalaible.price * totalDays
+        request.session['days'] = totalDays
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -345,6 +348,9 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['entry_date'] = entry_date
         request.session['departure_date'] = departure_date
         request.session['typeRoom'] = typeRoom
+        request.session['price'] = roomsAvalaible.price
+        request.session['priceTotal'] = roomsAvalaible.price * totalDays
+        request.session['days'] = totalDays
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -381,6 +387,9 @@ def successPay(request):
     del request.session['entry_date']
     del request.session['departure_date']
     del request.session['typeRoom']
+    del request.session['price']
+    del request.session['priceTotal']
+    del request.session['days']
 
     return redirect(index)
 

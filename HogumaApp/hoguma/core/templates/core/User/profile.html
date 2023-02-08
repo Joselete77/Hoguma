@@ -45,12 +45,13 @@
 					<div class="h-100">
 						<div class="card-body">
 							<h5 class="card-title">{{ p.name }}</h5>
-							<p class="card-text text-muted" style="font-size:12px">{{ p.description}}</p>
-							<p class="card-text text-muted" style="font-size:12px">Oferta válida desde {{ p.startDate}}
+							<p class="card-text text-muted" style="font-size:12px">{{ p.description }}</p>
+							<p class="card-text text-muted" style="font-size:12px">Oferta válida desde {{ p.startDate }}
 								al {{ p.finishDate }}</p>
 							<p>
 								<strong style="font-size:15px;">Precio flash: {{ p.newPrice }}€</strong>
 							</p>
+							<!--@ts-ignore-->
 							<button type="button" class="btn btn-warning" data-bs-toggle="modal"
 								data-bs-target="#promotionModal" onclick="sub({{ p.id }})">Reservar ya</button>
 						</div>
@@ -126,6 +127,7 @@
 <script>
 	function sub(id) {
 		document.getElementById("idTypeRoomForm").value = id;
+		console.log(id)
 	};
 </script>
 
