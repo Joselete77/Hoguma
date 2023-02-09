@@ -1,0 +1,200 @@
+{% extends 'core/base.html' %}
+
+{% block menuRestaurant %}
+
+<head>
+    <title>Carta</title>
+</head>
+<style>
+    .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .column-2.carta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+
+    .plato-carta {
+        display: flex;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+    }
+
+    .img-plato-carta {
+        display: flex;
+        flex-basis: 25%;
+        justify-content: center;
+    }
+
+    .img-plato-carta img {
+        max-width: 100px;
+        max-height: 75px;
+    }
+
+    .title-plato-carta {
+        border: 1px solid #e5e5e5;
+        border-bottom: none;
+        border-top: none;
+        flex-basis: 60%;
+        padding: 0 1rem;
+    }
+
+    .precio-plato-carta {
+        display: flex;
+        flex-basis: 15%;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    @media (max-width:680px) {
+        .column-2.carta {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
+
+<body style="margin-top: 25px;">
+    <section class="wrap">
+        <div class="wrap-title-section">
+            <h2>Hamburguesas</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for burger in burger %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ burger.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ burger.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ burger.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Pizzas</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for pizza in pizza %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ pizza.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ pizza.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ pizza.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Sandwich</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for sandwich in sandwich %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ sandwich.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ sandwich.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ sandwich.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Carnes</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for steak in steak %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ steak.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ steak.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ steak.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Mejores comidas</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for bestFood in bestFood %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ bestFood.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ bestFood.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ bestFood.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Postres</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for dessert in dessert %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ dessert.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ dessert.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ dessert.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-title-section">
+            <h2>Bebidas</h2>
+        </div>
+        <div class="wrap column-2 carta">
+            {% for drink in drink %}
+            <div class="plato-carta">
+                <div class="img-plato-carta">
+                    <img src="{{ drink.img }}" alt="">
+                </div>
+                <div class="title-plato-carta">
+                    <h4>{{ drink.name }}</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="precio-plato-carta">
+                    <span>{{ drink.price }}€</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </section>
+</body>
+
+{% endblock %}
