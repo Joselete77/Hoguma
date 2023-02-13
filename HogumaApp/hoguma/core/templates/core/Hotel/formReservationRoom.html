@@ -1,40 +1,303 @@
 {% extends 'core/base.html' %}
 
 {% block reservationRoom %}
+
 <head>
-  <title>Reservar habitación</title>
-  
-  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
-  
-  <!-- Custom styles for this template -->
+	<title>Reservar habitación</title>
+
+	<link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+	<!-- Custom styles for this template -->
 </head>
 
-<body class="text-center" style="display: flex; justify-content: center;">  
-  
-  <main class="form-signin w-100 m-auto">
+<style>
+	.section {
+		position: relative;
+		height: 100vh;
+	}
+
+	.section .section-center {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+
+	#booking {
+		font-family: 'Montserrat', sans-serif;
+		background-image: url('../../../static/core/assets/img/background.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	#booking::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: rgba(255, 255, 255, 0.8);
+	}
+
+	.booking-cta {
+		margin-top: 45px;
+	}
+
+	.booking-cta h1 {
+		font-size: 52px;
+		text-transform: uppercase;
+		color: #181818;
+		font-weight: 900;
+	}
+
+	.booking-cta p {
+		font-size: 22px;
+		color: #181818;
+	}
+
+	.booking-form {
+		background: #fff;
+		-webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.3);
+		max-width: 642px;
+		width: 100%;
+		margin: auto;
+		padding: 40px 30px;
+	}
+
+	.booking-form .form-group {
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+	.booking-form .form-control {
+		background-color: #fff;
+		height: 55px;
+		padding: 0px;
+		padding-top: 15px;
+		color: #181818;
+		font-size: 16px;
+		font-weight: 700;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border: none;
+		border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+		border-radius: 0px;
+		-webkit-transition: 0.2s;
+		transition: 0.2s;
+	}
+
+	.booking-form .form-control::-webkit-input-placeholder {
+		color: rgba(0, 0, 0, 0.2);
+	}
+
+	.booking-form .form-control:-ms-input-placeholder {
+		color: rgba(0, 0, 0, 0.2);
+	}
+
+	.booking-form .form-control::placeholder {
+		color: rgba(0, 0, 0, 0.2);
+	}
+
+	.booking-form input[type="date"].form-control:invalid {
+		color: rgba(0, 0, 0, 0.2);
+	}
+
+	.booking-form .form-group:not(.input-not-empty) .form-control:not(:focus) {
+		color: transparent;
+	}
+
+	.booking-form select.form-control {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+	}
+
+	.booking-form select.form-control+.select-arrow {
+		position: absolute;
+		right: 0px;
+		bottom: 7px;
+		width: 32px;
+		line-height: 32px;
+		height: 32px;
+		text-align: center;
+		pointer-events: none;
+		color: rgba(0, 0, 0, 0.2);
+		font-size: 14px;
+	}
+
+	.booking-form select.form-control+.select-arrow:after {
+		content: '\279C';
+		display: block;
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+
+	.booking-form .form-label {
+		color: rgba(0, 0, 0, 0.2);
+		font-weight: 700;
+		position: absolute;
+		top: 20px;
+		left: 0px;
+		text-transform: uppercase;
+		line-height: 24px;
+		height: 23px;
+		font-size: 16px;
+		pointer-events: none;
+		-webkit-transition: 0.2s all;
+		transition: 0.2s all;
+	}
+
+	.booking-form .form-group .form-control:focus+.form-label {
+		top: 0px;
+		color: #2b9328;
+		font-size: 14px;
+	}
+
+	.booking-form .form-group.input-not-empty .form-label {
+		top: 0px;
+		color: #2b9328;
+		font-size: 14px;
+	}
+
+	.booking-form .submit-btn {
+		color: #fff;
+		background-color: #2b9328;
+		font-weight: 700;
+		height: 55px;
+		padding: 10px 35px;
+		font-size: 18px;
+		border: none;
+		display: block;
+		width: 100%;
+		text-transform: capitalize;
+	}
+</style>
+
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="booking-cta">
+							<h1>{{ room_selected.type }}</h1>
+							<h3>{{ room_selected.description }}</h3>
+						</div>
+					</div>
+					<div class="col-md-6 col-md-offset-1">
+						<div class="booking-form">
+							<form action="/reservationsRoomForm/{{ room_selected.id }}" method="post">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input class="form-control" type="email" name="email"
+												value="{{user.email}}">
+											<span class="form-label">Correo electrónico</span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Huéspedes</span>
+											<select class="form-control" name="guests">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<div class="form-group">
+											<input class="form-control" type="roomType" name="roomType" readonly
+												value="{{room_selected.type}}">
+											<span class="form-label">Habitación</span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input class="form-control" type="date" name="entry_date" required>
+											<span class="form-label">Día de entrada</span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input class="form-control" type="date" name="departure_date" required>
+											<span class="form-label">Dia de salida</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-btn">
+									<button class="submit-btn">Reservar ya</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../../static/core/assets/dist/js/jquery.min.js"></script>
+	<script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+	</script>
+
+</body>
+
+
+<!--
+
+  <body class="text-center" style="display: flex; justify-content: center;">  
     
-    <form action="/reservationsRoom/" method="post">
+    <main class="form-signin w-100 m-auto">
       
-      {% csrf_token %}
-      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Reservar habitación</h1>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email" value= "{{user.email}}">
-        <label for="floatingInput">Correo electrónico</label>
-      </div>
-      <div class="form-floating">
-        <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="entry_date">
-        <label for="floatingInput">Día de entrada</label>
-      </div>
-      <div class="form-floating">
-        <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="departure_date">
-        <label for="floatingInput">Día de salida</label>
-      </div>
-      <div>
-        <p></p>
-        <strong>¿Qué tipo de habitación desea?</strong>
-        <select name="typeRoom" style="width: 180px;">
+      <form action="/reservationsRoom/" method="post">
+        
+        {% csrf_token %}
+        <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Reservar habitación</h1>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email" value= "{{user.email}}">
+          <label for="floatingInput">Correo electrónico</label>
+        </div>
+        <div class="form-floating">
+          <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="entry_date">
+          <label for="floatingInput">Día de entrada</label>
+        </div>
+        <div class="form-floating">
+          <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="departure_date">
+          <label for="floatingInput">Día de salida</label>
+        </div>
+        <div>
+          <p></p>
+          <strong>¿Qué tipo de habitación desea?</strong>
+          <select name="typeRoom" style="width: 180px;">
           <option value="singleRoom"> Habitación individual </option>
           <option value="doubleRoom"> Habitación doble </option>
           <option value="tripleRoom"> Habitación triple </option>
@@ -47,5 +310,6 @@
   </main>
   
 </body>
+-->
 
 {% endblock %}

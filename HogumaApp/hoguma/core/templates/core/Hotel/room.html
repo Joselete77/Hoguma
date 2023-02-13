@@ -36,6 +36,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <!-- Product name-->
+                <input hidden type="text" class="form-control" id="idTypeRoomForm" name="idTypeRoomForm" value={{ dic.id }}>
                 <h5 class="fw-bolder">{{ dic.name }}</h5>
                 <!-- Product price-->
                 <a style="color: gray;">Precio</a>
@@ -50,13 +51,13 @@
                 <br>
                 <a style="color: gray;">Descripción</a>
                 <br>
-                <a style="color: red;">!!!!</a>
+                <a>{{ dic.description }}</a>
               </div>
             </div>
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                  href="{% url 'reservationsRoom' %}">Reservar</a></div>
+                onclick="sub({{ dic.id }})" href="reservationsRoom/{{ dic.id }}">Reservar</a></div>
             </div>
           </div>
         </div>
@@ -65,5 +66,12 @@
     </div>
   </section>
 </body>
+
+<script>
+	function sub(id) {
+		document.getElementById("idTypeRoomForm").value = id;
+		console.log(id)
+	};
+</script>
 
 {% endblock %}

@@ -6,10 +6,9 @@
     <title>Lugares emblemáticos</title>
 </head>
 <style>
-    body{background: linear-gradient(to right,#ffffff ,#585858 );min-height: 100vh}.text-gray{color: #aaa}img{height: 170px;width: 140px}
+    .format-page{background: linear-gradient(to right,#ffffff ,#585858 );min-height: 100vh}.text-gray{color: #aaa}
 </style>
-<body>
-
+<div class="format-page">
     <div class="container py-5">
         <div class="row text-center text-white mb-5">
             <div class="col-lg-7 mx-auto">
@@ -18,11 +17,8 @@
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <!-- List group-->
                 <ul class="list-group shadow">
-                    <!-- list group item-->
                     <li class="list-group-item">
-                        <!-- Custom content-->
                         <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                             {% for dic in monuments %}
                             <div style="display: grid; grid-auto-flow: column; grid-template-columns: 600px 1fr; gap: 20px;">
@@ -33,32 +29,16 @@
                                         <h6 class="font-weight-bold my-2">Dirección: {{ dic.direccion }}</h6>
                                         <h6 class="font-weight-bold my-2">Teléfono: {{ dic.telefono }}</h6>
                                     </div>
-                                </div><img src="{{ dic.foto }}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                                </div><img src="{{ dic.foto }}" alt="Generic placeholder image" height="170px" width="170px" class="ml-lg-5 order-1 order-lg-2">
                             </div>
                             <br>
                             {% endfor %}
-                        </div> <!-- End -->
-                    </li> <!-- End -->
-                </ul> <!-- End -->
+                        </div> 
+                    </li> 
+                </ul> 
             </div>
         </div>
     </div>
-
-    <!--
-    <div style="display: grid; gap: 20px; padding: 30px;">
-        {% for dic in monuments %}
-        <div style="display: grid; grid-auto-flow: column; grid-template-columns: 300px 1fr; gap: 20px;">
-            <img src="{{ dic.foto }}" width="100%" height="100%">
-            <div>
-                <h1>Nombre: {{ dic.nombre }}</h1>
-                <h2>Tipo: {{ dic.tipo }}€ </h2>
-                <h2>Dirección: {{ dic.direccion }}</h2>
-                <h2>Descripción: {{ dic.descripcion }}.</h2>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
--->
-</body>
+</div>
 
 {% endblock %}

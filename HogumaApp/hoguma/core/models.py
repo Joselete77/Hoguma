@@ -14,12 +14,14 @@ class reservationsHotel(models.Model):
     typeRoom=models.CharField(max_length=50)
     entry_date=models.DateField()
     departure_date=models.DateField()
+    guests=models.IntegerField()
 
 class typeRoomHotel(models.Model):
     type=models.CharField(max_length=50, default=0, verbose_name='Type room')
     capacity=models.IntegerField()
     roomAvailable=models.IntegerField()
     price=models.IntegerField()
+    description=models.CharField(max_length=300)
 
     class Meta:
         verbose_name='Type room'

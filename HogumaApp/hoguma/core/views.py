@@ -228,12 +228,15 @@ def room(request):
         document_json =json.load(contenido)
     return render(request, 'core/Hotel/room.html', {'room': document_json})
 
-def reservationsRoom(request): #Store data in session and check availability of room
+def reservationsRoom(request, id): #Store data in session and check availability of room
+    room_selected = typeRoomHotel.objects.get(id=id)
+    
     if request.method=='POST':
         email = request.POST.get('email')
         entry_date = request.POST.get('entry_date')
         departure_date = request.POST.get('departure_date')
-        typeRoom = request.POST.get('typeRoom')
+        guests = request.POST.get('guests')
+        typeRoom = room_selected.type
 
         parts_dateEntry = entry_date.split("-")
         dateEntry_convert = "/".join(reversed(parts_dateEntry))
@@ -257,6 +260,7 @@ def reservationsRoom(request): #Store data in session and check availability of 
         request.session['price'] = roomsAvalaible.price
         request.session['priceTotal'] = roomsAvalaible.price * totalDays
         request.session['days'] = totalDays
+        request.session['guests'] = guests
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -271,7 +275,7 @@ def reservationsRoom(request): #Store data in session and check availability of 
             return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
         
     else:
-        return render(request, 'core/Hotel/formReservationRoom.html')
+        return render(request, 'core/Hotel/formReservationRoom.html', {'room_selected' : room_selected})
 
 def reservationsRoomPromotion(request): #Store data in session and check availability of room
     if request.method=='POST':
@@ -281,6 +285,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         email = request.user.email
         id_promotion = promotion.objects.get(id=id)
         typeRoom = str(id_promotion.typeRoom)
+        guests = request.POST.get('guests')
 
         parts_dateEntry = entry_date.split("-")
         dateEntry_convert = "/".join(reversed(parts_dateEntry))
@@ -304,6 +309,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['price'] = roomsAvalaible.price
         request.session['priceTotal'] = roomsAvalaible.price * totalDays
         request.session['days'] = totalDays
+        request.session['guests'] = guests
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -328,12 +334,13 @@ def successPay(request):
     entry_date = request.session['entry_date']
     departure_date = request.session['departure_date']
     typeRoom = request.session['typeRoom']
+    guests = request.session['guests']
 
     roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
     roomsAvalaible.save()
 
-    reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom).save()
+    reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
     messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
 
     del request.session['email']
@@ -343,6 +350,7 @@ def successPay(request):
     del request.session['price']
     del request.session['priceTotal']
     del request.session['days']
+    del request.session['guests']
 
     return redirect(index)
 
