@@ -7,8 +7,6 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User 
-from django.http import JsonResponse
-from django.views import View
 from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
@@ -64,30 +62,26 @@ def profile(request):
     
     if request.method == 'POST':
         form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
+        formAvatar = UpdateAvatarUser(request.POST, instance=request.user.profile, files=request.FILES)
+        
         if form.is_valid():
             username = request.user.username
             form.save()
             message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
             messages.success(request, message)
             return redirect('index')
-    else:
+        
+        if formAvatar.is_valid():
+            username = request.user.username
+            formAvatar.save()
+            message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
+            messages.success(request, message)
+            return redirect('index')
+    else: 
         form = UpdateUserForm()
+        formAvatar = UpdateAvatarUser()
 
-    return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form})
-
-def avatar(request): #change avatar
-    if request.method == 'POST':
-        form = UpdateAvatarUser(request.POST, instance=profile, files=request.FILES)
-        if form.is_valid():
-            username = request.user.username
-            form.save()
-            message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
-            messages.success(request, message)
-            return redirect('index')
-    else:
-        form = UpdateAvatarUser()
-
-    return render(request,'core/User/avatar.html',{'form' : form})
+    return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form, 'formAvatar' : formAvatar})
 
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
@@ -228,14 +222,15 @@ def room(request):
         document_json =json.load(contenido)
     return render(request, 'core/Hotel/room.html', {'room': document_json})
 
-def reservationsRoom(request, id): #Store data in session and check availability of room
+def reservationsRoom(request, id): #Store data in session and check availability of room    
     room_selected = typeRoomHotel.objects.get(id=id)
-    
+
     if request.method=='POST':
         email = request.POST.get('email')
         entry_date = request.POST.get('entry_date')
         departure_date = request.POST.get('departure_date')
         guests = request.POST.get('guests')
+        roomName = request.POST.get('roomName')
         typeRoom = room_selected.type
 
         parts_dateEntry = entry_date.split("-")
@@ -261,6 +256,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['priceTotal'] = roomsAvalaible.price * totalDays
         request.session['days'] = totalDays
         request.session['guests'] = guests
+        request.session['roomName'] = roomName
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -286,6 +282,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         id_promotion = promotion.objects.get(id=id)
         typeRoom = str(id_promotion.typeRoom)
         guests = request.POST.get('guests')
+        roomName = id_promotion.name
 
         parts_dateEntry = entry_date.split("-")
         dateEntry_convert = "/".join(reversed(parts_dateEntry))
@@ -306,10 +303,11 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['entry_date'] = entry_date
         request.session['departure_date'] = departure_date
         request.session['typeRoom'] = typeRoom
-        request.session['price'] = roomsAvalaible.price
-        request.session['priceTotal'] = roomsAvalaible.price * totalDays
+        request.session['price'] = price
+        request.session['priceTotal'] = price * totalDays
         request.session['days'] = totalDays
         request.session['guests'] = guests
+        request.session['roomName'] = roomName
 
         if roomsAvalaible.roomAvailable < 1 : #check if there is any room
             roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
@@ -351,6 +349,7 @@ def successPay(request):
     del request.session['priceTotal']
     del request.session['days']
     del request.session['guests']
+    del request.session['roomName']
 
     return redirect(index)
 
@@ -398,7 +397,6 @@ def updateReservationHotel(request):
 
     return render(request, 'core/index.html')
 
-
 def monuments(request):
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/monumentos.json'
     plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/monuments.html")
@@ -415,7 +413,7 @@ def contact(request):
         name = request.POST['name']
         email = request.POST['email']
         subjectEmail = request.POST['subjectEmail']
-        messageEmail = request.POST['messageEmail'] + ' ' + '\nEmail del remitente: ' + email + '\nNombre del remitente: ' + name
+        messageEmail = 'Mensaje: ' + request.POST['messageEmail'] + ' ' + '\nEmail del remitente: ' + email + '\nNombre del remitente: ' + name
         email_from = settings.EMAIL_HOST_USER
         recipient_list = ['hotelhoguma@gmail.com']
 

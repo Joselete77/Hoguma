@@ -17,6 +17,7 @@ class reservationsHotel(models.Model):
     guests=models.IntegerField()
 
 class typeRoomHotel(models.Model):
+    name=models.CharField(max_length=50)
     type=models.CharField(max_length=50, default=0, verbose_name='Type room')
     capacity=models.IntegerField()
     roomAvailable=models.IntegerField()

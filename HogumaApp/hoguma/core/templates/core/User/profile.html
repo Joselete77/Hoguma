@@ -9,8 +9,7 @@
 		<div class="col-sm-12 col-md-12 col-lg-3 pb-4">
 			<div class="card p-4">
 				<div>
-					<a href="{% url 'avatar' %}"><img src="../../../../media/{{ user.profile.avatar }}" height="50"
-							width="50" class="rounded-circle"></a>
+					<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle" data-bs-toggle="modal" data-bs-target="#avatarModal">
 					<h4 class="card-title font-weight-bold text-center"
 						style="display: inline-block; vertical-align: top; padding: 10px;">Hola, {{ user.username|title}}</h4>
 				</div>
@@ -63,6 +62,33 @@
 	</div>
 </div>
 
+<div class="modal fade" tabindex="-1" id="avatarModal" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Editar foto de perfil</h5>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<b>Imagen actual:</b> 
+				<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle">
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div>
+						{{ formAvatar }}
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+				</form>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="modal fade" tabindex="-1" id="profileModal" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -81,9 +107,9 @@
 					<a href="{% url 'changePassword' %}">Cambiar contraseña</a>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			</div>
 		</div>
 	</div>
@@ -104,13 +130,17 @@
 					<div>
 						<input hidden type="text" class="form-control" id="idTypeRoomForm" name="idTypeRoomForm">
 						<div class="form-floating">
+							<input type="number" class="form-control" id="guests" name="guests" required>
+							<label for="floatingInput">Huéspedes</label>
+						</div>
+						<div class="form-floating">
 							<input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000"
-								name="entry_date">
+								name="entry_date" required>
 							<label for="floatingInput">Día de entrada</label>
 						</div>
 						<div class="form-floating">
 							<input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000"
-								name="departure_date">
+								name="departure_date" required>
 							<label for="floatingInput">Día de salida</label>
 						</div>
 					</div>
