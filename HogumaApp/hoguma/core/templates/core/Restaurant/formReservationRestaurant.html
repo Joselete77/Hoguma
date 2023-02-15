@@ -1,13 +1,14 @@
 {% extends 'core/base.html' %}
 
-{% block reservationRestaurant %} 
+{% block reservationRestaurant %}
+
 <head>
-  <title>Reservar mesa</title>
-  
-  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
-  
-  <!-- Custom styles for this template -->
+	<title>Reservar mesa</title>
+
+	<link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
 </head>
 
 <style>
@@ -177,8 +178,8 @@
 	}
 </style>
 
-<body>  
-  <div id="booking" class="section">
+<body>
+	<div id="booking" class="section">
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
@@ -195,8 +196,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input class="form-control" type="email" name="email"
-												value="{{user.email}}">
+											<input class="form-control" type="email" name="email" value="{{user.email}}">
 											<span class="form-label">Correo electrónico</span>
 										</div>
 									</div>
@@ -211,9 +211,9 @@
 									</div>
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
-                      <span class="form-label">¿Alérgico?</span>
+											<span class="form-label">¿Alérgico?</span>
 											<select class="form-control" name="allergy">
-                        <option value="True">Sí</option>
+												<option value="True">Sí</option>
 												<option selected="selected" value="False">No</option>
 											</select>
 											<span class="select-arrow"></span>
@@ -263,10 +263,10 @@
 				$field.removeClass('input-not-empty');
 			}
 		}
-  </script>
+	</script>
 
 
-  <!--
+	<!--
 
   <main class="form-signin w-100 m-auto">
     
@@ -305,6 +305,6 @@
   </main>
   
 </body>
--->  
+-->
 
-{% endblock %}
+	{% endblock %}

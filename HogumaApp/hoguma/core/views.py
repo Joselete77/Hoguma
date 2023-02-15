@@ -12,9 +12,6 @@ import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
 from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion
-import stripe
-
-stripe.api_key = 'sk_test_51MVao2KwJvB2w7hR0ma0Xf8zlHrrvw6urNyUajWsiMJuOveRLnX0niAWZsAhg8vTXuVnSvjqEIDROHC4joonyuAT00Q0tRYsKK'
 
 # Create your views here.
 
@@ -333,13 +330,18 @@ def successPay(request):
     departure_date = request.session['departure_date']
     typeRoom = request.session['typeRoom']
     guests = request.session['guests']
+    roomName = request.session['roomName']
 
     roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
     roomsAvalaible.save()
 
     reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
+    reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
+    send_message = EmailMessage("Habitación reservada correctamente", "{} para {} reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
+                                'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
+    send_message.send()
 
     del request.session['email']
     del request.session['entry_date']

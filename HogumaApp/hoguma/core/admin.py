@@ -9,3 +9,5 @@ admin.site.register(Profile)
 admin.site.register(promotion)
 
 
+admin.site.site_header = 'Hoguma'
+admin.site.site_title = 'Hoguma'
