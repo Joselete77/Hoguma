@@ -12,6 +12,11 @@
     
     <!-- Custom styles for this template -->
     <link href="../../static/core/assets/dist/css/carousel.css" rel="stylesheet">
+    <style>
+      html,body, main{
+        height: 100%;
+      }
+    </style>
 
   </head>
   <body>
@@ -73,7 +78,7 @@
               </ul>  
               {% endif %}      
 
-            <div style="text-align: right; margin-right: 100px; display: flex; color: white;">
+            <div style="text-align: right; margin-right: 30px; display: flex; color: white;">
               {% if user.is_authenticated %}
                 <div class="dropdown text-end">
                   <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
