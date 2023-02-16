@@ -6,7 +6,7 @@ from .models import Profile
 
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label='Nombre', min_length=2, max_length=150)
-    last_name = forms.CharField(label='Apellido', min_length=2, max_length=150)
+    last_name = forms.CharField(label='Apellidos', min_length=2, max_length=150)
     email = forms.EmailField(label='Correo electrónico')  
     username = forms.CharField(label='Nombre de usuario', min_length=5, max_length=150)  
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)  
@@ -51,6 +51,10 @@ class CustomUserCreationForm(UserCreationForm):
             last_name = self.cleaned_data['last_name']      
         )  
         return user
+    
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name','email', 'username', 'password1', 'password2')
 
 class UpdateUserForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Modificar nombre'}))

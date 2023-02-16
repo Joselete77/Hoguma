@@ -11,14 +11,14 @@
   <!-- Custom styles for this template -->
 </head>
 
-<body class="text-center" style="display: flex; justify-content: center;">  
+<body class="text-center" style="display: flex; justify-content: center; background: linear-gradient(to top,#eaecc6, #2bbfe4);">  
 
-  <main class="form-signin w-100 m-auto">
+  <main class="form-signin w-100 m-auto" style="border: rgb(65, 63, 63) 3px solid; border-radius: 10px; background-color: white;">
 
     <form action="" method="post">
 
       {% csrf_token %}
-      <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="mb-4" src="../../static/core/assets/img/Hoguma.png" alt="Error" width="150" height="110">
       <h1 class="h3 mb-3 fw-normal">Registro</h1>
 
       {{ form }}
