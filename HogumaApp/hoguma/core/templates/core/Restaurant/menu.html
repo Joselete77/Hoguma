@@ -5,196 +5,405 @@
 <head>
     <title>Carta</title>
 </head>
+
 <style>
-    .wrap {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+    /**
+* Template Name: Yummy - v1.3.0
+* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 
-    .column-2.carta {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 1rem;
-        row-gap: 1rem;
-    }
+/*--------------------------------------------------------------
+# Set main reusable colors and fonts using CSS variables
+# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-primary: "Amatic SC", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
 
-    .plato-carta {
-        display: flex;
-        align-items: center;
-        border: 1px solid #e5e5e5;
-        border-radius: 6px;
-    }
+/* Colors */
+:root {
+  --color-default: #212529;
+  --color-primary: #ce1212;
+  --color-secondary: #37373f;
+}
 
-    .img-plato-carta {
-        display: flex;
-        flex-basis: 25%;
-        justify-content: center;
-    }
+/* Smooth scroll behavior */
+:root {
+  scroll-behavior: smooth;
+}
 
-    .img-plato-carta img {
-        max-width: 100px;
-        max-height: 75px;
-    }
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: var(--font-default);
+  color: var(--color-default);
+}
 
-    .title-plato-carta {
-        border: 1px solid #e5e5e5;
-        border-bottom: none;
-        border-top: none;
-        flex-basis: 60%;
-        padding: 0 1rem;
-    }
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
 
-    .precio-plato-carta {
-        display: flex;
-        flex-basis: 15%;
-        justify-content: center;
-        font-weight: bold;
-    }
+a:hover {
+  color: #ec2727;
+  text-decoration: none;
+}
 
-    @media (max-width:680px) {
-        .column-2.carta {
-            grid-template-columns: repeat(1, 1fr);
-        }
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-secondary);
+}
+
+/*--------------------------------------------------------------
+# Sections & Section Header
+--------------------------------------------------------------*/
+section {
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.section-bg {
+  background-color: #eee;
+}
+
+.section-header {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-header h2 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: #7f7f90;
+  text-transform: uppercase;
+  font-family: var(--font-default);
+}
+
+.section-header p {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 400;
+  font-family: var(--font-primary);
+}
+
+.section-header p span {
+  color: var(--color-primary);
+}
+
+/*--------------------------------------------------------------
+# Menu Section
+--------------------------------------------------------------*/
+.menu .nav-tabs {
+  border: 0;
+}
+
+.menu .nav-link {
+  margin: 0 10px;
+  padding: 10px 5px;
+  transition: 0.3s;
+  color: var(--color-secondary);
+  border-radius: 0;
+  cursor: pointer;
+  height: 100%;
+  border: 0;
+  border-bottom: 2px solid #b6b6bf;
+}
+
+@media (max-width: 575px) {
+  .menu .nav-link {
+    margin: 0 10px;
+    padding: 10px 0;
+  }
+}
+
+.menu .nav-link i {
+  padding-right: 15px;
+  font-size: 48px;
+}
+
+.menu .nav-link h4 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  font-family: var(--font-secondary);
+}
+
+@media (max-width: 575px) {
+  .menu .nav-link h4 {
+    font-size: 16px;
+  }
+}
+
+.menu .nav-link:hover {
+  color: var(--color-primary);
+}
+
+.menu .nav-link.active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.menu .tab-content .tab-header {
+  padding: 30px 0;
+}
+
+.menu .tab-content .tab-header p {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #676775;
+  margin-bottom: 0;
+}
+
+.menu .tab-content .tab-header h3 {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.menu .tab-content .menu-item {
+  -moz-text-align-last: center;
+  text-align-last: center;
+}
+
+.menu .tab-content .menu-item .menu-img {
+  padding: 0 60px;
+  margin-bottom: 15px;
+}
+
+.menu .tab-content .menu-item h4 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-secondary);
+  font-family: var(--font-secondary);
+  font-weight: 30px;
+  margin-bottom: 5px;
+}
+
+.menu .tab-content .menu-item .ingredients {
+  font-family: var(--font-secondary);
+  color: #8d8d9b;
+  margin-bottom: 5px;
+}
+
+.menu .tab-content .menu-item .price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
 </style>
 
 <body style="margin-top: 25px;">
-    <section class="wrap">
-        <div class="wrap-title-section">
-            <h2>Hamburguesas</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for burger in burger %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ burger.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ burger.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ burger.price }}€</span>
-                </div>
+    <!-- ======= Menu Section ======= -->
+    <section id="menu" class="menu">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Carta</h2>
+                <p>Échale un vistazo a nuestro <span>Hogumenú</span></p>
             </div>
-            {% endfor %}
-        </div>
-        <div class="wrap-title-section">
-            <h2>Pizzas</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for pizza in pizza %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ pizza.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ pizza.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ pizza.price }}€</span>
-                </div>
+
+            <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+                <li class="nav-item">
+                    <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-steak">
+                        <h4>Carnes</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-burger">
+                        <h4>Hamburguesas</h4>
+                    </a><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-pizza">
+                        <h4>Pizzas</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-sandwich">
+                        <h4>Sandwiches</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-bestFood">
+                        <h4>Platos estrella</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dessert">
+                        <h4>Postres</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-drink">
+                        <h4>Bebidas</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+            </ul>
+
+            <div class="tab-content" data-aos="fade-up" data-aos-delay="300" style="text-align: center;">
+
+                <div class="tab-pane fade active show" id="menu-steak">
+
+                    <div class="tab-header text-center">
+                        <p>Menú</p>
+                        <h3>Carnes</h3>
+                    </div>
+
+                    <div class="row gy-5">
+                        {% for steak in steak %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ steak.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ steak.name }}</h4> 
+                            <p class="price">Precio: {{ steak.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+                    </div>
+                </div><!-- End Starter Menu Content -->
+
+                <div class="tab-pane fade" id="menu-burger">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Hamburguesas</h3>
+                    </div>
+
+                    <div class="row gy-5">
+                        {% for burger in burger %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ burger.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ burger.name }}</h4> 
+                            <p class="price">Precio: {{ burger.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Breakfast Menu Content -->
+
+                <div class="tab-pane fade" id="menu-pizza">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Pizzas</h3>
+                    </div>
+
+                    <div class="row gy-5">
+
+                        {% for pizza in pizza %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ pizza.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ pizza.name }}</h4> 
+                            <p class="price">Precio: {{ pizza.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Lunch Menu Content -->
+
+                <div class="tab-pane fade" id="menu-sandwich">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Sandwiches</h3>
+                    </div>
+
+                    <div class="row gy-5">
+
+                        {% for sandwich in sandwich %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ sandwich.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ sandwich.name }}</h4> 
+                            <p class="price">Precio: {{ sandwich.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Dinner Menu Content -->
+
+                <div class="tab-pane fade" id="menu-bestFood">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Platos estrella</h3>
+                    </div>
+
+                    <div class="row gy-5">
+
+                        {% for bestFood in bestFood %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ bestFood.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ bestFood.name }}</h4> 
+                            <p class="price">Precio: {{ bestFood.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Dinner Menu Content -->
+
+                <div class="tab-pane fade" id="menu-dessert">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Postres</h3>
+                    </div>
+
+                    <div class="row gy-5">
+
+                        {% for dessert in dessert %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ dessert.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ dessert.name }}</h4> 
+                            <p class="price">Precio: {{ dessert.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Dinner Menu Content -->
+
+                <div class="tab-pane fade" id="menu-drink">
+
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>Bebidas</h3>
+                    </div>
+
+                    <div class="row gy-5">
+
+                        {% for drink in drink %}
+                        <div class="col-lg-4 menu-item">
+                            <img src="{{ drink.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
+                            <h4>{{ drink.name }}</h4> 
+                            <p class="price">Precio: {{ drink.price }}€</p>
+                        </div><!-- Menu Item -->
+                        {% endfor %}
+
+                    </div>
+                </div><!-- End Dinner Menu Content -->
+
             </div>
-            {% endfor %}
+
         </div>
-        <div class="wrap-title-section">
-            <h2>Sandwich</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for sandwich in sandwich %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ sandwich.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ sandwich.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ sandwich.price }}€</span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="wrap-title-section">
-            <h2>Carnes</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for steak in steak %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ steak.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ steak.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ steak.price }}€</span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="wrap-title-section">
-            <h2>Mejores comidas</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for bestFood in bestFood %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ bestFood.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ bestFood.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ bestFood.price }}€</span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="wrap-title-section">
-            <h2>Postres</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for dessert in dessert %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ dessert.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ dessert.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ dessert.price }}€</span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="wrap-title-section">
-            <h2>Bebidas</h2>
-        </div>
-        <div class="wrap column-2 carta">
-            {% for drink in drink %}
-            <div class="plato-carta">
-                <div class="img-plato-carta">
-                    <img src="{{ drink.img }}" alt="">
-                </div>
-                <div class="title-plato-carta">
-                    <h4>{{ drink.name }}</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="precio-plato-carta">
-                    <span>{{ drink.price }}€</span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        
-    </section>
+    </section><!-- End Menu Section -->
+
 </body>
 
 {% endblock %}

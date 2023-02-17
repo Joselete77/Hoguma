@@ -186,6 +186,11 @@ def deleteReservationRestaurant(request, id):
 
 def formUpdateReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
+    if reservation.hour.minute == 0:
+        reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)+str(0)
+    else:
+        reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)
+    reservation.date = str(reservation.date)
 
     return render(request, 'core/Restaurant/updateReservationRestaurant.html', {'reservation': reservation})
 
@@ -358,6 +363,10 @@ def successPay(request):
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
+    for x in reservationsDB:
+        typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+        x.typeRoom = typeRoom.name
+    #reservationsDB.typeRoom = typeRoom.type
     return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
 
 def searchReservationsHotelAnonymous(request):
