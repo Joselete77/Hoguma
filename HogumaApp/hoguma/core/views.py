@@ -363,10 +363,21 @@ def successPay(request):
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
+    print(reservationsDB)
     for x in reservationsDB:
-        typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
-        x.typeRoom = typeRoom.name
-    #reservationsDB.typeRoom = typeRoom.type
+        if x.typeRoom == 'singleRoom':          
+            typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+            x.typeRoom = typeRoom.name
+        if x.typeRoom == 'doubleRoom':          
+            typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+            x.typeRoom = typeRoom.name
+        if x.typeRoom == 'tripleRoom':          
+            typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+            x.typeRoom = typeRoom.name
+        if x.typeRoom == 'suiteRoom':          
+            typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+            x.typeRoom = typeRoom.name
+    reservationsDB.typeRoom = typeRoom.type
     return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
 
 def searchReservationsHotelAnonymous(request):
@@ -389,8 +400,12 @@ def deleteReservationHotel(request, id):
 
 def formUpdateReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
+    reservation.entry_date = str(reservation.entry_date)
+    reservation.departure_date = str(reservation.departure_date)
 
-    return render(request, 'core/Hotel/updateReservationHotel.html', {'reservation': reservation})
+    room = typeRoomHotel.objects.get(type=reservation.typeRoom) 
+
+    return render(request, 'core/Hotel/updateReservationHotel.html', {'reservation': reservation, 'room' : room})
 
 def updateReservationHotel(request):
     id = int(request.POST['id'])
