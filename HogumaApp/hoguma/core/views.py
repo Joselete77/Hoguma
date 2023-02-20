@@ -478,3 +478,6 @@ def promotions(request):
     now = now.date()
     allPromotion= promotion.objects.filter(finishDate__lte=now)
     return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
+
+def termsAndPrivacity(request):
+    return render(request, 'core/terms.html')

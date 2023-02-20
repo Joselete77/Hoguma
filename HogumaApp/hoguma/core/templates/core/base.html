@@ -1,37 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Jose Angel Dorado Gonzalez">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Hoguma</title>
 
-    <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom styles for this template -->
-    <link href="../../static/core/assets/dist/css/carousel.css" rel="stylesheet">
-  </head>
-  <body>
-    
-<header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Jose Angel Dorado Gonzalez">
+  <meta name="generator" content="Hugo 0.108.0">
+  <title>Hoguma</title>
+
+  <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../static/core/assets/dist/css/carousel.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">Hoguma</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          {% if user.is_authenticated %}
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">Hoguma</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                aria-expanded="false">Restaurante</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
+                <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url 'busStop' %}>Transporte público</a>
+            </li>
+          </ul>
+          {% else %}
+
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Restaurante</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
-                    <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
-                  </ul>
-                </li>
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                  aria-expanded="false">Restaurante</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
+                  <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
+                </ul>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
               </li>
@@ -41,55 +67,43 @@
               <li class="nav-item">
                 <a class="nav-link" href={% url 'busStop' %}>Transporte público</a>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis
+                  reservas</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de
+                      hotel</a></li>
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de
+                      restaurante</a></li>
+                </ul>
+              </li>
             </ul>
-            {% else %}
-            
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Restaurante</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
-                    <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={% url 'busStop' %}>Transporte público</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis reservas</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de hotel</a></li>
-                    <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de restaurante</a></li>
-                  </ul>
-                </li>
-              </ul>  
-              {% endif %}      
+            {% endif %}
 
             <div style="text-align: right; margin-right: 30px; display: flex; color: white;">
               {% if user.is_authenticated %}
-                <div class="dropdown text-end">
-                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../../../../media/{{ user.profile.avatar }}" alt="img-profile" width="32" height="32" class="rounded-circle">
-                  </a>
-                  <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas de hotel</a></li>
-                    <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">Mis reservas de restaurante</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
-                  </ul>
-                </div>
+              <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="../../../../media/{{ user.profile.avatar }}" alt="img-profile" width="32" height="32"
+                    class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small">
+                  <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas de hotel</a></li>
+                  <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">Mis reservas de
+                      restaurante</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                </ul>
+              </div>
               {% else %}
-                <a class="btn btn-outline-primary me-2" href={% url 'login' %}>Iniciar sesión</a> &nbsp; &nbsp; <a class="btn btn-primary" href={% url 'register' %}>Registrarse</a>
-              {% endif %}      
+              <a class="btn btn-outline-primary me-2" href={% url 'login' %}>Iniciar sesión</a> &nbsp; &nbsp; <a
+                class="btn btn-primary" href={% url 'register' %}>Registrarse</a>
+              {% endif %}
             </div>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -97,44 +111,46 @@
             </form>
           </div>
         </div>
-      </nav>
-</header>
+    </nav>
+  </header>
 
-{% if messages %}
+  {% if messages %}
   {% for message in messages%}
   <br>
-    <div style="text-align:center" class="notification {{ message.tags}}">
-      {{ message }}
-    </div>
+  <div style="text-align:center" class="notification {{ message.tags}}">
+    {{ message }}
+  </div>
   {% endfor %}
-{% endif %}
+  {% endif %}
 
-<main style="width:100%;">
-  {% block index %} {% endblock %}
-  {% block login-register %} {% endblock %}
-  {% block editProfile %} {% endblock %}
-  {% block reservationRestaurant %} {% endblock %}
-  {% block reservationRoom %} {% endblock %}
-  {% block indexRestaurant %} {% endblock %}
-  {% block menuRestaurant %} {% endblock %}
-  {%block reservationsUser %} {% endblock %}
-  {% block searchReservationsHotel %} {% endblock %}
-  {% block monuments %} {% endblock %}
-  {% block contact %} {% endblock %}
-  {% block bus %} {% endblock %}
-  {% block profile %}{% endblock %}
-  {% block paypal %}{% endblock %}
+  <main style="width:100%;">
+    {% block index %} {% endblock %}
+    {% block login-register %} {% endblock %}
+    {% block editProfile %} {% endblock %}
+    {% block reservationRestaurant %} {% endblock %}
+    {% block reservationRoom %} {% endblock %}
+    {% block indexRestaurant %} {% endblock %}
+    {% block menuRestaurant %} {% endblock %}
+    {%block reservationsUser %} {% endblock %}
+    {% block searchReservationsHotel %} {% endblock %}
+    {% block monuments %} {% endblock %}
+    {% block contact %} {% endblock %}
+    {% block bus %} {% endblock %}
+    {% block profile %}{% endblock %}
+    {% block paypal %}{% endblock %}
+    {% block termsPrivacity %}{% endblock %}
 
-  <!-- FOOTER -->
-  <footer class="container">
-      <p class="float-end"><a href={% url 'index' %}>Volver al inicio</a></p>
-      <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</main>
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-end"><a href="{% url 'index' %}">Volver al inicio</a></p>
+      <p>&copy; 2017–2023 Hoguma, Inc. &middot; <a href="{% url 'termsAndPrivacity' %}">Privacy</a></p>
+    </footer>
+  </main>
 
 
-    <script src="../../static/core/assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/core/assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/26994267.js"></script>
 
-      
-  </body>
+</body>
+
 </html>
