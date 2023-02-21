@@ -480,4 +480,4 @@ def promotions(request):
     return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
 
 def termsAndPrivacity(request):
-    return render(request, 'core/terms.html')
+    return render(request, 'core/privacyPolicy.html')

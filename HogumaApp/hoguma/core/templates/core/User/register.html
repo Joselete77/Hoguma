@@ -11,10 +11,19 @@
   <!-- Custom styles for this template -->
 </head>
 
-<body class="text-center" style="display: flex; justify-content: center; background: linear-gradient(to top,#eaecc6, #2bbfe4);">  
+<style>
 
-  <main class="form-signin w-100 m-auto" style="border: rgb(65, 63, 63) 3px solid; border-radius: 10px; background-color: white;">
+footer{
+  margin-top: 0;
+  position: relative;
+  top: 125px;
+}
 
+</style>
+
+<body style="display: flex; justify-content: center; background: linear-gradient(to top,#eaecc6, #2bbfe4);">  
+
+  <main class="form-signin w-100 m-auto" style="border: rgb(65, 63, 63) 3px solid; border-radius: 10px; background-color: white; text-align: center;">
     <form action="" method="post">
 
       {% csrf_token %}
