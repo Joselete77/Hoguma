@@ -80,7 +80,7 @@
             </ul>
             {% endif %}
 
-            <div style="text-align: right; margin-right: 30px; display: flex; color: white;">
+            <div style="text-align: right; margin-right: 37px; display: flex; color: white;">
               {% if user.is_authenticated %}
               <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
@@ -92,7 +92,6 @@
                   <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas de hotel</a></li>
                   <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">Mis reservas de
                       restaurante</a></li>
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
                   <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
                   <li>
                     <hr class="dropdown-divider">
@@ -100,25 +99,26 @@
                   <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
                 </ul>
               </div>
+              <div style="top: 4px; position: relative;">
+                <span>{{ user.first_name }} {{ user.last_name }}</span>
+              </div>
+              </div>
+              <a></a>
               {% else %}
-              <a class="btn btn-outline-primary me-2" href={% url 'login' %}>Iniciar sesión</a> &nbsp; &nbsp; <a
-                class="btn btn-primary" href={% url 'register' %}>Registrarse</a>
+              <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar sesión</a> &nbsp; &nbsp; <a
+                class="btn btn-primary" href="{% url 'register' %}">Registrarse</a>
               {% endif %}
             </div>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
     </nav>
   </header>
 
   {% if messages %}
-  {% for message in messages%}
-  <br>
-  <div style="text-align:center" class="notification {{ message.tags}}">
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="top: 12px;">
     {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endfor %}
   {% endif %}
@@ -139,6 +139,8 @@
     {% block profile %}{% endblock %}
     {% block paypal %}{% endblock %}
     {% block termsPrivacity %}{% endblock %}
+    {% block reservationsUserAnonymous %}{% endblock %}
+
 
     <!-- FOOTER -->
     <footer class="container">
@@ -150,6 +152,16 @@
 
   <script src="../../static/core/assets/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/26994267.js"></script>
+
+  <script>
+
+    const timeoutId = setTimeout(function(){
+      console.log("Hola Mundo");
+    }, 2000);
+    
+    clearTimeout(timeoutId);
+    console.log(`Tiempo de espera ID ${timeoutId} ha sido limpiado`);
+  </script>
 
 </body>
 

@@ -166,23 +166,15 @@ def reservationsRestaurantUser(request):
     reservationsDB = reservationsRestaurant.objects.filter(email=email)
     return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
 
-def searchReservationsRestaurantAnonymous(request):
-    if request.method == 'POST':
-        id_anonymous = request.POST['id']
-        email_anonymous = request.POST['email']
-        reservationsDB = reservationsRestaurant.objects.filter(email=email_anonymous, id=id_anonymous)
-        if reservationsDB.count() > 0:
-            return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
-        else:
-            return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
-    else:
-        return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
-
 def deleteReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
     reservation.delete()
+    date_reservation = reservation.date
 
-    return redirect(index)
+    message = ('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
+    messages.success(request, message)
+
+    return redirect(reservationsRestaurantUser)
 
 def formUpdateReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
@@ -201,7 +193,6 @@ def updateReservationRestaurant(request):
     people = request.POST.get('people')
     allergy = request.POST.get('allergy')
     date = request.POST.get('date')
-    print(id)
 
     reservation=reservationsRestaurant.objects.get(id=id)
     reservation.email = email
@@ -211,7 +202,70 @@ def updateReservationRestaurant(request):
     reservation.date = date   
     reservation.save()
 
-    return render(request, 'core/index.html')
+    reservationsDB = reservationsRestaurant.objects.filter(email=email)
+    message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
+    messages.success(request, message)
+
+    return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB' : reservationsDB})
+
+# RESTAURANT USER ANONYMOUS
+def reservationsRestaurantUserAnonymous(request):
+    return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html')
+
+def searchReservationsRestaurantAnonymous(request):
+    if request.method == 'POST':
+        id_anonymous = request.POST['id']
+        email_anonymous = request.POST['email']
+        reservationsDB = reservationsRestaurant.objects.filter(email=email_anonymous, id=id_anonymous)
+        if reservationsDB.count() > 0:
+            print("Llega al search restaurant")
+            return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html', {'reservationsDB': reservationsDB})
+        else:
+            return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
+    else:
+        return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
+
+def deleteReservationRestaurantUserAnonymous(request, id):
+    reservation=reservationsRestaurant.objects.get(id=id)
+    reservation.delete()
+    date_reservation = reservation.date
+
+    message = ('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
+    messages.success(request, message)
+
+    return redirect(reservationsRestaurantUserAnonymous)
+
+def formUpdateReservationRestaurantUserAnonymous(request, id):
+    print("Llega al form update restaurant")
+    reservation=reservationsRestaurant.objects.get(id=id)
+    if reservation.hour.minute == 0:
+        reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)+str(0)
+    else:
+        reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)
+    reservation.date = str(reservation.date)
+
+    return render(request, 'core/Restaurant/updateReservationRestaurantUserAnonymous.html', {'reservation': reservation})
+
+def updateReservationRestaurantUserAnonymous(request):
+
+    id = int(request.POST['id'])
+    email = request.POST.get('email')
+    hour = request.POST.get('hour')
+    people = request.POST.get('people')
+    allergy = request.POST.get('allergy')
+    date = request.POST.get('date')
+
+    reservation=reservationsRestaurant.objects.get(id=id)
+    reservation.email = email
+    reservation.hour = hour
+    reservation.people = people
+    reservation.allergy = allergy
+    reservation.date = date   
+    reservation.save()
+
+    reservationsDB = reservationsRestaurant.objects.filter(email=email, id=id)
+
+    return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html', {'reservationsDB' : reservationsDB })
 
 #HOTEL
 def room(request):
@@ -363,7 +417,6 @@ def successPay(request):
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
-    print(reservationsDB)
     for x in reservationsDB:
         if x.typeRoom == 'singleRoom':          
             typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)

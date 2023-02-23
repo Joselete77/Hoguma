@@ -10,9 +10,9 @@
 		<div class="col-sm-12 col-md-12 col-lg-3 pb-4">
 			<div class="card p-4">
 				<div>
-					<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle" data-bs-toggle="modal" data-bs-target="#avatarModal">
+					<a href="#"><img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle" data-bs-toggle="modal" data-bs-target="#avatarModal"></a>
 					<h4 class="card-title font-weight-bold text-center"
-						style="display: inline-block; vertical-align: top; padding: 10px;">Hola, {{ user.username|title}}</h4>
+						style="display: inline-block; vertical-align: top; padding: 10px;">Hola, {{ user.first_name|title}}</h4>
 				</div>
 				<hr>
 				<div class="card-text">
@@ -73,7 +73,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<b>Imagen actual:</b> 
+				<b>Avatar actual:</b> 
 				<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle">
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}

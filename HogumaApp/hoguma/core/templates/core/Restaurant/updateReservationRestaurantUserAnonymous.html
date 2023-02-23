@@ -196,12 +196,12 @@
 					</div>
 					<div class="col-md-6 col-md-offset-1">
 						<div class="booking-form">
-							<form action="/updateReservationRestaurant/" method="post">
+							<form action="/updateReservationRestaurantUserAnonymous/" method="post">
 								{% csrf_token %}
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
-											<input hidden class="form-control" type="id" name="id" value="{{reservation.id}}">
+											<input  hidden class="form-control" type="id" name="id" value="{{reservation.id}}">
 										</div>
 									</div>
 								</div>

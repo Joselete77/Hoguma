@@ -1,0 +1,226 @@
+{% extends 'core/base.html' %}
+
+{%block reservationsUserAnonymous %}
+
+<head>
+    <title>Mis reservas</title>
+</head>
+
+<style>
+    .table-dark,
+    .table-dark>th,
+    .table-dark>td {
+        background-color: #c6c8ca;
+    }
+
+    .table-dark th,
+    .table-dark td,
+    .table-dark thead th,
+    .table-dark tbody+tbody {
+        border-color: #95999c;
+    }
+
+    .table-hover .table-dark:hover {
+        background-color: #b9bbbe;
+    }
+
+    .table-hover .table-dark:hover>td,
+    .table-hover .table-dark:hover>th {
+        background-color: #b9bbbe;
+    }
+
+    .table-active,
+    .table-active>th,
+    .table-active>td {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table-hover .table-active:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table-hover .table-active:hover>td,
+    .table-hover .table-active:hover>th {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table .thead-dark th {
+        color: #fff;
+        background-color: #343a40;
+        border-color: #454d55;
+    }
+
+    .table .thead-light th {
+        color: #495057;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+
+    .table-dark {
+        color: #fff;
+        background-color: #343a40;
+    }
+
+    .table-dark th,
+    .table-dark td,
+    .table-dark thead th {
+        border-color: #454d55;
+    }
+
+    .table-dark.table-bordered {
+        border: 0;
+    }
+
+    .table-dark.table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .table-dark.table-hover tbody tr:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.075);
+    }
+
+    .table-wrap {
+        overflow-x: scroll;
+    }
+
+    .table {
+        min-width: 1000px !important;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    .table thead th {
+        border: none;
+        padding: 30px;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .table tbody tr {
+        margin-bottom: 10px;
+        -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+        -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+        box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+    }
+
+    .table tbody th,
+    .table tbody td {
+        border: none;
+        padding: 30px;
+        font-size: 14px;
+        background: #fff;
+    }
+
+    .table tbody td .close span {
+        font-size: 12px;
+        color: #dc3545;
+    }
+</style>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 style="margin-top: 40px;">Mis reservas de mesa</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>
+                                        Identificador
+                                    </th>
+                                    <th>
+                                        Correo electrónico
+                                    </th>
+                                    <th>
+                                        Fecha
+                                    </th>
+                                    <th>
+                                        Hora
+                                    </th>
+                                    <th>
+                                        Comensales
+                                    </th>
+                                    <th>
+                                        Alergia
+                                    </th>
+                                    <th>
+                                        Opciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dic in reservationsDB %}
+                                <tr class="alert" role="alert">
+                                    <th scope="row">{{ dic.id }}</th>
+                                    <td>{{ dic.email }}</td>
+                                    <td>{{ dic.date }}</td>
+                                    <td>{{ dic.hour }}</td>
+                                    <td>{{ dic.people }}</td>
+                                    <td>{{ dic.allergy }}</td>
+                                    <td>
+                                        <a href="formUpdateReservationRestaurantUserAnonymous/{{dic.id}}"
+                                            class="btn btn-sm btn-block btn-info">Editar</a>
+                                        <a href="deleteReservationRestaurantUserAnonymous/{{dic.id}}"
+                                            class="btn btn-sm btn-block btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--
+
+        <div style="display: flex; justify-content: center;">
+            <table style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style=" padding: 40px;">
+                        <h1>Fecha</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Hora</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Personas</h1>
+                    </th>
+                    <th style=" padding: 40px;">
+                        <h1>Alergia</h1>
+                    </th>
+                    <th style=" padding: 40px;" colspan="2">
+                        <h1>Opciones</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dic in reservationsDB %}
+                <tr style="border: 2px solid black;">   
+                    <th>{{ dic.date }}</th>
+                    <th>{{ dic.hour }} </th>
+                    <th>{{ dic.people }} </th>
+                    <th>{{ dic.allergy }} </th>
+                    <th><a href="formUpdateReservationRestaurant/{{dic.id}}" class="btn btn-sm btn-block btn-info">Editar</a></th>
+                    <th><a href="deleteReservationRestaurant/{{dic.id}}" class="btn btn-sm btn-block btn-danger">Eliminar</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+-->
+</body>
+<br> <br>
+{% endblock %}
