@@ -218,7 +218,6 @@ def searchReservationsRestaurantAnonymous(request):
         email_anonymous = request.POST['email']
         reservationsDB = reservationsRestaurant.objects.filter(email=email_anonymous, id=id_anonymous)
         if reservationsDB.count() > 0:
-            print("Llega al search restaurant")
             return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html', {'reservationsDB': reservationsDB})
         else:
             return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
@@ -233,10 +232,9 @@ def deleteReservationRestaurantUserAnonymous(request, id):
     message = ('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
     messages.success(request, message)
 
-    return redirect(reservationsRestaurantUserAnonymous)
+    return redirect(index)
 
 def formUpdateReservationRestaurantUserAnonymous(request, id):
-    print("Llega al form update restaurant")
     reservation=reservationsRestaurant.objects.get(id=id)
     if reservation.hour.minute == 0:
         reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)+str(0)
@@ -263,9 +261,10 @@ def updateReservationRestaurantUserAnonymous(request):
     reservation.date = date   
     reservation.save()
 
-    reservationsDB = reservationsRestaurant.objects.filter(email=email, id=id)
+    message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
+    messages.success(request, message)
 
-    return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html', {'reservationsDB' : reservationsDB })
+    return redirect(index)
 
 #HOTEL
 def room(request):
@@ -433,21 +432,16 @@ def reservationsHotelUser(request):
     reservationsDB.typeRoom = typeRoom.type
     return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
 
-def searchReservationsHotelAnonymous(request):
-    if request.method == 'POST':
-        id_anonymous = request.POST['id']
-        email_anonymous = request.POST['email']
-        reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
-        if reservationsDB.count() > 0:
-            return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
-        else:
-            return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
-    else:
-        return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
-
 def deleteReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
+    date=reservation.entry_date
+    typeRoom=reservation.typeRoom
+    room=typeRoomHotel.objects.get(type=typeRoom)
+    nameRoom=room.name
     reservation.delete()
+
+    message = ('%(nameRoom)s para el día %(date)s cancelada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'date' : date}
+    messages.success(request, message)
 
     return redirect(index)
 
@@ -466,15 +460,56 @@ def updateReservationHotel(request):
     entry_date = request.POST['entry_date']
     departure_date = request.POST['departure_date']
     typeRoom = request.POST['typeRoom']
+    guests = request.POST['guests']
+    room=typeRoomHotel.objects.get(type=typeRoom)
+    nameRoom=room.name
+
+    parts_dateEntry = entry_date.split("-")
+    dateEntry_convert = "/".join(reversed(parts_dateEntry))
+    dateEntry_convert = datetime.strptime(dateEntry_convert,"%d/%m/%Y")
+
+    parts_dateDeparture = departure_date.split("-")
+    dateDeparture_convert = "/".join(reversed(parts_dateDeparture))
+    dateDeparture_convert = datetime.strptime(dateDeparture_convert,"%d/%m/%Y")
+
+    totalDaysNew = (dateDeparture_convert - dateEntry_convert).days
 
     reservation=reservationsHotel.objects.get(id=id)
+    entry_date_reservation=reservation.entry_date
+    departure_date_reservation=reservation.departure_date
+    totalDaysReservation = (departure_date_reservation - entry_date_reservation).days
+
     reservation.email = email
     reservation.entry_date = entry_date
     reservation.departure_date = departure_date
     reservation.typeRoom = typeRoom
+    reservation.guests = guests
     reservation.save()
 
+    if totalDaysNew < totalDaysReservation:
+        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+        messages.success(request, message)
+    if totalDaysNew > totalDaysReservation:
+        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el pago de lo adeudado nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+        messages.success(request, message)   
+    if totalDaysNew == totalDaysReservation:     
+        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+        messages.success(request, message)
+
     return render(request, 'core/index.html')
+
+#HOTEL USER ANONYMOUS
+def searchReservationsHotelAnonymous(request):
+    if request.method == 'POST':
+        id_anonymous = request.POST['id']
+        email_anonymous = request.POST['email']
+        reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
+        if reservationsDB.count() > 0:
+            return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+        else:
+            return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
+    else:
+        return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
 
 def monuments(request):
     ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/monumentos.json'
