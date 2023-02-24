@@ -41,5 +41,6 @@ urlpatterns = [
     path('successPay/', successPay, name='successPay'),
     path('reservationsRoomPromotion/', reservationsRoomPromotion, name='reservationsRoomPromotion'),
     path('termsAndPrivacity/', termsAndPrivacity, name='termsAndPrivacity'),
+    path('successPayRoomReservation/', successPayRoomReservation, name='successPayRoomReservation'),
     
 ]

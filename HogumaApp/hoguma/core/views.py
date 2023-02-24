@@ -11,7 +11,7 @@ from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
-from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund
 
 # Create your views here.
 
@@ -434,13 +434,20 @@ def reservationsHotelUser(request):
 
 def deleteReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
-    date=reservation.entry_date
+    email=reservation.email
+    date_entry=reservation.entry_date
+    date_departure=reservation.departure_date
     typeRoom=reservation.typeRoom
     room=typeRoomHotel.objects.get(type=typeRoom)
     nameRoom=room.name
     reservation.delete()
 
-    message = ('%(nameRoom)s para el día %(date)s cancelada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'date' : date}
+    days = (date_departure - date_entry).days
+    roomType = typeRoomHotel.objects.get(type=typeRoom)
+    price = roomType.price * days
+    refund(email=email, idReservation=id, price=price).save()
+
+    message = ('%(nameRoom)s para el día %(date_entry)s cancelada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'date_entry' : date_entry}
     messages.success(request, message)
 
     return redirect(index)
@@ -455,7 +462,7 @@ def formUpdateReservationHotel(request, id):
     return render(request, 'core/Hotel/updateReservationHotel.html', {'reservation': reservation, 'room' : room})
 
 def updateReservationHotel(request):
-    id = int(request.POST['id'])
+    idRoom = int(request.POST['id'])
     email = request.POST['email']
     entry_date = request.POST['entry_date']
     departure_date = request.POST['departure_date']
@@ -463,6 +470,7 @@ def updateReservationHotel(request):
     guests = request.POST['guests']
     room=typeRoomHotel.objects.get(type=typeRoom)
     nameRoom=room.name
+    price = room.price
 
     parts_dateEntry = entry_date.split("-")
     dateEntry_convert = "/".join(reversed(parts_dateEntry))
@@ -474,10 +482,23 @@ def updateReservationHotel(request):
 
     totalDaysNew = (dateDeparture_convert - dateEntry_convert).days
 
-    reservation=reservationsHotel.objects.get(id=id)
+    reservation=reservationsHotel.objects.get(id=idRoom)
     entry_date_reservation=reservation.entry_date
     departure_date_reservation=reservation.departure_date
     totalDaysReservation = (departure_date_reservation - entry_date_reservation).days
+    
+    totalDays= totalDaysNew-totalDaysReservation
+    priceTotal = price * totalDays
+
+    request.session['email'] = email
+    request.session['entry_date'] = entry_date
+    request.session['departure_date'] = departure_date
+    request.session['typeRoom'] = typeRoom
+    request.session['price'] = price
+    request.session['priceTotal'] = priceTotal
+    request.session['days'] = totalDays
+    request.session['guests'] = guests
+    request.session['roomName'] = nameRoom
 
     reservation.email = email
     reservation.entry_date = entry_date
@@ -487,16 +508,53 @@ def updateReservationHotel(request):
     reservation.save()
 
     if totalDaysNew < totalDaysReservation:
+        priceTotal = abs(priceTotal)   
+        if refund.objects.filter(idReservation=idRoom).count() > 0:
+            refundRoom=refund.objects.get(idReservation=idRoom)
+            refundRoom.price = refundRoom.price + priceTotal
+            refundRoom.save()
+        else:
+            refund(email=email, idReservation=idRoom, price=priceTotal).save()
+        
         message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
         messages.success(request, message)
+    
     if totalDaysNew > totalDaysReservation:
-        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el pago de lo adeudado nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
-        messages.success(request, message)   
+        return render(request, 'core/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
+    
     if totalDaysNew == totalDaysReservation:     
         message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
         messages.success(request, message)
 
     return render(request, 'core/index.html')
+
+def successPayRoomReservation(request):
+    email = request.session['email']
+    entry_date = request.session['entry_date']
+    departure_date = request.session['departure_date']
+    typeRoom = request.session['typeRoom']
+    guests = request.session['guests']
+    roomName = request.session['roomName']
+
+    reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
+    send_message = EmailMessage("Habitación reservada modificada correctamente", "{} para {} reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
+                                'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
+    send_message.send()
+
+    message = ('%(nameRoom)s para el día %(entry_date)s modificada y pagada correctamente.') % {'nameRoom' :roomName ,'entry_date' : entry_date}
+    messages.success(request, message)   
+
+    del request.session['email']
+    del request.session['entry_date']
+    del request.session['departure_date']
+    del request.session['typeRoom']
+    del request.session['price']
+    del request.session['priceTotal']
+    del request.session['days']
+    del request.session['guests']
+    del request.session['roomName']
+
+    return redirect(index)
 
 #HOTEL USER ANONYMOUS
 def searchReservationsHotelAnonymous(request):

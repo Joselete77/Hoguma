@@ -62,4 +62,14 @@ class promotion(models.Model):
     def __str__(self):
         return self.name
 
+class refund(models.Model):
+    email=models.EmailField()
+    idReservation=models.IntegerField()
+    price=models.IntegerField()
+    makeRefund=models.BooleanField(default=False)
+
+    class Meta:
+        ordering=['makeRefund']
     
+    def __str__(self):
+        return self.email
