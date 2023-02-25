@@ -102,25 +102,32 @@
               <div style="top: 4px; position: relative;">
                 <span>{{ user.first_name }} {{ user.last_name }}</span>
               </div>
-              </div>
-              <a></a>
-              {% else %}
-              <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar sesión</a> &nbsp; &nbsp; <a
-                class="btn btn-primary" href="{% url 'register' %}">Registrarse</a>
-              {% endif %}
             </div>
+            <a></a>
+            {% else %}
+            <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar sesión</a> &nbsp; &nbsp; <a
+              class="btn btn-primary" href="{% url 'register' %}">Registrarse</a>
+            {% endif %}
           </div>
         </div>
+      </div>
     </nav>
   </header>
 
   {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-success alert-dismissible fade show" role="alert" style="top: 12px;">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  {% endfor %}
+    {% for message in messages %}
+      {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="top: 12px;">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="top: 12px;">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+    {% endfor %}
   {% endif %}
 
   <main style="width:100%;">

@@ -56,6 +56,8 @@ def profile(request):
     now = datetime.now()
     now = now.date()
     allPromotion= promotion.objects.filter(finishDate__gte=now)
+    userName = request.user.first_name.split(' ', 1)
+    firstNameUser= userName[0]
     
     if request.method == 'POST':
         form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
@@ -78,7 +80,7 @@ def profile(request):
         form = UpdateUserForm()
         formAvatar = UpdateAvatarUser()
 
-    return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form, 'formAvatar' : formAvatar})
+    return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form, 'formAvatar' : formAvatar, 'firstNameUser' : firstNameUser})
 
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
@@ -142,6 +144,8 @@ def reservationRestaurant(request):
         if now.date() < date_convert.date(): #check if date is valid
             if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #check if time is valid
                 if reservationsRestaurant.objects.filter(email=email, hour=hour, date=date).count() == 1: #check if the user has a reservation for that moment 
+                    message = ('Reserva para el día %(date)s no se ha podido completar. Ya tiene usted una reserva para ese día.') % {'date' : date}
+                    messages.error(request, message)                    
                     return render(request, 'core/Restaurant/formReservationRestaurant.html')
                 else:
                     reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
@@ -152,10 +156,14 @@ def reservationRestaurant(request):
                     send_message.send()
                     return redirect('index')
             else:
-                return render(request, 'core/Restaurant/formReservationRestaurant.html')
+                message = ('Reserva para el día %(date)s no se ha podido completar. Introduzca una hora válida. Horas válidas: 09:00 - 23:45') % {'date' : date}
+                messages.error(request, message)    
+                return redirect(index)
 
         else:
-            return render(request, 'core/Restaurant/formReservationRestaurant.html')
+            message = ('Reserva para el día %(date)s no se ha podido completar. Introduzca fechas válidas.') % {'date' : date}
+            messages.error(request, message)
+            return redirect(index)
 
     else:
         user = request.user
@@ -194,19 +202,38 @@ def updateReservationRestaurant(request):
     allergy = request.POST.get('allergy')
     date = request.POST.get('date')
 
-    reservation=reservationsRestaurant.objects.get(id=id)
-    reservation.email = email
-    reservation.hour = hour
-    reservation.people = people
-    reservation.allergy = allergy
-    reservation.date = date   
-    reservation.save()
+    parts_date = date.split("-")
+    date_convert = "/".join(reversed(parts_date))
+    date_convert = datetime.strptime(date_convert,"%d/%m/%Y")
+    now = datetime.now()
 
-    reservationsDB = reservationsRestaurant.objects.filter(email=email)
-    message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
-    messages.success(request, message)
+    hour_convert = datetime.strptime(hour,"%H:%M")
+    schedule_work1 = time(9,0)
+    schedule_work2 = time(23,45)
 
-    return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB' : reservationsDB})
+    if date_convert.date() > now.date():
+        if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2:
+            reservation=reservationsRestaurant.objects.get(id=id)
+            reservation.email = email
+            reservation.hour = hour
+            reservation.people = people
+            reservation.allergy = allergy
+            reservation.date = date   
+            reservation.save()
+
+            send_message = EmailMessage("Reserva de mesa modificada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
+                                                'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
+            send_message.send()
+            message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
+            messages.success(request, message)
+        else:
+            message = ('Reserva para el día %(date)s no se ha podido modificar. Introduzca una hora válida. Horas válidas: 09:00 - 23:45') % {'date' : date}
+            messages.error(request, message)           
+    else:
+        message = ('Reserva para el día %(date)s no se ha podido modificar. Introduzca fechas válidas.') % {'date' : date}
+        messages.error(request, message)
+
+    return redirect(index)
 
 # RESTAURANT USER ANONYMOUS
 def reservationsRestaurantUserAnonymous(request):
@@ -253,16 +280,36 @@ def updateReservationRestaurantUserAnonymous(request):
     allergy = request.POST.get('allergy')
     date = request.POST.get('date')
 
-    reservation=reservationsRestaurant.objects.get(id=id)
-    reservation.email = email
-    reservation.hour = hour
-    reservation.people = people
-    reservation.allergy = allergy
-    reservation.date = date   
-    reservation.save()
+    parts_date = date.split("-")
+    date_convert = "/".join(reversed(parts_date))
+    date_convert = datetime.strptime(date_convert,"%d/%m/%Y")
+    now = datetime.now()
 
-    message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
-    messages.success(request, message)
+    hour_convert = datetime.strptime(hour,"%H:%M")
+    schedule_work1 = time(9,0)
+    schedule_work2 = time(23,45)
+
+    if date_convert.date() > now.date():
+        if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2:
+            reservation=reservationsRestaurant.objects.get(id=id)
+            reservation.email = email
+            reservation.hour = hour
+            reservation.people = people
+            reservation.allergy = allergy
+            reservation.date = date   
+            reservation.save()
+
+            send_message = EmailMessage("Reserva de mesa modificada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
+                            'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
+            send_message.send()
+            message = ('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
+            messages.success(request, message)
+        else:
+            message = ('Reserva para el día %(date)s no se ha podido modificar. Introduzca una hora válida. Horas válidas: 09:00 - 23:45') % {'date' : date}
+            messages.error(request, message)           
+    else:
+        message = ('Reserva para el día %(date)s no se ha podido modificar. Introduzca fechas válidas.') % {'date' : date}
+        messages.error(request, message)
 
     return redirect(index)
 
@@ -397,7 +444,7 @@ def successPay(request):
     reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
-    send_message = EmailMessage("Habitación reservada correctamente", "{} para {} reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
+    send_message = EmailMessage("Habitación reservada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
                                 'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
     send_message.send()
 
@@ -500,31 +547,37 @@ def updateReservationHotel(request):
     request.session['guests'] = guests
     request.session['roomName'] = nameRoom
 
-    reservation.email = email
-    reservation.entry_date = entry_date
-    reservation.departure_date = departure_date
-    reservation.typeRoom = typeRoom
-    reservation.guests = guests
-    reservation.save()
+    now = datetime.now()
 
-    if totalDaysNew < totalDaysReservation:
-        priceTotal = abs(priceTotal)   
-        if refund.objects.filter(idReservation=idRoom).count() > 0:
-            refundRoom=refund.objects.get(idReservation=idRoom)
-            refundRoom.price = refundRoom.price + priceTotal
-            refundRoom.save()
-        else:
-            refund(email=email, idReservation=idRoom, price=priceTotal).save()
+    if entry_date < departure_date and dateEntry_convert.date() > now.date():
+        reservation.email = email
+        reservation.entry_date = entry_date
+        reservation.departure_date = departure_date
+        reservation.typeRoom = typeRoom
+        reservation.guests = guests
+        reservation.save()
+
+        if totalDaysNew < totalDaysReservation:
+            priceTotal = abs(priceTotal)   
+            if refund.objects.filter(idReservation=idRoom).count() > 0:
+                refundRoom=refund.objects.get(idReservation=idRoom)
+                refundRoom.price = refundRoom.price + priceTotal
+                refundRoom.save()
+            else:
+                refund(email=email, idReservation=idRoom, price=priceTotal).save()
+            
+            message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+            messages.success(request, message)
         
-        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
-        messages.success(request, message)
-    
-    if totalDaysNew > totalDaysReservation:
-        return render(request, 'core/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
-    
-    if totalDaysNew == totalDaysReservation:     
-        message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
-        messages.success(request, message)
+        if totalDaysNew > totalDaysReservation:
+            return render(request, 'core/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
+        
+        if totalDaysNew == totalDaysReservation:     
+            message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+            messages.success(request, message)
+    else:
+        message = ('%(nameRoom)s para el día %(entry_date)s no se ha podido modificar. Introduzca fechas válidas.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
+        messages.error(request, message)
 
     return render(request, 'core/index.html')
 
@@ -537,7 +590,7 @@ def successPayRoomReservation(request):
     roomName = request.session['roomName']
 
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
-    send_message = EmailMessage("Habitación reservada modificada correctamente", "{} para {} reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
+    send_message = EmailMessage("Habitación reservada modificada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
                                 'hotelhoguma@gmail.com', [email]) #send email to the customer with the reservation
     send_message.send()
 
@@ -592,9 +645,14 @@ def contact(request):
         send_message = EmailMessage(subjectEmail, messageEmail, email_from ,recipient_list)
         send_message.send()
         
+        message = ('Mensaje enviado correctamente. Nos pondremos en contacto con usted lo antes posible.')
+        messages.success(request, message)
+
         return redirect('index')
 
     else:
+        message = ('ERROR. El mensaje no se ha podido enviar.')
+        messages.success(request, message)
         return render(request, 'core/contact.html')
     
 def busStop(request):
