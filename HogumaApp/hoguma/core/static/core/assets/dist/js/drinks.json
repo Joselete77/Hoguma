@@ -81,15 +81,6 @@
     "country": "Natchez, MS"
   },
   {
-    "id": "cold-brew-concentrate-variety-6-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/134399/cold-brew-concentrate-variety-6-pack.ee2c1ff6e21556a824d07fcd6dc96682.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Grady's Cold Brew",
-    "dsc": "Cold Brew Concentrate Variety - 6 Pack",
-    "price": 60,
-    "rate": 5,
-    "country": "New York, NY"
-  },
-  {
     "id": "organic-shots-bundle-12-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/134437/organic-shots-bundle-12-pack.73d62cee42bd9a0c561331b2806e3ac0.png?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Juice Press",
@@ -106,15 +97,6 @@
     "price": 69,
     "rate": 4,
     "country": "New York, NY"
-  },
-  {
-    "id": "dels-x-iggys-frozen-lemonade-mix",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/136231/Iggys-Del-Lemonade-Mix-Product-1.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Iggy's",
-    "dsc": "Del's x Iggy's Frozen Lemonade Mix",
-    "price": 10,
-    "rate": 4,
-    "country": "Warwick, RI"
   },
   {
     "id": "unicorn-parade-milkshake-kit-for-8",
@@ -214,15 +196,6 @@
     "price": 60,
     "rate": 4,
     "country": "New York, NY"
-  },
-  {
-    "id": "iggys-soda-4-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/136853/Iggys-Soda-1.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Iggy's",
-    "dsc": "Iggy's Soda - 4 Pack",
-    "price": 11,
-    "rate": 4,
-    "country": "Warwick, RI"
   },
   {
     "id": "002-charleston-bloody-mary-mix-weekender-bold-and-spicy",

@@ -108,24 +108,6 @@
     "country": "New Orleans, LA"
   },
   {
-    "id": "butchers-feast-for-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/104628/butchers-feast-for-4.cf40ca583a3bc2de78ac6355ee4b2995.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Cote Korean Steakhouse",
-    "dsc": "The Original Butcher's Feast® for 4",
-    "price": 259,
-    "rate": 5,
-    "country": "New York, NY"
-  },
-  {
-    "id": "whole-peking-duck-kit-for-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/132862/decoys-whole-peking-duck-for-4.36f80dd5235f5495f279ed8765c33167.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "RedFarm",
-    "dsc": "Whole Peking Duck Kit for 4",
-    "price": 139,
-    "rate": 5,
-    "country": "New York, NY"
-  },
-  {
     "id": "unconventional-texas-bbq-sampler-for-4-6",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/126766/unconventional-texas-bbq-sampler-for-4-6.ee40a926a0863ceeb13b1eafb987c7d1.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Underbelly by Chris Shepherd",
@@ -171,15 +153,6 @@
     "country": "Los Angeles, CA"
   },
   {
-    "id": "prime-galbi-steak-feast-for-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/104674/prime-galbi-steak-feast-for-4.51c78b5ba768078b166fe91325e60edc.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Cote Korean Steakhouse",
-    "dsc": "Prime Galbi Steak Feast for 4",
-    "price": 249,
-    "rate": 5,
-    "country": "New York, NY"
-  },
-  {
     "id": "dry-aged-boneless-ribeye-steak-dinner-kit-for-4",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/126887/dry-aged-boneless-ribeye-steak-dinner-for-4.81c3bdc05fe6bdb2c2214709863120e0.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Chef Francis Mallmann",
@@ -198,15 +171,6 @@
     "country": "Phoenix, AZ"
   },
   {
-    "id": "pasta-dinner-gift-basket",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/111490/pasta-sauce-gift-basket.e7d2b1afaeef767b7327843716d15203.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Fox & the Knife",
-    "dsc": "Pasta Dinner Gift Basket",
-    "price": 129,
-    "rate": 5,
-    "country": "Boston, MA"
-  },
-  {
     "id": "chinese-tea-smoked-whole-duck",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/112821/chinese-tea-smoked-whole-duck.97b321323431f1453d204a3ba9a35293.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Shirley Chung's Ms. Chi",
@@ -223,15 +187,6 @@
     "price": 149,
     "rate": 4,
     "country": "Patagonia, Argentina"
-  },
-  {
-    "id": "choose-your-own-pasta-dinner-for-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/111241/choose-your-own-pasta-dinner-for-4.1195531d1b5fd7958e85d2640bd4d5bf.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Fox & the Knife",
-    "dsc": "Pasta Dinner for 4 - Choose Your Own",
-    "price": 99,
-    "rate": 5,
-    "country": "Boston, MA"
   },
   {
     "id": "marcus-hot-fried-chicken-wings-for-2",
@@ -295,15 +250,6 @@
     "price": 69,
     "rate": 4,
     "country": "Los Angeles, CA"
-  },
-  {
-    "id": "pasta-dinner-for-2-choose-your-own",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/112230/pasta-dinner-for-2-choose-your-own.f5edf5a6c05115eec571d2c2f3805300.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Fox & the Knife",
-    "dsc": "Pasta Dinner for 2 - Choose Your Own",
-    "price": 69,
-    "rate": 5,
-    "country": "Boston, MA"
   },
   {
     "id": "traditional-argentinian-asado-dinner-kit-for-10-12",
@@ -375,24 +321,6 @@
     "dsc": "Whole Plate Short Rib Dinner for 3-4",
     "price": 249,
     "rate": 4,
-    "country": "New York, NY"
-  },
-  {
-    "id": "pasta-dinner-bestsellers-for-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/111245/pasta-dinner-bestsellers-for-4.94ca16a49a00a4f50714e827ab686510.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Fox & the Knife",
-    "dsc": "Best Sellers - Pasta Dinner for 4",
-    "price": 89,
-    "rate": 4,
-    "country": "Boston, MA"
-  },
-  {
-    "id": "best-seller-ramen-kits-4-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/119444/best-seller-ramen-kits-for-4.6946ea916af35904079d82208a0cb7e2.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Ivan Ramen",
-    "dsc": "Best Seller Ramen Kits for 4",
-    "price": 149,
-    "rate": 5,
     "country": "New York, NY"
   },
   {
@@ -518,15 +446,6 @@
     "name": "Blue Ribbon Sushi",
     "dsc": "Signature Spicy Tuna Crispy Rice DIY Kit for 2-4",
     "price": 149,
-    "rate": 4,
-    "country": "New York, NY"
-  },
-  {
-    "id": "redfarm-signature-sampler-for-3-4",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/131850/redfarm-sampler-for-3-4.b47a4dad3b06d719e9fc17380238afd2.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "RedFarm",
-    "dsc": "RedFarm Signature Sampler for 3-4",
-    "price": 129,
     "rate": 4,
     "country": "New York, NY"
   },

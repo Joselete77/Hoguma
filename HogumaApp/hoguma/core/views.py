@@ -360,17 +360,29 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['guests'] = guests
         request.session['roomName'] = roomName
 
-        if roomsAvalaible.roomAvailable < 1 : #check if there is any room
-            roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
-            countRoom = roomsAvalaible2.count()
-            if countRoom > 0:
-                return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+        if entry_date < departure_date and dateEntry_convert.date() > now:
+            if int(guests) < roomsAvalaible.capacity:
+                if roomsAvalaible.roomAvailable < 1 : #check if there is any room
+                    roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
+                    countRoom = roomsAvalaible2.count()
+                    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
+                    if countRoom > 0:
+                        return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
+                    else:
+                        message = ('No se han encontrado habitaciones disponibles para las fechas seleccionadas.')
+                        messages.error(request, message)  
+                        return redirect(reservationsRoom, id=room_selected.id)
+                else:
+                    return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
             else:
-                print("QUE NO HAY")
-                return render(request, 'core/Hotel/formReservationRoom.html')
+                message = ('ERROR. No pueden ser tantos huéspedes en este tipo de habitación, ¿qué tal si miras otra?')
+                messages.error(request, message)  
+                return redirect(reservationsRoom, id=room_selected.id)                
         else:
-            return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+            message = ('ERROR. Las fechas para la reserva deben ser válidas.')
+            messages.error(request, message)  
+            return redirect(reservationsRoom, id=room_selected.id)
         
     else:
         return render(request, 'core/Hotel/formReservationRoom.html', {'room_selected' : room_selected})
@@ -411,17 +423,29 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['guests'] = guests
         request.session['roomName'] = roomName
 
-        if roomsAvalaible.roomAvailable < 1 : #check if there is any room
-            roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now) 
-            countRoom = roomsAvalaible2.count()
-            if countRoom > 0:
-                return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+        if entry_date < departure_date and dateEntry_convert.date() > now:
+            if int(guests) < roomsAvalaible.capacity:
+                if roomsAvalaible.roomAvailable < 1 : #check if there is any room
+                    roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
+                    countRoom = roomsAvalaible2.count()
+                    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
+                    if countRoom > 0:
+                        return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
+                    else:
+                        message = ('No se han encontrado habitaciones disponibles para las fechas seleccionadas.')
+                        messages.error(request, message)  
+                        return redirect(profile)
+                else:
+                    return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
             else:
-                print("QUE NO HAY")
-                return render(request, 'core/Hotel/formReservationRoom.html')
+                message = ('ERROR. No pueden ser tantos huéspedes en este tipo de habitación, ¿qué tal si miras otra?')
+                messages.error(request, message)  
+                return redirect(profile)                
         else:
-            return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+            message = ('ERROR. Las fechas para la reserva deben ser válidas.')
+            messages.error(request, message)  
+            return redirect(profile)
         
     else:
         return render(request, 'core/Hotel/formReservationRoom.html')
@@ -438,7 +462,7 @@ def successPay(request):
     roomName = request.session['roomName']
 
     roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
-    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1
+    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1 #Remove room available
     roomsAvalaible.save()
 
     reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
@@ -646,13 +670,13 @@ def contact(request):
         send_message.send()
         
         message = ('Mensaje enviado correctamente. Nos pondremos en contacto con usted lo antes posible.')
-        messages.success(request, message)
-
-        return redirect('index')
-
+        if messages.success(request, message):
+            return redirect('index')
+        else:
+            message = ('ERROR. El mensaje no se ha podido enviar.')
+            messages.error(request, message)
+            return redirect(contact)
     else:
-        message = ('ERROR. El mensaje no se ha podido enviar.')
-        messages.success(request, message)
         return render(request, 'core/contact.html')
     
 def busStop(request):

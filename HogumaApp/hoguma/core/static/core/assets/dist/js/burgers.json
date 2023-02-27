@@ -81,15 +81,6 @@
     "country": "Atlanta, GA"
   },
   {
-    "id": "goldbelly-burger-bash-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/66179/the-burger-bash-package.bd9d12d031865940bbe5faf15f1a62f8.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Goldbelly \"Burger Bash\" Pack",
-    "price": 109,
-    "rate": 5,
-    "country": "North Bergen, NJ"
-  },
-  {
     "id": "burger-au-poivre-kit-4-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/103477/burger-au-poivre-kit-4-pack.3ca0e39b02db753304cd185638dad518.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Raoul's",
@@ -243,15 +234,6 @@
     "country": "Atlanta, GA"
   },
   {
-    "id": "the-gold-label-burger-4-patties-6oz-each-15-lbs",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/130074/the-gold-label-burger-4-patties-6oz-each-15-lbs.492945fff05ba5f036eca31df024d22f.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Gold Label Burger",
-    "price": 69,
-    "rate": 5,
-    "country": "North Bergen, NJ"
-  },
-  {
     "id": "legendary-cheesy-western-burger-kit-4-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/131302/legendary-cheesy-western-burger-kit-4-pack.393ceddb3bca3acd862e762e48e4c207.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Texas Inn",
@@ -313,15 +295,6 @@
     "price": 169,
     "rate": 4,
     "country": "St. Helena, CA"
-  },
-  {
-    "id": "goldbelly-steak-burger-sampler",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/133612/goldbelly-steak-burger-sampler.30f9703bf7c2355cffa8846e328481d0.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Goldbelly Steak + Burger Sampler",
-    "price": 135,
-    "rate": 5,
-    "country": "North Bergen, NJ"
   },
   {
     "id": "hall-signature-wagyu-burger-kit-8-pack",
@@ -468,24 +441,6 @@
     "country": "Minneapolis, MN"
   },
   {
-    "id": "brisket-burger-8-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/124922/short-rib-burger-blend.6275c3ffad67f0e93de4eafbc4f809df.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Brisket Burger - 8 Pack",
-    "price": 31.9,
-    "rate": 5,
-    "country": "North Bergen, NJ"
-  },
-  {
-    "id": "bfbol-original-blend-burger-8-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/124841/original-blend-burger.50bb5cf520d3f653b0b80187716cc3e2.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Original Blend Burger - 8 Pack",
-    "price": 31.9,
-    "rate": 5,
-    "country": "North Bergen, NJ"
-  },
-  {
     "id": "ribeye-burger-patties-6-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/133972/ribeye-burger-patties-6-pack.dd62bc3b8a096f15429571865ba5d561.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Rocker Bros. Meat & Provisions",
@@ -502,15 +457,6 @@
     "price": 249,
     "rate": 4,
     "country": "New York, NY"
-  },
-  {
-    "id": "bfbsr-short-rib-burger-8-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/132398/short-rib-burger-blend.586f10c35edd4d7c6e9cfa41e3b2d0d2.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat LaFrieda Meats",
-    "dsc": "Short Rib Burger - 8 Pack",
-    "price": 36,
-    "rate": 4,
-    "country": "North Bergen, NJ"
   },
   {
     "id": "gotts-impossible-burger-kit-for-4",

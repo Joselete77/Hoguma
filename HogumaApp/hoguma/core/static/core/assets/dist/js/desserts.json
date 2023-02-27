@@ -9,15 +9,6 @@
     "country": "Dayton, OH"
   },
   {
-    "id": "world-famous-banana-pudding-party-sized",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/84893/world-famous-banana-pudding-bowl-64-oz.85af650f8f51512f8f3181a11d6587d6.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Magnolia Bakery",
-    "dsc": "World Famous Banana Pudding Bowl (64 oz.)",
-    "price": 56,
-    "rate": 4,
-    "country": "New York, NY"
-  },
-  {
     "id": "jacques-world-famous-chocolate-chip-cookies",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/81172/jacques-world-famous-chocolate-chip-cookies-6-pack.2217a14c443602493bba88aa9335319a.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Jacques Torres Chocolate",
@@ -52,15 +43,6 @@
     "price": 89,
     "rate": 5,
     "country": "Brooklyn, NY"
-  },
-  {
-    "id": "smores-variety-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/78037/smores-variety-pack.86cf47d40c0c3508ce14d2659b3f99d4.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Gotta Have S'more",
-    "dsc": "S'mores - Variety Pack",
-    "price": 49,
-    "rate": 5,
-    "country": "Los Angeles, CA"
   },
   {
     "id": "best-seller-cupcake-dozen",
@@ -162,15 +144,6 @@
     "country": "Nashville, TN"
   },
   {
-    "id": "magnolia-banana-pudding-explore",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/136779/Magnolia-NEW-BP-Pudding-Cup.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Magnolia Bakery",
-    "dsc": "World Famous Banana Pudding",
-    "price": 65,
-    "rate": 5,
-    "country": "New York, NY"
-  },
-  {
     "id": "brooklyn-blackout-parfait",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/82266/brooklyn-blackout-parfait.756b6c8cf3066aaca322fb12595bb3a4.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Brooklyn Cupcake",
@@ -205,15 +178,6 @@
     "price": 69,
     "rate": 5,
     "country": "La Grange, TX"
-  },
-  {
-    "id": "original-ny-plain-cheesecake",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/133583/plain-cheesecake.10ff643fb84a50e131e0a216dfb66f09.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Junior's Cheesecake",
-    "dsc": "Junior's Original Cheesecake",
-    "price": 64.95,
-    "rate": 4,
-    "country": "Brooklyn, NY"
   },
   {
     "id": "little-italy-dessert-pack",
@@ -261,15 +225,6 @@
     "country": "Long Beach, CA"
   },
   {
-    "id": "double-chocolate-babka",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/134184/double-chocolate-babka.e7bca1ea0d2327e31179841ef74a4611.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Oneg Bakery",
-    "dsc": "Double Chocolate Babka",
-    "price": 59,
-    "rate": 4,
-    "country": "Brooklyn, NY"
-  },
-  {
     "id": "24011-breads-bakery-chocolate-babka-3-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/90530/breads-bakery-chocolate-babka-3-pack.82ccccf0e109eaa03af3f8f0a4405ced.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Breads Bakery",
@@ -288,15 +243,6 @@
     "country": "New York, NY"
   },
   {
-    "id": "brownie-explosion-cheesecake",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/86905/plain-cheesecake.0ff81b367c16fb722c66d6d1deab0fcd.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Junior's Cheesecake",
-    "dsc": "Brownie Explosion Cheesecake",
-    "price": 74.95,
-    "rate": 5,
-    "country": "Brooklyn, NY"
-  },
-  {
     "id": "chocolate-mousse-supreme-cake",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/133142/chocolate-mousse-supreme-cake.5fe7244dd7efb592e941587d8e336ad3.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Carousel Cakes",
@@ -304,15 +250,6 @@
     "price": 49,
     "rate": 4,
     "country": "Nanuet, NY"
-  },
-  {
-    "id": "smores-cookie-12-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/133252/smores-cookie-12-pack.2fefcfed46bc853bc16b28421b935e72.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Cookie Good",
-    "dsc": "S'mores Cookie - 12 Pack",
-    "price": 49,
-    "rate": 4,
-    "country": "Los Angeles, CA"
   },
   {
     "id": "choose-your-own-ice-cream-donuts-12-pack",
@@ -358,15 +295,6 @@
     "price": 59,
     "rate": 5,
     "country": "Boone, NC"
-  },
-  {
-    "id": "17228-4-pint-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/71773/choose-your-own-boozy-ice-cream-4-pints.cecb4c1a4d29b16b44c2b88fa59b3e86.png?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Tipsy Scoop Boozy Ice Cream",
-    "dsc": "Choose Your Own Boozy Ice Cream - 4 Pints",
-    "price": 99,
-    "rate": 5,
-    "country": "New York, NY"
   },
   {
     "id": "cheesecake-macarons-12-pack",

@@ -72,15 +72,6 @@
     "country": "Spokane, WA"
   },
   {
-    "id": "wagyu-filet-mignon-2-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/107003/wagyu-filet-mignon-2-pack.5da42476f7d1b7e7cfe58b4d054e6861.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Westholme Wagyu",
-    "dsc": "Wagyu Filet Mignon - 2 Pack",
-    "price": 139,
-    "rate": 4,
-    "country": "Queensland, Australia"
-  },
-  {
     "id": "dry-aged-usda-prime-black-angus-porterhouse-steak-2-pack",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/124865/usda-prime-black-angus-filet-mignon-barrel-cut.6ee213799e7d1848763d12edca18e3b1.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Pat LaFrieda Meats",
@@ -162,15 +153,6 @@
     "country": "San Rafael, CA"
   },
   {
-    "id": "wagyu-ny-strip-steaks-2-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/131433/wagyu-ny-strip-steaks-2-pack.5b760cb84d5a57582e7dd8d1e25c9972.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Westholme Wagyu",
-    "dsc": "Wagyu NY Strip Steak - 2 Pack",
-    "price": 169,
-    "rate": 5,
-    "country": "Queensland, Australia"
-  },
-  {
     "id": "california-reserve-new-york-steaks-gift-box",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/96208/california-reserve-new-york-steaks-gift-box.2ac1b5dd138c87e7914f96310bf3bcd3.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Flannery Beef",
@@ -187,15 +169,6 @@
     "price": 99,
     "rate": 4,
     "country": "Calumet City, IL"
-  },
-  {
-    "id": "wagyu-coulotte-steak-4-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/103374/wagyu-coulotte-10-oz.8f1a8f4075160241d9698d3f4b1bf488.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Westholme Wagyu",
-    "dsc": "Wagyu Coulotte Steak - 4 Pack",
-    "price": 155,
-    "rate": 4,
-    "country": "Queensland, Australia"
   },
   {
     "id": "ribeye-and-filet-mignon-prime-steak-gift-box",
@@ -369,15 +342,6 @@
     "country": "San Rafael, CA"
   },
   {
-    "id": "pats-original-philly-cheesesteak-4-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/87749/pats-original-philly-cheesesteak-4-pack.fe6d8af186d93848f9a5090118fe8b46.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat's King of Steaks",
-    "dsc": "Pat's Original Philly Cheesesteak - 4 Pack",
-    "price": 99,
-    "rate": 4,
-    "country": "Philadelphia, PA"
-  },
-  {
     "id": "california-reserve-new-york-steak",
     "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/96230/california-reserve-new-york-steak-12-oz.1db7f39f6540bd492e5487578c6bbcb9.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
     "name": "Flannery Beef",
@@ -421,15 +385,6 @@
     "price": 44,
     "rate": 4,
     "country": "Los Angeles, CA"
-  },
-  {
-    "id": "pats-original-philly-cheesesteak-8-pack",
-    "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/87773/pats-original-philly-cheesesteak-8-pack.1f350a7bf2852552bf219d6609405c69.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-    "name": "Pat's King of Steaks",
-    "dsc": "Pat's Original Philly Cheesesteak - 8 Pack",
-    "price": 179,
-    "rate": 5,
-    "country": "Philadelphia, PA"
   },
   {
     "id": "17406-waygu-burgers-steaks-grill-pack",
