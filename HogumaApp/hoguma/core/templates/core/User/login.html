@@ -15,7 +15,7 @@
   footer{
     margin-top: 0;
     position: relative;
-    top: 234px;
+    top: 198px;
   }
 </style>
 
@@ -32,6 +32,9 @@
 
       <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
     </form>
+    <br>
+    <div>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate ya</a></div>
+    <div><a href="{% url 'password_reset' %}">He olvidado mi contraseña</a></div>
   </main>
 
 </body>

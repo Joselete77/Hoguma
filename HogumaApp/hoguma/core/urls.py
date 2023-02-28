@@ -1,5 +1,5 @@
 from django.urls import path
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
 from .views import *
 
 
@@ -42,5 +42,27 @@ urlpatterns = [
     path('reservationsRoomPromotion/', reservationsRoomPromotion, name='reservationsRoomPromotion'),
     path('termsAndPrivacity/', termsAndPrivacity, name='termsAndPrivacity'),
     path('successPayRoomReservation/', successPayRoomReservation, name='successPayRoomReservation'),
-    
+    path('password-reset/',
+         PasswordResetView.as_view(
+             template_name='core/User/ResetPassword/password_reset.html',
+             subject_template_name='core/User/ResetPassword/password_reset_subject.txt',
+             email_template_name='core/User/ResetPassword/password_reset_email.html',
+             # success_url='/login/'
+         ),
+         name='password_reset'),
+    path('password-reset/done/',
+         PasswordResetDoneView.as_view(
+             template_name='core/User/ResetPassword/password_reset_done.html'
+         ),
+         name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/',
+         PasswordResetConfirmView.as_view(
+             template_name='core/User/ResetPassword/password_reset_confirm.html'
+         ),
+         name='password_reset_confirm'),
+    path('password-reset-complete/',
+         PasswordResetCompleteView.as_view(
+             template_name='core/User/ResetPassword/password_reset_complete.html'
+         ),
+         name='password_reset_complete'),
 ]
