@@ -12,10 +12,6 @@ import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
 from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund
-from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
 
 # Create your views here.
 
@@ -24,12 +20,13 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
+        print(request.POST)
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
-            first_name = form.cleaned_data['first_name'],
+            first_name = form.cleaned_data['first_name']
             form.save()
 
             user = User.objects.get(username=username)
