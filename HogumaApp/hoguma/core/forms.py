@@ -1,5 +1,6 @@
 from django import forms  
 from django.contrib.auth.models import User 
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError  
 from .models import Profile
@@ -42,7 +43,7 @@ class CustomUserCreationForm(UserCreationForm):
         last_name = self.cleaned_data['last_name']
         return last_name
       
-    def save(self, commit = True):  
+    def save(self):  
         user = User.objects.create_user(  
             self.cleaned_data['username'],  
             email = self.cleaned_data['email'],  

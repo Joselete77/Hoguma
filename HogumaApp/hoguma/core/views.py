@@ -20,7 +20,6 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        print(request.POST)
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -59,24 +58,39 @@ def profile(request):
     allPromotion= promotion.objects.filter(finishDate__gte=now)
     userName = request.user.first_name.split(' ', 1)
     firstNameUser= userName[0]
+    username = request.user.username
+    email = request.user.email
     
     if request.method == 'POST':
         form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
         formAvatar = UpdateAvatarUser(request.POST, instance=request.user.profile, files=request.FILES)
         
         if form.is_valid():
-            username = request.user.username
-            form.save()
-            message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
-            messages.success(request, message)
-            return redirect('index')
+            usernameForm = form.cleaned_data['username']
+            emailForm = form.cleaned_data['email']
+            usernameBD = User.objects.filter(username=usernameForm).count()
+            emailBD = User.objects.filter(email=emailForm).count()
+
+            if usernameBD == 0 or usernameForm == username:
+                if emailBD == 0 or emailForm == email:
+                    form.save()
+                    message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
+                    messages.success(request, message)
+                else:
+                    message = ('El correo electrónico introducido ya se encuentra registrado')
+                    messages.error(request, message)
+            else:
+                message = ('El nombre de usuario ya se encuentra registrado')
+                messages.error(request, message)
+            
+            return redirect('profile')
         
         if formAvatar.is_valid():
             username = request.user.username
             formAvatar.save()
             message = ('Usuario %(username)s modificado satisfactoriamente.') % {'username' : username}
             messages.success(request, message)
-            return redirect('index')
+            return redirect('profile')
     else: 
         form = UpdateUserForm()
         formAvatar = UpdateAvatarUser()
