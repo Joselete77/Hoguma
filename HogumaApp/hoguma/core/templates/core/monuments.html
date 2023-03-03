@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block monuments %}
 
 <head>
-    <title>Lugares emblemáticos</title>
+    <title>{% trans 'Lugares emblemáticos' %}</title>
 </head>
 <style>
     .format-page{background: linear-gradient(to right,#ffffff ,#585858 );min-height: 100vh}.text-gray{color: #aaa}
@@ -12,7 +13,7 @@
     <div class="container py-5">
         <div class="row text-center text-white mb-5">
             <div class="col-lg-7 mx-auto">
-                <h1 class="display-4">Lugares de interés</h1>
+                <h1 class="display-4">{% trans 'Lugares de interés' %}</h1>
             </div>
         </div>
         <div class="row">
@@ -26,8 +27,8 @@
                                     <h5 class="mt-0 font-weight-bold mb-2">{{ dic.nombre }}</h5>
                                     <p class="font-italic text-muted mb-0 small">{{ dic.descripcion }}.</p>
                                     <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <h6 class="font-weight-bold my-2">Dirección: {{ dic.direccion }}</h6>
-                                        <h6 class="font-weight-bold my-2">Teléfono: {{ dic.telefono }}</h6>
+                                        <h6 class="font-weight-bold my-2">{% trans 'Dirección:' %} {{ dic.direccion }}</h6>
+                                        <h6 class="font-weight-bold my-2">{% trans 'Teléfono:' %} {{ dic.telefono }}</h6>
                                     </div>
                                 </div><img src="{{ dic.foto }}" alt="Generic placeholder image" height="170px" width="170px" class="ml-lg-5 order-1 order-lg-2">
                             </div>

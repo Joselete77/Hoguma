@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block contact %}
 
 <head>
-  <title>Contact Form 01</title>
+  <title>{% trans 'Contacto ' %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -144,7 +145,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center mb-5">
-          <h2 class="heading-section">Contáctenos</h2>
+          <h2 class="heading-section">{% trans 'Contáctenos' %}</h2>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -153,45 +154,45 @@
             <div class="row no-gutters">
               <div class="col-md-7 d-flex align-items-stretch" style="padding-right: 0;">
                 <div class="contact-wrap w-100 p-md-5 p-4" style="border-radius: 10px 0 0 10px;">
-                  <h3 class="mb-4">Enviar mensaje</h3>
+                  <h3 class="mb-4">{% trans 'Enviar mensaje' %}</h3>
                   <form action="/contact/" method="post">
                     {% csrf_token %}
                     <div class="row">
-                      <label class="required" for="name">Nombre completo:</label><br />
+                      <label class="required" for="name">{% trans 'Nombre completo:' %}</label><br />
                       <input id="name" class="input" name="name" type="text"
                         value="{{ user.first_name }} {{ user.last_name }}" size="30" /><br />
                       <span id="name_validation" class="error_message"></span>
                     </div>
                     <div class="row">
-                      <label class="required" for="email">Email:</label><br />
+                      <label class="required" for="email">{% trans 'Correo electrónico:' %}</label><br />
                       <input id="email" class="input" name="email" type="text" value="{{ user.email }}"
                         size="30" /><br />
                       <span id="email_validation" class="error_message"></span>
                     </div>
                     <div class="row">
-                      <label class="required" for="email">Asunto:</label><br />
+                      <label class="required" for="email">{% trans 'Asunto:' %}</label><br />
                       <input id="email" class="input" name="subjectEmail" type="text" value="" size="30" /><br />
                       <span id="email_validation" class="error_message"></span>
                     </div>
                     <div class="row">
-                      <label class="required" for="message">Mensaje:</label><br />
+                      <label class="required" for="message">{% trans 'Mensaje:' %}</label><br />
                       <textarea id="message" class="input" name="messageEmail" rows="7" cols="30"></textarea><br />
                       <span id="message_validation" class="error_message"></span>
                     </div>
                     <p></p>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">{% trans 'Enviar' %}</button>
                   </form>
                 </div>
               </div>
               <div class="col-md-5 d-flex align-items-stretch" style="padding-left: 0;">
                 <div class="info-wrap bg-primary w-100 p-lg-5 p-4" style="border-radius: 0 10px 10px 0;">
-                  <h3 class="mb-4 mt-md-4">Información de contacto</h3>
+                  <h3 class="mb-4 mt-md-4">{% trans 'Información de contacto' %}</h3>
                   <div class="dbox w-100 d-flex align-items-start">
                     <div class="icon d-flex align-items-center justify-content-center">
                       <span class="fa fa-map-marker"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>Dirección:</span> C. Sta. Paula, 5, 30800 Lorca, Murcia</p>
+                      <p><span>{% trans 'Dirección:' %}</span> C. Sta. Paula, 5, 30800 Lorca, Murcia</p>
                     </div>
                   </div>
                   <div class="dbox w-100 d-flex align-items-center">
@@ -199,7 +200,7 @@
                       <span class="fa fa-phone"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>Teléfono:</span> <a href="tel://968 706 706">968 706 706</a></p>
+                      <p><span>{% trans 'Teléfono:' %}</span> <a href="tel://968 706 706">968 706 706</a></p>
                     </div>
                   </div>
                   <div class="dbox w-100 d-flex align-items-center">
@@ -207,7 +208,7 @@
                       <span class="fa fa-paper-plane"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>Correo electrónico:</span> <a
+                      <p><span>{% trans 'Correo electrónico:' %}</span> <a
                           href="mailto:hotelhoguma@gmail.com">hotelhoguma@gmail.com</a></p>
                     </div>
                   </div>
@@ -216,7 +217,7 @@
                       <span class="fa fa-fax"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>Fax:</span> <a href="fax:968 706 706">968 706 706</a></p>
+                      <p><span>{% trans 'Fax:' %}</span> <a href="fax:968 706 706">968 706 706</a></p>
                     </div>
                   </div>
                 </div>

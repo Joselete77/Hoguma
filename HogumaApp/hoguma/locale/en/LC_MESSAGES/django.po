@@ -1,0 +1,1376 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-03 11:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/templates/core/Hotel/formReservationRoom.html:7
+msgid "Reservar habitación"
+msgstr "Reserve room"
+
+#: core/templates/core/Hotel/formReservationRoom.html:201
+#: core/templates/core/Hotel/reservationsHotelUser.html:142
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:211
+#: core/templates/core/Hotel/updateReservationHotel.html:207
+#: core/templates/core/Restaurant/formReservationRestaurant.html:207
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:142
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:142
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:211
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:213
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:213
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: core/templates/core/Hotel/formReservationRoom.html:208
+#: core/templates/core/Hotel/reservationsHotelUser.html:154
+#: core/templates/core/Hotel/updateReservationHotel.html:214
+#: core/templates/core/User/profile.html:136
+msgid "Huéspedes"
+msgstr "Guests"
+
+#: core/templates/core/Hotel/formReservationRoom.html:224
+#: core/templates/core/Hotel/reservationsHotelUser.html:145
+#: core/templates/core/Hotel/updateReservationHotel.html:230
+msgid "Habitación"
+msgstr "Room"
+
+#: core/templates/core/Hotel/formReservationRoom.html:232
+#: core/templates/core/Hotel/updateReservationHotel.html:238
+#: core/templates/core/User/profile.html:141
+msgid "Día de entrada"
+msgstr "Entry day"
+
+#: core/templates/core/Hotel/formReservationRoom.html:238
+#: core/templates/core/Hotel/updateReservationHotel.html:244
+msgid "Dia de salida"
+msgstr "Departure day"
+
+#: core/templates/core/Hotel/formReservationRoom.html:243
+#: core/templates/core/Restaurant/formReservationRestaurant.html:245
+#: core/templates/core/User/profile.html:57
+msgid "Reservar ya"
+msgstr "Reserve now"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:7
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:7
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:7
+#: core/templates/core/base.html:91
+msgid "Mis reservas"
+msgstr "My reservations"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:129
+msgid "Mis reservas de habitación"
+msgstr "My room reservations"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:139
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:203
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:139
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:139
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:203
+msgid "Identificador"
+msgstr "Identifier"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:148
+msgid "Fecha de entrada"
+msgstr "Entry day"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:151
+msgid "Fecha de salida"
+msgstr "Departure day"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:157
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:157
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:157
+msgid "Opciones"
+msgstr "Options"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:172
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:172
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:172
+msgid "Editar"
+msgstr "Edit"
+
+#: core/templates/core/Hotel/reservationsHotelUser.html:174
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:174
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:174
+msgid "Eliminar"
+msgstr "Remove"
+
+#: core/templates/core/Hotel/room.html:11 core/templates/core/base.html:41
+#: core/templates/core/base.html:82 core/templates/core/index.html:78
+msgid "Habitaciones"
+msgstr "Rooms"
+
+#: core/templates/core/Hotel/room.html:21
+msgid "Reserva de habitaciones"
+msgstr "Reservation of rooms"
+
+#: core/templates/core/Hotel/room.html:32
+#: core/templates/core/Restaurant/indexRestaurant.html:57
+msgid "Reserva"
+msgstr "Reservation"
+
+#: core/templates/core/Hotel/room.html:42
+msgid "Precio"
+msgstr "Price"
+
+#: core/templates/core/Hotel/room.html:44 core/templates/core/checkout.html:52
+#: core/templates/core/checkout_updateRoom.html:52
+msgid "Precio por noche:"
+msgstr "Price per night:"
+
+#: core/templates/core/Hotel/room.html:47
+msgid "Capacidad"
+msgstr "Capacity"
+
+#: core/templates/core/Hotel/room.html:49
+msgid "personas"
+msgstr "people"
+
+#: core/templates/core/Hotel/room.html:52
+#: core/templates/core/Restaurant/indexRestaurant.html:43
+#: core/templates/core/Restaurant/indexRestaurant.html:66
+msgid "Descripción"
+msgstr "Description"
+
+#: core/templates/core/Hotel/room.html:60 core/templates/core/base.html:37
+#: core/templates/core/base.html:78
+msgid "Reservar"
+msgstr "Reserve"
+
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:7
+msgid "Consultar reservas hotel"
+msgstr "Consult hotel reservations"
+
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:191
+msgid "Consultar habitación"
+msgstr "Consult rooms"
+
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:192
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:191
+msgid ""
+"Introduzca el número identificador que se le proporcionó y su correo "
+"electrónico para comprobar sus reservas."
+msgstr ""
+"Enter the ID number you were given and your email address to check your "
+"reservations."
+
+#: core/templates/core/Hotel/searchReservationsHotelAnonymous.html:216
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:216
+msgid "Consultar"
+msgstr "Consult"
+
+#: core/templates/core/Hotel/updateReservationHotel.html:6
+#: core/templates/core/Hotel/updateReservationHotel.html:249
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:6
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:251
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:6
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:251
+msgid "Modificar reserva"
+msgstr "Modify reservation"
+
+#: core/templates/core/Hotel/updateReservationHotel.html:189
+msgid ""
+"Modifique su reserva de habitación en el hotel de una forma sencilla y "
+"rápida."
+msgstr "Modify your hotel room reservation quickly and easily."
+
+#: core/templates/core/Hotel/updateReservationHotel.html:192
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:193
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:193
+msgid "¡Nosotros comprobaremos la disponibilidad!"
+msgstr "We will check availability!"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:8
+#: core/templates/core/Restaurant/indexRestaurant.html:74
+msgid "Reservar mesa"
+msgstr "Reserve a table"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:190
+#: core/templates/core/Restaurant/indexRestaurant.html:13
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:189
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:189
+#: core/templates/core/base.html:34 core/templates/core/base.html:75
+#: core/templates/core/index.html:86 core/templates/core/index.html:132
+msgid "Restaurante"
+msgstr "Restaurant"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:191
+msgid ""
+"Realice una reserva en nuestro establecimiento para no esperar colas "
+"interminables."
+msgstr "Make a reservation at our establishment to avoid endless queues."
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:194
+msgid "¡Te aseguramos que no te arrepentirás!"
+msgstr "We assure you that you won't regret it!"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:214
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:220
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:220
+msgid "Número de personas"
+msgstr "Number of people"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:221
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:227
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:227
+msgid "¿Alérgico?"
+msgstr "Allergic?"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:223
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:229
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:229
+msgid "Sí"
+msgstr "Yes"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:224
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:230
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:230
+msgid "No"
+msgstr "No"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:234
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:240
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:240
+msgid "Día"
+msgstr "Day"
+
+#: core/templates/core/Restaurant/formReservationRestaurant.html:240
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:148
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:148
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:246
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:246
+msgid "Hora"
+msgstr "Hour"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:24
+msgid "Reserva de mesas"
+msgstr "Reservation of tables"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:34
+#: core/templates/core/Restaurant/indexRestaurant.html:41
+#: core/templates/core/Restaurant/menu.html:8
+#: core/templates/core/Restaurant/menu.html:216
+#: core/templates/core/base.html:36 core/templates/core/base.html:77
+msgid "Carta"
+msgstr "Menu"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:45
+msgid ""
+"Si desea ver los diferentes platos disponibles de nuestra carta.. ¡Está a "
+"solo un click!"
+msgstr ""
+"If you want to see the different dishes available on our menu... It's just a "
+"click away!"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:51
+msgid "Ver carta"
+msgstr "See menu"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:64
+msgid "Reserva de mesa"
+msgstr "Table reservation"
+
+#: core/templates/core/Restaurant/indexRestaurant.html:68
+msgid ""
+"Si desea realizar una reserva de mesa en nuestro restaurante, pulse sobre el "
+"siguiente botón y será redirigido."
+msgstr ""
+"If you wish to make a table reservation in our restaurant, click on the "
+"following button and you will be redirected."
+
+#: core/templates/core/Restaurant/menu.html:217
+msgid "Échale un vistazo a nuestro"
+msgstr "Take a look at our"
+
+#: core/templates/core/Restaurant/menu.html:217
+msgid "Hogumenú"
+msgstr "Hogumenu"
+
+#: core/templates/core/Restaurant/menu.html:224
+#: core/templates/core/Restaurant/menu.html:271
+msgid "Carnes"
+msgstr "Meats"
+
+#: core/templates/core/Restaurant/menu.html:230
+#: core/templates/core/Restaurant/menu.html:289
+msgid "Hamburguesas"
+msgstr "Hamburgers"
+
+#: core/templates/core/Restaurant/menu.html:235
+#: core/templates/core/Restaurant/menu.html:308
+msgid "Pizzas"
+msgstr "Pizzas"
+
+#: core/templates/core/Restaurant/menu.html:241
+#: core/templates/core/Restaurant/menu.html:328
+msgid "Sandwiches"
+msgstr "Sandwiches"
+
+#: core/templates/core/Restaurant/menu.html:247
+#: core/templates/core/Restaurant/menu.html:348
+msgid "Platos estrella"
+msgstr "Star dishes"
+
+#: core/templates/core/Restaurant/menu.html:253
+#: core/templates/core/Restaurant/menu.html:368
+msgid "Postres"
+msgstr "Desserts"
+
+#: core/templates/core/Restaurant/menu.html:259
+#: core/templates/core/Restaurant/menu.html:388
+msgid "Bebidas"
+msgstr "Drinks"
+
+#: core/templates/core/Restaurant/menu.html:270
+#: core/templates/core/Restaurant/menu.html:288
+#: core/templates/core/Restaurant/menu.html:307
+#: core/templates/core/Restaurant/menu.html:327
+#: core/templates/core/Restaurant/menu.html:347
+#: core/templates/core/Restaurant/menu.html:367
+#: core/templates/core/Restaurant/menu.html:387
+msgid "Menú"
+msgstr "Menu"
+
+#: core/templates/core/Restaurant/menu.html:279
+#: core/templates/core/Restaurant/menu.html:297
+#: core/templates/core/Restaurant/menu.html:317
+#: core/templates/core/Restaurant/menu.html:337
+#: core/templates/core/Restaurant/menu.html:357
+#: core/templates/core/Restaurant/menu.html:377
+#: core/templates/core/Restaurant/menu.html:397
+msgid "Precio:"
+msgstr "Price:"
+
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:129
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:129
+msgid "Mis reservas de mesa"
+msgstr "My table reservations"
+
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:145
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:145
+msgid "Fecha"
+msgstr "Date"
+
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:151
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:151
+msgid "Comensales"
+msgstr "Diners"
+
+#: core/templates/core/Restaurant/reservationsRestaurantUser.html:154
+#: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:154
+msgid "Alergia"
+msgstr "Allergy"
+
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:7
+msgid "Consultar reservas restaurante"
+msgstr "Consult restaurant reservations"
+
+#: core/templates/core/Restaurant/searchReservationsRestaurantAnonymous.html:190
+msgid "Consultar mesa"
+msgstr "Consult table"
+
+#: core/templates/core/Restaurant/updateReservationRestaurant.html:190
+#: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:190
+msgid ""
+"Modifique su reserva de mesa en el restaurante de una forma fácil y sin "
+"apuros."
+msgstr ""
+"Change your table reservation in the restaurant in an easy and hassle-free "
+"way."
+
+#: core/templates/core/User/ResetPassword/password_reset_email.html:2
+msgid ""
+"Hola, has recibido este email porque tú has solicitado restablecer la "
+"contraseña de usuario en Hoguma."
+msgstr ""
+
+#: core/templates/core/User/ResetPassword/password_reset_email.html:4
+msgid "Por favor accede al siguiente enlace y cambia la contraseña"
+msgstr ""
+
+#: core/templates/core/User/ResetPassword/password_reset_email.html:8
+msgid ""
+"Tu nombre de usuario, en el caso de que lo hayas olvidado, es el siguiente:"
+msgstr ""
+
+#: core/templates/core/User/ResetPassword/password_reset_email.html:10
+msgid "¡Muchas gracias por utilizar nuestra web!"
+msgstr ""
+
+#: core/templates/core/User/ResetPassword/password_reset_email.html:12
+msgid "El equipo de Hoguma."
+msgstr ""
+
+#: core/templates/core/User/ResetPassword/password_reset_subject.txt:2
+msgid "Restablecer contraseña en Hoguma"
+msgstr ""
+
+#: core/templates/core/User/changePassword.html:12
+#: core/templates/core/User/changePassword.html:29
+#: core/templates/core/User/changePassword.html:36
+#: core/templates/core/User/profile.html:109
+msgid "Cambiar contraseña"
+msgstr "Change password"
+
+#: core/templates/core/User/login.html:7 core/templates/core/User/login.html:34
+#: core/templates/core/base.html:143
+msgid "Iniciar sesión"
+msgstr "Log in"
+
+#: core/templates/core/User/login.html:29
+msgid "Inicio de sesión"
+msgstr "Log in"
+
+#: core/templates/core/User/login.html:37
+msgid "¿No tienes cuenta?"
+msgstr "Don't have an account?"
+
+#: core/templates/core/User/login.html:37
+msgid "Regístrate ya"
+msgstr "Register now"
+
+#: core/templates/core/User/login.html:38
+msgid "He olvidado mi contraseña"
+msgstr "I forgot my password"
+
+#: core/templates/core/User/profile.html:16
+msgid "Hola"
+msgstr "Hello"
+
+#: core/templates/core/User/profile.html:20
+msgid "Nombre de usuario:"
+msgstr "Username:"
+
+#: core/templates/core/User/profile.html:22
+msgid "Nombre:"
+msgstr "Name:"
+
+#: core/templates/core/User/profile.html:24
+#: core/templates/core/checkout.html:22 core/templates/core/contact.html:167
+#: core/templates/core/contact.html:211
+msgid "Correo electrónico:"
+msgstr "Email:"
+
+#: core/templates/core/User/profile.html:26
+msgid "Último inicio de sesión:"
+msgstr "Last login:"
+
+#: core/templates/core/User/profile.html:30
+#: core/templates/core/User/profile.html:98
+msgid "Editar perfil"
+msgstr "Edit profile"
+
+#: core/templates/core/User/profile.html:39
+msgid "Promociones"
+msgstr "Promotions"
+
+#: core/templates/core/User/profile.html:50
+msgid "Oferta válida desde"
+msgstr "Offer valid from"
+
+#: core/templates/core/User/profile.html:51
+msgid "al"
+msgstr "until"
+
+#: core/templates/core/User/profile.html:53
+msgid "Precio flash:"
+msgstr "Flash price:"
+
+#: core/templates/core/User/profile.html:71
+msgid "Editar foto de perfil"
+msgstr "Edit profile picture"
+
+#: core/templates/core/User/profile.html:77
+msgid "Avatar actual:"
+msgstr "Current avatar"
+
+#: core/templates/core/User/profile.html:86
+#: core/templates/core/User/profile.html:112
+msgid "Guardar"
+msgstr "Save"
+
+#: core/templates/core/User/profile.html:88
+#: core/templates/core/User/profile.html:114
+#: core/templates/core/User/profile.html:153
+msgid "Cerrar"
+msgstr "Close"
+
+#: core/templates/core/User/profile.html:124
+msgid "Promoción"
+msgstr "Promotion"
+
+#: core/templates/core/User/profile.html:146
+msgid "Día de salida"
+msgstr "Departure day"
+
+#: core/templates/core/User/profile.html:151
+msgid "Realizar reserva"
+msgstr "Make a reservation"
+
+#: core/templates/core/base.html:44 core/templates/core/base.html:85
+#: core/templates/core/index.html:150 core/templates/core/monuments.html:7
+msgid "Lugares emblemáticos"
+msgstr "Emblematic places"
+
+#: core/templates/core/base.html:47 core/templates/core/base.html:88
+#: core/templates/core/index.html:151
+msgid "Transporte público"
+msgstr "Public transport"
+
+#: core/templates/core/base.html:93 core/templates/core/base.html:128
+msgid "Mis reservas de hotel"
+msgstr "My hotel reservations"
+
+#: core/templates/core/base.html:94 core/templates/core/base.html:129
+msgid "Mis reservas de restaurante"
+msgstr "My restaurant reservations"
+
+#: core/templates/core/base.html:130
+msgid "Mi perfil"
+msgstr "My profile"
+
+#: core/templates/core/base.html:134
+msgid "Cerrar sesión"
+msgstr "Log out"
+
+#: core/templates/core/base.html:144
+msgid "Registrarse"
+msgstr "Register"
+
+#: core/templates/core/base.html:190
+msgid "Volver al inicio"
+msgstr "Back to home"
+
+#: core/templates/core/base.html:191
+msgid "Privacidad"
+msgstr "Privacy"
+
+#: core/templates/core/busStop.html:8
+msgid "Paradas de autobús"
+msgstr "Bus stops"
+
+#: core/templates/core/busStop.html:9
+msgid "Estas son las paradas de autobús próximas a nuestro hotel."
+msgstr "These are the bus stops close to our hotel."
+
+#: core/templates/core/checkout.html:7
+#: core/templates/core/checkout_updateRoom.html:7
+msgid "Pago"
+msgstr "Payment"
+
+#: core/templates/core/checkout.html:17
+#: core/templates/core/checkout_updateRoom.html:17
+msgid "Detalles de la compra:"
+msgstr "Purchase details:"
+
+#: core/templates/core/checkout.html:28
+#: core/templates/core/checkout_updateRoom.html:28
+msgid "Fecha de entrada:"
+msgstr "Entry day:"
+
+#: core/templates/core/checkout.html:34
+#: core/templates/core/checkout_updateRoom.html:34
+msgid "Fecha de salida:"
+msgstr "Departure day:"
+
+#: core/templates/core/checkout.html:40
+#: core/templates/core/checkout_updateRoom.html:40
+msgid "Habitación elegida:"
+msgstr "Chosen room:"
+
+#: core/templates/core/checkout.html:46
+#: core/templates/core/checkout_updateRoom.html:46
+msgid "Huéspedes:"
+msgstr "Guests:"
+
+#: core/templates/core/checkout.html:58
+#: core/templates/core/checkout_updateRoom.html:58
+msgid "Precio por"
+msgstr "Price for"
+
+#: core/templates/core/checkout.html:58
+#: core/templates/core/checkout_updateRoom.html:58
+msgid "noches:"
+msgstr "nights:"
+
+#: core/templates/core/checkout_updateRoom.html:22
+msgid "Email:"
+msgstr ""
+
+#: core/templates/core/contact.html:7
+msgid "Contacto "
+msgstr "Contact "
+
+#: core/templates/core/contact.html:148
+msgid "Contáctenos"
+msgstr "Contact us"
+
+#: core/templates/core/contact.html:157
+msgid "Enviar mensaje"
+msgstr "Send message"
+
+#: core/templates/core/contact.html:161
+msgid "Nombre completo:"
+msgstr "Name:"
+
+#: core/templates/core/contact.html:173
+msgid "Asunto:"
+msgstr "Subject"
+
+#: core/templates/core/contact.html:178
+msgid "Mensaje:"
+msgstr "Message"
+
+#: core/templates/core/contact.html:183
+msgid "Enviar"
+msgstr "Send"
+
+#: core/templates/core/contact.html:189
+msgid "Información de contacto"
+msgstr "Contact information"
+
+#: core/templates/core/contact.html:195 core/templates/core/monuments.html:30
+msgid "Dirección:"
+msgstr "Address:"
+
+#: core/templates/core/contact.html:203 core/templates/core/monuments.html:31
+msgid "Teléfono:"
+msgstr "Phone:"
+
+#: core/templates/core/contact.html:220
+msgid "Fax:"
+msgstr "Fax:"
+
+#: core/templates/core/index.html:25
+msgid "¡Regístrese en nuestra web y obtenga sorprendentes promociones!"
+msgstr "Register on our website and get amazing promotions!"
+
+#: core/templates/core/index.html:26
+msgid "Regístrate hoy"
+msgstr "Register today"
+
+#: core/templates/core/index.html:36
+msgid "Tiempo de descanso y paz"
+msgstr "Time for rest and peace"
+
+#: core/templates/core/index.html:37
+msgid ""
+"Nuestro hotel cuenta con una variedad de habitaciones perfectamente "
+"equipadas para ayudarle a desconectar de la rutina."
+msgstr ""
+"Our hotel has a variety of perfectly equipped rooms to help you disconnect "
+"from the routine."
+
+#: core/templates/core/index.html:38
+msgid "Ver nuestras habitaciones"
+msgstr "See our rooms"
+
+#: core/templates/core/index.html:48
+msgid "Disfruta de nuestra particular gastronomía"
+msgstr "Enjoy our particular gastronomy"
+
+#: core/templates/core/index.html:49
+msgid ""
+"En nuestro restaurante tenemos una gran variedad de platos que le dejarán "
+"con las ganas de volver a repetir."
+msgstr ""
+"In our restaurant we have a wide variety of dishes that will leave you "
+"wanting to come back for more."
+
+#: core/templates/core/index.html:50
+msgid "Nuestra carta"
+msgstr "Our menu"
+
+#: core/templates/core/index.html:79
+msgid ""
+"Aquí encontrarás el catálogo completo de nuestras habitaciones de hotel."
+msgstr "Here you will find the complete catalogue of our hotel rooms."
+
+#: core/templates/core/index.html:80 core/templates/core/index.html:88
+#: core/templates/core/index.html:96
+msgid "Ver detalles"
+msgstr "See details"
+
+#: core/templates/core/index.html:87
+msgid ""
+"Aquí encontrarás el menú de nuestro restaurante y podrás realizar una "
+"reserva."
+msgstr ""
+
+#: core/templates/core/index.html:94
+msgid "Contacto"
+msgstr "Contact"
+
+#: core/templates/core/index.html:95
+msgid ""
+"Aquí podrás contactar con el personal de nuestro hotel ante cualquier duda."
+msgstr "Here you can contact our hotel staff with any questions you may have."
+
+#: core/templates/core/index.html:107
+msgid "Hotel Hoguma"
+msgstr "Hotel Hoguma"
+
+#: core/templates/core/index.html:108
+msgid ""
+"Amplios espacios, elegantes habitaciones y una atractiva oferta "
+"gastronómica. Así es el hotel Hoguma, que ha sido concebido para recrear en "
+"sus instalaciones una atmósfera excelente y totalmente cuidada."
+msgstr ""
+"Spacious spaces, elegant rooms and an attractive gastronomic offer. This is "
+"the Hoguma hotel, which has been conceived to recreate an excellent and well "
+"cared for atmosphere in its facilities."
+
+#: core/templates/core/index.html:109
+msgid ""
+"Ubicado en pleno centro de la ciudad de Lorca, nuestro establecimiento está "
+"diseñado expresamente para que disfrutes del máximo confort durante su "
+"estancia. Su refinada ambientación, dotada de abundante luz natural y su "
+"inmejorable localización, es ideal para generar experiencias únicas en "
+"nuestros huéspedes."
+msgstr ""
+"Located in the heart of the city centre of Lorca, our establishment is "
+"specifically designed for you to enjoy maximum comfort during your stay. Its "
+"refined atmosphere, with abundant natural light and its unbeatable location, "
+"is ideal for generating unique experiences for our guests. our guests."
+
+#: core/templates/core/index.html:110
+msgid ""
+"Este hotel tiene a su disposición Habitaciones Individuales, Habitaciones "
+"Dobles, Habitaciones Triples y Suites"
+msgstr ""
+"This hotel has at your disposal Single Rooms, Double Rooms, Triple Rooms and "
+"Suites."
+
+#: core/templates/core/index.html:112
+msgid "Nuestras habitaciones"
+msgstr "Our rooms"
+
+#: core/templates/core/index.html:124
+msgid "Servicios del hotel"
+msgstr "Hotel services"
+
+#: core/templates/core/index.html:126
+msgid "Aire acondicionado"
+msgstr "Air conditioning"
+
+#: core/templates/core/index.html:127
+msgid "Asistencia médica"
+msgstr "Medical assistance"
+
+#: core/templates/core/index.html:128
+msgid "Gimnasio"
+msgstr "Gym"
+
+#: core/templates/core/index.html:129
+msgid "Parking cubierto"
+msgstr "Covered parking"
+
+#: core/templates/core/index.html:130
+msgid "Piscina exterior"
+msgstr "Outdoor swimming pool"
+
+#: core/templates/core/index.html:131
+msgid "Recepción y servicio de habitaciones 24 h"
+msgstr "Reception and room service 24 h"
+
+#: core/templates/core/index.html:133
+msgid "Jardín"
+msgstr "Garden"
+
+#: core/templates/core/index.html:134
+msgid "Wifi de alta velocidad"
+msgstr "High-speed Wifi"
+
+#: core/templates/core/index.html:146
+msgid "Ubicación"
+msgstr "Location"
+
+#: core/templates/core/index.html:147
+msgid ""
+"Situado a 300 metros del centro de urbano de Lorca, esto le confiere al "
+"hotel un fácil acceso y, sobre todo, la capacidad de recorrer a pie los "
+"principales atractivos de la ciudad tales como monumentos, museos o lugares "
+"emblemáticos."
+msgstr ""
+"Located 300 metres from the city centre of Lorca, this gives the hotel easy "
+"access and, above all, the ability to walk to the main attractions of the "
+"city such as monuments, museums and emblematic places."
+
+#: core/templates/core/index.html:148
+msgid ""
+"El hotel está apenas a 600 metros de la estación de tren (regional y alta "
+"velocidad) y hay diversas paradas de autobús próximas a nuestro "
+"establecimiento."
+msgstr ""
+"The hotel is only 600 metres from the train station (regional and high "
+"speed) and there are several bus stops close to our establishment."
+
+#: core/templates/core/monuments.html:16
+msgid "Lugares de interés"
+msgstr "Places of interest"
+
+#: core/templates/core/privacyPolicy.html:10
+msgid "Protección de datos de carácter personal según la LOPDDD"
+msgstr "Protection of personal data in accordance with the LOPDDD"
+
+#: core/templates/core/privacyPolicy.html:13
+msgid ""
+"Hoguma, en aplicación de la normativa vigente en materia de protección de "
+"datos de carácter personal, informa que los datos personales que se recogen "
+"a través de los formularios del sitio web:"
+msgstr ""
+"Hoguma, in application of current legislation on the protection of personal "
+"data, informs that the personal data collected through the forms on the "
+"website:"
+
+#: core/templates/core/privacyPolicy.html:14
+msgid ""
+"se incluyen en los ficheros automatizados específicos de usuarios de los "
+"servicios de Hoguma."
+msgstr ""
+"are included in the specific automated files of users of Hoguma's services."
+
+#: core/templates/core/privacyPolicy.html:16
+msgid ""
+"La recogida y tratamiento automatizado de los datos de carácter personal "
+"tiene como finalidad el mantenimiento de la relación comercial y el "
+"desempeño de tareas de información, formación, asesoramiento y otras "
+"actividades propias de nuestra empresa."
+msgstr ""
+"The purpose of the collection and automated processing of personal data is "
+"to maintain the commercial relationship and the performance of information, "
+"training, advice and other activities of our company."
+
+#: core/templates/core/privacyPolicy.html:18
+msgid ""
+"Estos datos únicamente serán cedidos a aquellas entidades que sean "
+"necesarias con el único objetivo de dar cumplimiento a la finalidad "
+"anteriormente expuesta."
+msgstr ""
+"These data will only be transferred to those entities that are necessary for "
+"the sole purpose of complying with the aforementioned purpose."
+
+#: core/templates/core/privacyPolicy.html:20
+msgid ""
+"Hoguma adopta las medidas necesarias para garantizar la seguridad, "
+"integridad y confidencialidad de los datos conforme a lo dispuesto en el "
+"Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de "
+"abril de 2016, relativo a la protección de las personas físicas en lo que "
+"respecta al tratamiento de datos personales y a la libre circulación de los "
+"mismos."
+msgstr ""
+"Hoguma takes the necessary measures to ensure the security, integrity and "
+"confidentiality of data in accordance with the provisions of Regulation (EU) "
+"2016/679 of the European Parliament and of the Council of 27 April 2016 on "
+"the protection of natural persons with regard to the processing of personal "
+"data and on the free movement of such data."
+
+#: core/templates/core/privacyPolicy.html:22
+msgid ""
+"El usuario podrá en cualquier momento ejercitar los derechos de acceso, "
+"oposición, rectificación y cancelación reconocidos en el citado Reglamento "
+"(UE). El ejercicio de estos derechos puede realizarlo el propio usuario a "
+"través de email a:"
+msgstr ""
+"The user may at any time exercise the rights of access, opposition, "
+"rectification and cancellation recognised in the aforementioned Regulation "
+"(EU). These rights can be exercised by the user by sending an email to:"
+
+#: core/templates/core/privacyPolicy.html:23
+msgid "o en la dirección:"
+msgstr "or at the address:"
+
+#: core/templates/core/privacyPolicy.html:27
+msgid ""
+"El usuario manifiesta que todos los datos facilitados por él son ciertos y "
+"correctos, y se compromete a mantenerlos actualizados, comunicando los "
+"cambios a Hoguma."
+msgstr ""
+"The user declares that all the data provided by him/her are true and "
+"correct, and undertakes to keep them updated, communicating any changes to "
+"Hoguma."
+
+#: core/templates/core/privacyPolicy.html:29
+msgid "Finalidad del tratamiento de los datos personales:"
+msgstr "Purpose of the processing of personal data:"
+
+#: core/templates/core/privacyPolicy.html:31
+msgid "¿Con qué finalidad trataremos tus datos personales?"
+msgstr "For what purposes will we process your personal data?"
+
+#: core/templates/core/privacyPolicy.html:32
+msgid ""
+"En Hoguma, trataremos tus datos personales recabados a través del sitio Web:"
+msgstr ""
+"At Hoguma, we will process your personal data collected through the website:"
+
+#: core/templates/core/privacyPolicy.html:32
+msgid "con las siguientes finalidades:"
+msgstr "for the following purposes:"
+
+#: core/templates/core/privacyPolicy.html:34
+msgid ""
+"En caso de contratación de los bienes y servicios ofertados a través del "
+"sitio web, para mantener la relación contractual, así como la gestión, "
+"administración, información, prestación y mejora del servicio."
+msgstr ""
+"In the event of contracting the goods and services offered through the "
+"website, to maintain the contractual relationship, as well as the "
+"management, administration, information, provision and improvement of the "
+"service."
+
+#: core/templates/core/privacyPolicy.html:36
+msgid ""
+"Envío de información solicitada a través de los formularios dispuestos en "
+"los diferentes apartados de la web."
+msgstr ""
+"Sending information requested through the forms provided in the different "
+"sections of the website."
+
+#: core/templates/core/privacyPolicy.html:38
+msgid ""
+"Remitir boletines (newsletters), así como comunicaciones comerciales de "
+"promociones y/o publicidad de nuestros servicios y del sector."
+msgstr ""
+"To send newsletters, as well as commercial communications of promotions and/"
+"or advertising of our services and of the sector."
+
+#: core/templates/core/privacyPolicy.html:40
+msgid ""
+"Te recordamos que puedes oponerte al envío de comunicaciones comerciales por "
+"cualquier vía y en cualquier momento, remitiendo un correo electrónico a la "
+"dirección indicada anteriormente."
+msgstr ""
+"We remind you that you may object to the sending of commercial "
+"communications by any means and at any time by sending an e-mail to the "
+"address indicated above."
+
+#: core/templates/core/privacyPolicy.html:42
+msgid ""
+"Los campos de dichos registros son de cumplimentación obligatoria, siendo "
+"imposible realizar las finalidades expresadas si no se aportan esos datos."
+msgstr ""
+"The fields in these registers must be filled in, and it is impossible to "
+"carry out the purposes expressed if these data are not provided."
+
+#: core/templates/core/privacyPolicy.html:44
+msgid "¿Por cuánto tiempo se conservan los datos personales recabados?"
+msgstr "How long will the personal data collected be kept?"
+
+#: core/templates/core/privacyPolicy.html:47
+msgid ""
+"Los datos personales proporcionados se conservarán mientras se mantenga la "
+"relación comercial o no solicites su supresión y durante el plazo por el "
+"cuál pudieran derivarse responsabilidades legales por los servicios "
+"prestados. Legitimación:"
+msgstr ""
+"The personal data provided will be kept for as long as the commercial "
+"relationship is maintained or you do not request its deletion and for the "
+"period of time for which legal responsibilities may arise from the services "
+"provided. Legitimation:"
+
+#: core/templates/core/privacyPolicy.html:49
+msgid ""
+"El tratamiento de tus datos se realiza con las siguientes bases jurídicas "
+"que legitiman el mismo:"
+msgstr ""
+"The processing of your data is carried out on the following legal bases that "
+"legitimise it:"
+
+#: core/templates/core/privacyPolicy.html:51
+msgid ""
+"La solicitud de información y/o la contratación de los servicios de Hoguma, "
+"cuyos términos y condiciones se pondrán a tu disposición en todo caso, de "
+"forma previa a una eventual contratación."
+msgstr ""
+"The request for information and/or the contracting of Hoguma's services, the "
+"terms and conditions of which will be made available to you in any case, "
+"prior to any eventual contracting."
+
+#: core/templates/core/privacyPolicy.html:53
+msgid ""
+"El consentimiento libre, específico, informado e inequívoco, en tanto que te "
+"informamos poniendo a tu disposición la presente política de privacidad, que "
+"tras la lectura de la misma, en caso de estar conforme, puedes aceptar "
+"mediante una declaración o una clara acción afirmativa, como el marcado de "
+"una casilla dispuesta al efecto."
+msgstr ""
+"Free, specific, informed and unequivocal consent, insofar as we inform you "
+"by making this privacy policy available to you, which, after reading it, if "
+"you agree, you can accept by means of a declaration or a clear affirmative "
+"action, such as ticking a box provided for this purpose."
+
+#: core/templates/core/privacyPolicy.html:55
+msgid ""
+"En caso de que no nos facilites tus datos o lo hagas de forma errónea o "
+"incompleta, no podremos atender tu solicitud, resultando del todo imposible "
+"proporcionarte la información solicitada o llevar a cabo la contratación de "
+"los servicios."
+msgstr ""
+"In the event that you do not provide us with your details or you do so "
+"incorrectly or incompletely, we will not be able to deal with your request, "
+"making it completely impossible to provide you with the information "
+"requested or to carry out the contracting of the services."
+
+#: core/templates/core/privacyPolicy.html:58
+msgid "Destinatarios:"
+msgstr "Recipients:"
+
+#: core/templates/core/privacyPolicy.html:61
+msgid ""
+"Los datos no se comunicarán a ningún tercero ajeno a la empresa, salvo "
+"obligación legal."
+msgstr ""
+"The data will not be communicated to any third party outside the company, "
+"unless legally obliged to do so."
+
+#: core/templates/core/privacyPolicy.html:63
+msgid ""
+"Como encargados de tratamiento, tenemos contratados a los siguientes "
+"proveedores de servicios, habiéndose comprometido al cumplimiento de las "
+"disposiciones normativas, de aplicación en materia de protección de datos, "
+"en el momento de su contratación:"
+msgstr ""
+"As data processors, we have contracted the following service providers, who "
+"have undertaken to comply with the applicable data protection regulations at "
+"the time of contracting:"
+
+#: core/templates/core/privacyPolicy.html:66
+msgid ""
+"José Ángel Dorado González, con domicilio en Córdoba, NIF/CIF nº 12345678A, "
+"presta servicios de geolocalización."
+msgstr ""
+"José Ángel Dorado González, with address in Córdoba, NIF/CIF nº 12345678A, "
+"provides geolocation services."
+
+#: core/templates/core/privacyPolicy.html:68
+msgid ""
+"Puede consultar la política de privacidad y demás aspectos legales de la "
+"compañía en el siguiente enlace:"
+msgstr ""
+"You can consult the privacy policy and other legal aspects of the company at "
+"the following link:"
+
+#: core/templates/core/privacyPolicy.html:72
+msgid "Datos recopilados por usuarios de los servicios"
+msgstr "Data collected by users of the services"
+
+#: core/templates/core/privacyPolicy.html:74
+msgid ""
+"En los casos en que el usuario incluya ficheros con datos de carácter "
+"personal en los servidores de alojamiento compartido, Hoguma no se hace "
+"responsable del incumplimiento por parte del usuario del RGPD."
+msgstr ""
+"In cases in which the user includes files with personal data on the shared "
+"hosting servers, Hoguma shall not be held responsible for non-compliance by "
+"the user with the RGPD."
+
+#: core/templates/core/privacyPolicy.html:76
+msgid "Retención de datos en conformidad a la LSSI"
+msgstr "Data retention in compliance with the LSSI"
+
+#: core/templates/core/privacyPolicy.html:78
+msgid ""
+"Hoguma informa de que, como prestador de servicio de alojamiento de datos y "
+"en virtud de lo establecido en la Ley 34/2002 de 11 de julio de Servicios de "
+"la Sociedad de la Información y de Comercio Electrónico (LSSI), retiene por "
+"un periodo máximo de 12 meses la información imprescindible para identificar "
+"el origen de los datos alojados y el momento en que se inició la prestación "
+"del servicio. La retención de estos datos no afecta al secreto de las "
+"comunicaciones y sólo podrán ser utilizados en el marco de una investigación "
+"criminal o para la salvaguardia de la seguridad pública, poniéndose a "
+"disposición de los jueces y/o tribunales o del Ministerio que así los "
+"requiera."
+msgstr ""
+"Hoguma informs that, as a data hosting service provider and by virtue of the "
+"provisions of Law 34/2002 of 11 July 2002 on Information Society Services "
+"and Electronic Commerce (LSSI), it retains for a maximum period of 12 months "
+"the information necessary to identify the origin of the data hosted and the "
+"time at which the service was initiated. The retention of this data does not "
+"affect the secrecy of communications and may only be used in the framework "
+"of a criminal investigation or for the safeguarding of public security, "
+"being made available to judges and/or courts or the Ministry that so "
+"requires."
+
+#: core/templates/core/privacyPolicy.html:80
+msgid ""
+"La comunicación de datos a las Fuerzas y Cuerpos del Estado se hará en "
+"virtud a lo dispuesto en la normativa sobre protección de datos personales."
+msgstr ""
+"The communication of data to the State Forces and Corps will be made in "
+"accordance with the provisions of the regulations on the protection of "
+"personal data."
+
+#: core/templates/core/privacyPolicy.html:82
+msgid "Derechos propiedad intelectual de Hoguma"
+msgstr "Hoguma intellectual property rights"
+
+#: core/templates/core/privacyPolicy.html:84
+msgid ""
+"Hoguma es titular de todos los derechos de autor, propiedad intelectual, "
+"industrial, “know how” y cuantos otros derechos guardan relación con los "
+"contenidos del sitio web y los servicios ofertados en el mismo, así como de "
+"los programas necesarios para su implementación y la información relacionada."
+msgstr ""
+"Hoguma is the owner of all copyrights, intellectual and industrial property "
+"rights, know-how and any other rights related to the contents of the website "
+"and the services offered therein, as well as the programmes necessary for "
+"its implementation and related information."
+
+#: core/templates/core/privacyPolicy.html:86
+msgid ""
+"No se permite la reproducción, publicación y/o uso no estrictamente privado "
+"de los contenidos, totales o parciales, del sitio web"
+msgstr ""
+"The reproduction, publication and/or any other than strictly private use of "
+"the contents, in whole or in part, of the website is not permitted."
+
+#: core/templates/core/privacyPolicy.html:87
+msgid "sin el consentimiento previo y por escrito."
+msgstr "without prior written consent."
+
+#: core/templates/core/privacyPolicy.html:89
+msgid "Propiedad intelectual del software"
+msgstr "Software intellectual property"
+
+#: core/templates/core/privacyPolicy.html:91
+msgid ""
+"El usuario debe respetar los programas de terceros puestos a su disposición "
+"por Hoguma, aun siendo gratuitos y/o de disposición pública."
+msgstr ""
+"The user must respect the third-party programmes made available by Hoguma, "
+"even if they are free and/or publicly available."
+
+#: core/templates/core/privacyPolicy.html:93
+msgid ""
+"Hoguma dispone de los derechos de explotación y propiedad intelectual "
+"necesarios del software."
+msgstr ""
+"Hoguma has the necessary exploitation and intellectual property rights to "
+"the software."
+
+#: core/templates/core/privacyPolicy.html:95
+msgid ""
+"El usuario no adquiere derecho alguno o licencia por el servicio contratado, "
+"sobre el software necesario para la prestación del servicio, ni tampoco "
+"sobre la información técnica de seguimiento del servicio, excepción hecha de "
+"los derechos y licencias necesarios para el cumplimiento de los servicios "
+"contratados y únicamente durante la duración de los mismos."
+msgstr ""
+"The user does not acquire any rights or licences for the contracted service, "
+"for the software necessary for the provision of the service, nor for the "
+"technical information for monitoring the service, with the exception of the "
+"rights and licences necessary for the fulfilment of the contracted services "
+"and only for the duration of the contracted services."
+
+#: core/templates/core/privacyPolicy.html:97
+msgid ""
+"Para toda actuación que exceda del cumplimiento del contrato, el usuario "
+"necesitará autorización por escritopor parte de la empresa, quedando "
+"prohibido al usuario acceder, modificar, visualizar la configuración, "
+"estructura y ficheros de los servidores propiedad de Hoguma, asumiendo la "
+"responsabilidad civil y penal derivada de cualquier incidencia que se "
+"pudiera producir en los servidores y sistemas de seguridad como consecuencia "
+"directa de una actuación negligente o maliciosa por su parte."
+msgstr ""
+"For any action that exceeds the fulfilment of the contract, the user will "
+"need written authorisation from the company, and the user is prohibited from "
+"accessing, modifying, viewing the configuration, structure and files of the "
+"servers owned by Hoguma, assuming the civil and criminal liability derived "
+"from any incident that may occur in the servers and security systems as a "
+"direct consequence of negligent or malicious action on their part."
+
+#: core/templates/core/privacyPolicy.html:99
+msgid "Propiedad intelectual de los contenidos alojados"
+msgstr "Intellectual property of hosted content"
+
+#: core/templates/core/privacyPolicy.html:101
+msgid ""
+"Se prohíbe el uso contrario a la legislación sobre propiedad intelectual de "
+"los servicios prestados por nuestra empresa y, en particular de:"
+msgstr ""
+"Any use contrary to intellectual property legislation of the services "
+"provided by our company, and in particular of:"
+
+#: core/templates/core/privacyPolicy.html:104
+msgid ""
+"La utilización que resulte contraria a las leyes españolas o que infrinja "
+"los derechos de terceros."
+msgstr ""
+"Use that is contrary to Spanish law or infringes the rights of third parties."
+
+#: core/templates/core/privacyPolicy.html:105
+msgid ""
+"La publicación o la transmisión de cualquier contenido que, a juicio de "
+"Hoguma, resulte violento, obsceno, abusivo, ilegal, racial, xenófobo o "
+"difamatorio."
+msgstr ""
+"The publication or transmission of any content that, in the opinion of "
+"Hoguma, is violent, obscene, abusive, illegal, racial, xenophobic or "
+"defamatory."
+
+#: core/templates/core/privacyPolicy.html:106
+msgid ""
+"Los cracks, números de serie de programas o cualquier otro contenido que "
+"vulnere derechos de la propiedad intelectual de terceros."
+msgstr ""
+"Cracks, software serial numbers or any other content that infringes the "
+"intellectual property rights of third parties."
+
+#: core/templates/core/privacyPolicy.html:107
+msgid ""
+"La recogida y/o utilización de datos personales de otros usuarios sin su "
+"consentimiento expreso o contraviniendo lo dispuesto en Reglamento (UE) "
+"2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, "
+"relativo a la protección de las personas físicas en lo que respecta al "
+"tratamiento de datos personales y a la libre circulación de los mismos."
+msgstr ""
+"The collection and/or use of personal data of other users without their "
+"express consent or in contravention of the provisions of Regulation (EU) "
+"2016/679 of the European Parliament and of the Council of 27 April 2016 on "
+"the protection of individuals with regard to the processing of personal data "
+"and on the free movement of such data."
+
+#: core/templates/core/privacyPolicy.html:108
+msgid ""
+"La utilización del servidor de correo del dominio y de las direcciones de "
+"correo electrónico para el envío de correo masivo no deseado."
+msgstr ""
+"The use of the domain's mail server and e-mail addresses for sending "
+"unsolicited bulk e-mail."
+
+#: core/templates/core/privacyPolicy.html:110
+msgid ""
+"El usuario tiene toda la responsabilidad sobre el contenido de su web, la "
+"información transmitida y almacenada, los enlaces de hipertexto, las "
+"reivindicaciones de terceros y las acciones legales en referencia a "
+"propiedad intelectual."
+msgstr ""
+"The user bears full responsibility for the content of his website, the "
+"transmitted and stored information, hypertext links, third party claims and "
+"legal actions in reference to intellectual property."
+
+#: core/templates/core/privacyPolicy.html:112
+msgid "Derechos de terceros y protección de menores."
+msgstr "Rights of third parties and protection of minors."
+
+#: core/templates/core/privacyPolicy.html:114
+msgid ""
+"El usuario es responsable respecto a las leyes y reglamentos en vigor y las "
+"reglas que tienen que ver con el funcionamiento del servicio online, "
+"comercio electrónico, derechos de autor, mantenimiento del orden público, "
+"así como principios universales de uso de Internet."
+msgstr ""
+"The user is responsible for compliance with the laws and regulations in "
+"force and the rules concerning the operation of the online service, e-"
+"commerce, copyright, maintenance of public order, as well as universal "
+"principles of Internet use."
+
+#: core/templates/core/privacyPolicy.html:116
+msgid ""
+"El usuario indemnizará a Hoguma por los gastos que generara la imputación en "
+"alguna causa cuya responsabilidad fuera atribuible al usuario, incluidos "
+"honorarios y gastos de defensa jurídica, incluso en el caso de una decisión "
+"judicial no definitiva."
+msgstr ""
+"The user shall indemnify Hoguma for the expenses generated by the imputation "
+"in any case for which the user is responsible, including legal defence fees "
+"and expenses, even in the event of a non-final court decision."
+
+#: core/templates/core/privacyPolicy.html:118
+msgid "Protección de la información alojada"
+msgstr "Protection of hosted information"
+
+#: core/templates/core/privacyPolicy.html:120
+msgid ""
+"Hoguma realiza copias de seguridad de los contenidos alojados en sus "
+"servidores, sin embargo no se responsabiliza de la pérdida o el borrado "
+"accidental de los datos por parte de los usuarios. De igual manera, no "
+"garantiza la reposición total de los datos borrados por los usuarios, ya que "
+"los citados datos podrían haber sido suprimidos y/o modificados durante el "
+"periodo del tiempo transcurrido desde la última copia de seguridad."
+msgstr ""
+"Hoguma makes backup copies of the contents hosted on its servers, however it "
+"is not responsible for the accidental loss or deletion of data by users. "
+"Similarly, it does not guarantee the full replacement of data deleted by "
+"users, as the aforementioned data may have been deleted and/or modified "
+"during the period of time elapsed since the last backup copy."
+
+#: core/templates/core/privacyPolicy.html:122
+msgid ""
+"Los servicios ofertados, excepto los servicios específicos de backup, no "
+"incluyen la reposición de los contenidos conservados en las copias de "
+"seguridad realizadas por la empresa, cuando esta pérdida sea imputable al "
+"usuario; en este caso, se determinará una tarifa acorde a la complejidad y "
+"volumen de la recuperación, siempre previa aceptación del usuario."
+msgstr ""
+"The services offered, except for specific backup services, do not include "
+"the replacement of the contents preserved in the backup copies made by the "
+"company, when this loss is attributable to the user; in this case, a fee "
+"will be determined according to the complexity and volume of the recovery, "
+"always with the user's prior acceptance."
+
+#: core/templates/core/privacyPolicy.html:124
+msgid ""
+"La reposición de datos borrados sólo está incluida en el precio del servicio "
+"cuando la pérdida del contenidosea debida a causas atribuibles a Hoguma"
+msgstr ""
+"The replacement of deleted data is only included in the price of the service "
+"when the loss of the content is due to causes attributable to Hoguma."
+
+#: core/templates/core/privacyPolicy.html:126
+msgid "Comunicaciones comerciales"
+msgstr "Commercial communications"
+
+#: core/templates/core/privacyPolicy.html:128
+msgid ""
+"En aplicación de la LSSI. Hoguma no enviará comunicaciones publicitarias o "
+"promocionales por correo electrónico u otro medio de comunicación "
+"electrónica equivalente que previamente no hubieran sido solicitadas o "
+"expresamente autorizadas por los destinatarios de las mismas."
+msgstr ""
+"In application of the LSSI. Hoguma will not send advertising or promotional "
+"communications by e-mail or any other equivalent means of electronic "
+"communication that have not been previously requested or expressly "
+"authorised by the recipients of the same."
+
+#: core/templates/core/privacyPolicy.html:130
+msgid ""
+"En el caso de usuarios con los que exista una relación contractual previa, "
+"nuestra empresa sí está autorizada al envío de comunicaciones comerciales "
+"referentes a productos o servicios de Hoguma que sean similares a los que "
+"inicialmente fueron objeto de contratación con el cliente."
+msgstr ""
+"In the case of users with whom there is a prior contractual relationship, "
+"our company is authorised to send commercial communications concerning "
+"Hoguma products or services that are similar to those that were initially "
+"contracted with the customer."
+
+#: core/templates/core/privacyPolicy.html:132
+msgid ""
+"En todo caso, el usuario, tras acreditar su identidad, podrá solicitar que "
+"no se le haga llegar más información comercial a través de los canales de "
+"Atención al Cliente."
+msgstr ""
+"In any case, the user, after proving his or her identity, may request that "
+"no further commercial information be sent to him or her through the Customer "
+"Service channels."
+
+#: hoguma/urls.py:28
+msgid "administrador/"
+msgstr "admin/"

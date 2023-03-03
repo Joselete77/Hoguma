@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block profile %}
 
@@ -12,21 +13,21 @@
 				<div>
 					<a href="#"><img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle" data-bs-toggle="modal" data-bs-target="#avatarModal"></a>
 					<h4 class="card-title font-weight-bold text-center"
-						style="display: inline-block; vertical-align: top; padding: 10px;">Hola, {{ firstNameUser|title}}</h4>
+						style="display: inline-block; vertical-align: top; padding: 10px;">{% trans 'Hola'%}, {{ firstNameUser|title}}</h4>
 				</div>
 				<hr>
 				<div class="card-text">
-					<p class="text-muted mb-0" style="font-size: 12px">Nombre de usuario:</p>
+					<p class="text-muted mb-0" style="font-size: 12px">{% trans 'Nombre de usuario:' %}</p>
 					<p>{{ user.username }}</p>
-					<p class="text-muted mb-0" style="font-size: 12px">Nombre:</p>
+					<p class="text-muted mb-0" style="font-size: 12px">{% trans 'Nombre:' %}</p>
 					<p>{{ user.first_name }} {{ user.last_name }}</p>
-					<p class="text-muted mb-0" style="font-size: 12px">Correo electrónico:</p>
+					<p class="text-muted mb-0" style="font-size: 12px">{% trans 'Correo electrónico:' %}</p>
 					<p>{{ user.email }} </p>
-					<p class="text-muted mb-0" style="font-size: 12px">Último inicio de sesión:</p>
+					<p class="text-muted mb-0" style="font-size: 12px">{% trans 'Último inicio de sesión:' %}</p>
 					<p>{{ user.last_login }} </p>
 					<div class="text-right">
 						<button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-							data-bs-target="#profileModal">Editar perfil</button>
+							data-bs-target="#profileModal">{% trans 'Editar perfil' %}</button>
 					</div>
 				</div>
 			</div>
@@ -35,7 +36,7 @@
 		<div class="col-sm-12 col-md-12 col-lg-9 pb-4">
 			<div class="row">
 				<div class="col-6 my-auto">
-					<h2 class="font-weight-bold pt-4">Promociones</h2>
+					<h2 class="font-weight-bold pt-4">{% trans 'Promociones' %}</h2>
 				</div>
 			</div>
 			<br>
@@ -46,14 +47,14 @@
 						<div class="card-body">
 							<h5 class="card-title">{{ p.name }}</h5>
 							<p class="card-text text-muted" style="font-size:12px">{{ p.description }}</p>
-							<p class="card-text text-muted" style="font-size:12px">Oferta válida desde {{ p.startDate }}
-								al {{ p.finishDate }}</p>
+							<p class="card-text text-muted" style="font-size:12px">{% trans 'Oferta válida desde' %} {{ p.startDate }}
+								{% trans 'al' %} {{ p.finishDate }}</p>
 							<p>
-								<strong style="font-size:15px;">Precio flash: {{ p.newPrice }}€</strong>
+								<strong style="font-size:15px;">{% trans 'Precio flash:' %} {{ p.newPrice }}€</strong>
 							</p>
 							<!--@ts-ignore-->
 							<button type="button" class="btn btn-warning" data-bs-toggle="modal"
-								data-bs-target="#promotionModal" onclick="sub({{ p.id }})">Reservar ya</button>
+								data-bs-target="#promotionModal" onclick="sub({{ p.id }})">{% trans 'Reservar ya' %}</button>
 						</div>
 					</div>
 				</div>
@@ -67,13 +68,13 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Editar foto de perfil</h5>
+				<h5 class="modal-title">{% trans 'Editar foto de perfil' %}</h5>
 				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<b>Avatar actual:</b> 
+				<b>{% trans 'Avatar actual:' %}</b> 
 				<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle">
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
@@ -82,9 +83,9 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">{% trans 'Guardar' %}</button>
 				</form>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Cerrar' %}</button>
 			</div>
 		</div>
 	</div>
@@ -94,7 +95,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Editar perfil</h5>
+				<h5 class="modal-title">{% trans 'Editar perfil' %}</h5>
 				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -105,12 +106,12 @@
 					<div>
 						{{ form }}
 					</div>
-					<a href="{% url 'changePassword' %}">Cambiar contraseña</a>
+					<a href="{% url 'changePassword' %}">{% trans 'Cambiar contraseña' %}</a>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Guardar</button>
+				<button type="submit" class="btn btn-primary">{% trans 'Guardar' %}</button>
 				</form>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Cerrar' %}</button>
 			</div>
 		</div>
 	</div>
@@ -120,7 +121,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Promoción</h5>
+				<h5 class="modal-title">{% trans 'Promoción' %}</h5>
 				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -132,24 +133,24 @@
 						<input hidden type="text" class="form-control" id="idTypeRoomForm" name="idTypeRoomForm">
 						<div class="form-floating">
 							<input type="number" class="form-control" id="guests" name="guests" required>
-							<label for="floatingInput">Huéspedes</label>
+							<label for="floatingInput">{% trans 'Huéspedes' %}</label>
 						</div>
 						<div class="form-floating">
 							<input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000"
 								name="entry_date" required>
-							<label for="floatingInput">Día de entrada</label>
+							<label for="floatingInput">{% trans 'Día de entrada' %}</label>
 						</div>
 						<div class="form-floating">
 							<input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000"
 								name="departure_date" required>
-							<label for="floatingInput">Día de salida</label>
+							<label for="floatingInput">{% trans 'Día de salida' %}</label>
 						</div>
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Realizar reserva</button>
+				<button type="submit" class="btn btn-primary">{% trans 'Realizar reserva' %}</button>
 				</form>
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Cerrar' %}</button>
 			</div>
 		</div>
 	</div>

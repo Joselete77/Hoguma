@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block searchReservationsHotel %}
 
 <head>
-  <title>Consultar reservas hotel</title>
+  <title>{% trans 'Consultar reservas hotel' %}</title>
   
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -187,8 +188,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="booking-cta">
-                            <h1>Consultar habitación</h1>
-                            <h4>Introduzca el número identificador que se le proporcionó y su correo electrónico para comprobar sus reservas.</h5>
+                            <h1>{% trans 'Consultar habitación' %}</h1>
+                            <h4>{% trans 'Introduzca el número identificador que se le proporcionó y su correo electrónico para comprobar sus reservas.' %}</h5>
                         </div>
                     </div>
                     <div class="col-md-6 col-md-offset-1">
@@ -199,7 +200,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="number" class="form-control" id="floatingInput" name="id">
-                                            <span class="form-label">Identificador</span>
+                                            <span class="form-label">{% trans 'Identificador' %}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -207,12 +208,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="floatingInput" name="email">
-                                            <span class="form-label">Correo electrónico</span>
+                                            <span class="form-label">{% trans 'Correo electrónico' %}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-btn">
-                                    <button class="submit-btn">Consultar</button>
+                                    <button class="submit-btn">{% trans 'Consultar' %}</button>
                                 </div>
                             </form>
                         </div>

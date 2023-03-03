@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block paypal %}
 
 <head>
-  <title>Pago</title>
+  <title>{% trans 'Pago' %}</title>
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
 </head>
 
@@ -13,48 +14,48 @@
 
   <div style="display: grid; grid-auto-flow: column; gap: 250px; justify-content: center;">
     <div>
-      <h3>Detalles de la compra:</h3>
+      <h3>{% trans 'Detalles de la compra:' %}</h3>
 
       <ol style="border: 1px solid gray; padding: 20px;">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Email:</div>
+            <div class="fw-bold">{% trans 'Correo electrónico:' %}</div>
             {{ request.session.email }}
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Fecha de entrada:</div>
+            <div class="fw-bold">{% trans 'Fecha de entrada:' %}</div>
             {{ request.session.entry_date }}
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Fecha de salida:</div>
+            <div class="fw-bold">{% trans 'Fecha de salida:' %}</div>
             {{ request.session.departure_date }}
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Habitación elegida:</div>
+            <div class="fw-bold">{% trans 'Habitación elegida:' %}</div>
             {{ request.session.roomName }}
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Huéspedes:</div>
+            <div class="fw-bold">{% trans 'Huéspedes:' %}</div>
             {{ request.session.guests }}
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Precio por noche:</div>
+            <div class="fw-bold">{% trans 'Precio por noche:' %}</div>
             {{ request.session.price }}€
           </div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">Precio por {{ request.session.days }} noches:</div>
+            <div class="fw-bold">{% trans 'Precio por' %} {{ request.session.days }} {% trans 'noches:' %}</div>
             {{ request.session.priceTotal }}€
           </div>
         </li>

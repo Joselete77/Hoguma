@@ -65,4 +65,5 @@ urlpatterns = [
              template_name='core/User/ResetPassword/password_reset_complete.html'
          ),
          name='password_reset_complete'),
+
 ]

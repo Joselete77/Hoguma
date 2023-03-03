@@ -1,9 +1,11 @@
 {% extends 'core/base.html' %}
 
+{% load i18n %}
+
 {% block reservationRestaurant %}
 
 <head>
-	<title>Reservar mesa</title>
+	<title>{% trans 'Reservar mesa' %}</title>
 
 	<link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -185,11 +187,11 @@
 				<div class="row">
 					<div class="col-md-5">
 						<div class="booking-cta">
-							<h1>Restaurante</h1>
-							<h4>Realice una reserva en nuestro establecimiento para no esperar colas interminables.</h4>
+							<h1>{% trans 'Restaurante' %}</h1>
+							<h4>{% trans 'Realice una reserva en nuestro establecimiento para no esperar colas interminables.' %}</h4>
 							<h5>
 								<strong>
-									¡Te aseguramos que no te arrepentirás!
+									{% trans '¡Te aseguramos que no te arrepentirás!' %}
 								</strong>
 							</h5>
 						</div>
@@ -202,24 +204,24 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<input class="form-control" type="email" name="email" value="{{user.email}}">
-											<span class="form-label">Correo electrónico</span>
+											<span class="form-label">{% trans 'Correo electrónico' %}</span>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
-											<span class="form-label">Número de personas</span>
+											<span class="form-label">{% trans 'Número de personas' %}</span>
 											<input type="number" class="form-control" name="people">
 											<span class="select-arrow"></span>
 										</div>
 									</div>
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
-											<span class="form-label">¿Alérgico?</span>
+											<span class="form-label">{% trans '¿Alérgico?' %}</span>
 											<select class="form-control" name="allergy">
-												<option value="True">Sí</option>
-												<option selected="selected" value="False">No</option>
+												<option value="True">{% trans 'Sí' %}</option>
+												<option selected="selected" value="False">{% trans 'No' %}</option>
 											</select>
 											<span class="select-arrow"></span>
 										</div>
@@ -229,18 +231,18 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<input class="form-control" type="date" name="date" required>
-											<span class="form-label">Día</span>
+											<span class="form-label">{% trans 'Día' %}</span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<input class="form-control" type="time" name="hour" required>
-											<span class="form-label">Hora</span>
+											<span class="form-label">{% trans 'Hora' %}</span>
 										</div>
 									</div>
 								</div>
 								<div class="form-btn">
-									<button class="submit-btn">Reservar ya</button>
+									<button class="submit-btn">{% trans 'Reservar ya' %}</button>
 								</div>
 							</form>
 						</div>

@@ -1,8 +1,9 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block reservationRoom %} 
 <head>
-  <title>Modificar reserva</title>
+  <title>{% trans 'Modificar reserva' %}</title>
   
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -185,10 +186,10 @@
 					<div class="col-md-5">
 						<div class="booking-cta">
 							<h1>Hotel</h1>
-							<h4>Modifique su reserva de habitación en el hotel de una forma sencilla y rápida.</h4>
+							<h4>{% trans 'Modifique su reserva de habitación en el hotel de una forma sencilla y rápida.' %}</h4>
 							<h5>
 								<strong>
-									¡Nosotros comprobaremos la disponibilidad!
+									{% trans '¡Nosotros comprobaremos la disponibilidad!' %}
 								</strong>
 							</h5>
 						</div>
@@ -203,14 +204,14 @@
 										<div class="form-group">
 											<input class="form-control" type="email" name="email"
 												value="{{reservation.email}}">
-											<span class="form-label">Correo electrónico</span>
+											<span class="form-label">{% trans 'Correo electrónico' %}</span>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
-											<span class="form-label">Huéspedes</span>
+											<span class="form-label">{% trans 'Huéspedes' %}</span>
 											<select class="form-control" name="guests">
 												<option>1</option>
 												<option>2</option>
@@ -226,7 +227,7 @@
 												value="{{reservation.typeRoom}}">
 											<input class="form-control" type="roomName" name="roomName" readonly
 												value="{{room.name}}">
-											<span class="form-label">Habitación</span>
+											<span class="form-label">{% trans 'Habitación' %}</span>
 										</div>
 									</div>
 								</div>
@@ -234,18 +235,18 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<input class="form-control" type="date" name="entry_date" value="{{reservation.entry_date}}">
-											<span class="form-label">Día de entrada</span>
+											<span class="form-label">{% trans 'Día de entrada' %}</span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<input class="form-control" type="date" name="departure_date" value="{{reservation.departure_date}}">
-											<span class="form-label">Dia de salida</span>
+											<span class="form-label">{% trans 'Dia de salida' %}</span>
 										</div>
 									</div>
 								</div>
 								<div class="form-btn">
-									<button class="submit-btn">Modificar reserva</button>
+									<button class="submit-btn">{% trans 'Modificar reserva' %}</button>
 								</div>
 							</form>
 						</div>

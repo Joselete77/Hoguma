@@ -1,5 +1,7 @@
+{% load i18n %}
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -29,20 +31,39 @@
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                aria-expanded="false">Restaurante</a>
+                aria-expanded="false">{% trans 'Restaurante' %}</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
-                <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
+                <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">{% trans 'Carta' %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">{% trans 'Reservar' %}</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
+              <a class="nav-link" href={% url 'room' %}>{% trans 'Habitaciones' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
+              <a class="nav-link" href={% url 'monuments' %}>{% trans 'Lugares emblemáticos' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'busStop' %}>Transporte público</a>
+              <a class="nav-link" href={% url 'busStop' %}>{% trans 'Transporte público' %}</a>
+            </li>
+            <li>
+              <form action="{% url 'set_language' %}" method="POST" name="languageSelect">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_to }}">
+                <div class="input-group">
+                  <select name="language" class="custom-select" id="inputGroupSelect04">
+                    <option selected="selected">Idioma</option>
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                      <option onclick="send()" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.name_local }} {{language.code}}
+                      </option>
+                    {% endfor %}
+              
+                  </select>
+                </div>
+              </form>
             </li>
           </ul>
           {% else %}
@@ -51,30 +72,46 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                  aria-expanded="false">Restaurante</a>
+                  aria-expanded="false">{% trans 'Restaurante' %}</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">Carta</a></li>
-                  <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">Reservar</a></li>
+                  <li><a class="dropdown-item" href="{% url 'menuRestaurant' %}">{% trans 'Carta' %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'reservationRestaurant' %}">{% trans 'Reservar' %}</a></li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'room' %}>Habitaciones</a>
+                <a class="nav-link" href={% url 'room' %}>{% trans 'Habitaciones' %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'monuments' %}>Lugares emblemáticos</a>
+                <a class="nav-link" href={% url 'monuments' %}>{% trans 'Lugares emblemáticos' %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'busStop' %}>Transporte público</a>
+                <a class="nav-link" href={% url 'busStop' %}>{% trans 'Transporte público' %}</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mis
-                  reservas</a>
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Mis reservas' %}</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">Mis reservas de
-                      hotel</a></li>
-                  <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">Mis reservas de
-                      restaurante</a></li>
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsHotelAnonymous' %}">{% trans 'Mis reservas de hotel' %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'searchReservationsRestaurantAnonymous' %}">{% trans 'Mis reservas de restaurante' %}</a></li>
                 </ul>
+              </li>
+              <li>
+                <form action="{% url 'set_language' %}" method="POST" name="languageSelect">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ redirect_to }}">
+                  <div class="input-group">
+                    <select name="language" class="custom-select" id="inputGroupSelect04">
+                      <option selected="selected">Idioma</option>
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+                      {% for language in languages %}
+                        <option onclick="send()" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                          {{ language.name_local }} {{language.code}}
+                        </option>
+                      {% endfor %}
+                
+                    </select>
+                  </div>
+                </form>
               </li>
             </ul>
             {% endif %}
@@ -88,14 +125,13 @@
                     class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">Mis reservas de hotel</a></li>
-                  <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">Mis reservas de
-                      restaurante</a></li>
-                  <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
+                  <li><a class="dropdown-item" href="{% url 'reservationsHotelUser' %}">{% trans 'Mis reservas de hotel' %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'reservationsRestaurantUser' %}">{% trans 'Mis reservas de restaurante' %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans 'Mi perfil' %}</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Cerrar sesión' %}</a></li>
                 </ul>
               </div>
               <div style="top: 4px; position: relative;">
@@ -104,8 +140,8 @@
             </div>
             <a></a>
             {% else %}
-            <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">Iniciar sesión</a> &nbsp; &nbsp; <a
-              class="btn btn-primary" href="{% url 'register' %}">Registrarse</a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">{% trans 'Iniciar sesión' %}</a> &nbsp; &nbsp; <a
+              class="btn btn-primary" href="{% url 'register' %}">{% trans 'Registrarse' %}</a>
             {% endif %}
           </div>
         </div>
@@ -151,15 +187,19 @@
 
     <!-- FOOTER -->
     <footer class="container">
-      <p class="float-end"><a href="{% url 'index' %}">Volver al inicio</a></p>
-      <p>&copy; 2017–2023 Hoguma, Inc. &middot; <a href="{% url 'termsAndPrivacity' %}">Privacy</a></p>
+      <p class="float-end"><a href="{% url 'index' %}">{% trans 'Volver al inicio' %}</a></p>
+      <p>&copy; 2017–2023 Hoguma, Inc. &middot; <a href="{% url 'termsAndPrivacity' %}">{% trans 'Privacidad' %}</a></p>
     </footer>
   </main>
 
 
   <script src="../../static/core/assets/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/26994267.js"></script>
-
+  <script>
+    function send(){
+      document.languageSelect.submit()
+    }
+  </script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block index %}
 
@@ -21,8 +22,8 @@
       <div class="container">
         <div class="carousel-caption text-start">
           <h1>Hoguma</h1>
-          <p>¡Regístrese en nuestra web y obtenga sorprendentes promociones!</p>
-          <p><a class="btn btn-lg btn-primary" href="{% url 'register' %}">Regístrate hoy</a></p>
+          <p>{% trans '¡Regístrese en nuestra web y obtenga sorprendentes promociones!' %}</p>
+          <p><a class="btn btn-lg btn-primary" href="{% url 'register' %}">{% trans 'Regístrate hoy' %}</a></p>
         </div>
       </div>
     </div>
@@ -32,9 +33,9 @@
         width="1846" height="550" />
       <div class="container">
         <div class="carousel-caption">
-          <h1>Tiempo de descanso y paz</h1>
-          <p>Nuestro hotel cuenta con una variedad de habitaciones perfectamente equipadas para ayudarle a desconectar de la rutina.</p>
-          <p><a class="btn btn-lg btn-primary" href="{% url 'room' %}">Ver nuestras habitaciones</a></p>
+          <h1>{% trans 'Tiempo de descanso y paz' %}</h1>
+          <p>{% trans 'Nuestro hotel cuenta con una variedad de habitaciones perfectamente equipadas para ayudarle a desconectar de la rutina.' %}</p>
+          <p><a class="btn btn-lg btn-primary" href="{% url 'room' %}">{% trans 'Ver nuestras habitaciones' %}</a></p>
         </div>
       </div>
     </div>
@@ -44,9 +45,9 @@
         width="1850" height="550" />
       <div class="container">
         <div class="carousel-caption text-end">
-          <h1>Disfruta de nuestra particular gastronomía</h1>
-          <p>En nuestro restaurante tenemos una gran variedad de platos que le dejarán con las ganas de volver a repetir.</p>
-          <p><a class="btn btn-lg btn-primary" href="{% url 'menuRestaurant' %}">Nuestra carta</a></p>
+          <h1>{% trans 'Disfruta de nuestra particular gastronomía' %}</h1>
+          <p>{% trans 'En nuestro restaurante tenemos una gran variedad de platos que le dejarán con las ganas de volver a repetir.' %}</p>
+          <p><a class="btn btn-lg btn-primary" href="{% url 'menuRestaurant' %}">{% trans 'Nuestra carta' %}</a></p>
         </div>
       </div>
     </div>
@@ -74,25 +75,25 @@
       <img class="bd-placeholder-img rounded-circle"
         src="https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
         width="140" height="140" />
-      <h2 class="fw-normal">Habitaciones</h2>
-      <p>Aquí encontrarás el catálogo completo de nuestras habitaciones de hotel.</p>
-      <p><a class="btn btn-secondary" href="{% url 'room' %}">Ver detalles &raquo;</a></p>
+      <h2 class="fw-normal">{% trans 'Habitaciones' %}</h2>
+      <p>{% trans 'Aquí encontrarás el catálogo completo de nuestras habitaciones de hotel.' %}</p>
+      <p><a class="btn btn-secondary" href="{% url 'room' %}">{% trans 'Ver detalles' %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle"
         src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
         width="140" height="140" />
-      <h2 class="fw-normal">Restaurante</h2>
-      <p>Aquí encontrarás el menú de nuestro restaurante y podrás realizar una reserva.</p>
-      <p><a class="btn btn-secondary" href="{% url 'restaurant' %}">Ver detalles &raquo;</a></p>
+      <h2 class="fw-normal">{% trans 'Restaurante' %}</h2>
+      <p>{% trans 'Aquí encontrarás el menú de nuestro restaurante y podrás realizar una reserva.' %}</p>
+      <p><a class="btn btn-secondary" href="{% url 'restaurant' %}">{% trans 'Ver detalles' %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle"
         src="https://img.freepik.com/foto-gratis/mujer-feliz-hablando-recepcionista-al-llegar-al-spa_637285-9455.jpg?w=1380&t=st=1674747510~exp=1674748110~hmac=b529a8b5ab95007af76a1e39f417df2d5b2ed77be973316213a257c01c0994b1"
         width="140" height="140" />
-      <h2 class="fw-normal">Contacto</h2>
-      <p>Aquí podrás contactar con el personal de nuestro hotel ante cualquier duda.</p>
-      <p><a class="btn btn-secondary" href="{% url 'contact' %}">Ver detalles &raquo;</a></p>
+      <h2 class="fw-normal">{% trans 'Contacto' %}</h2>
+      <p>{% trans 'Aquí podrás contactar con el personal de nuestro hotel ante cualquier duda.' %}</p>
+      <p><a class="btn btn-secondary" href="{% url 'contact' %}">{% trans 'Ver detalles' %} &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
 
@@ -103,12 +104,12 @@
 
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">Hotel Hoguma</h2>
-      <p class="lead">Amplios espacios, elegantes habitaciones y una atractiva oferta gastronómica. Así es el hotel Hoguma, que ha sido concebido para recrear en sus instalaciones una atmósfera excelente y totalmente cuidada.</p>
-      <p class="lead">Ubicado en pleno centro de la ciudad de Lorca, nuestro establecimiento está diseñado expresamente para que disfrutes del máximo confort durante su estancia. Su refinada ambientación, dotada de abundante luz natural y su inmejorable localización, es ideal para generar experiencias únicas en nuestros huéspedes.</p>
-      <p class="lead">Este hotel tiene a su disposición Habitaciones Individuales, Habitaciones Dobles, Habitaciones Triples y Suites</p>
+      <h2 class="featurette-heading fw-normal lh-1">{% trans 'Hotel Hoguma' %}</h2>
+      <p class="lead">{% trans 'Amplios espacios, elegantes habitaciones y una atractiva oferta gastronómica. Así es el hotel Hoguma, que ha sido concebido para recrear en sus instalaciones una atmósfera excelente y totalmente cuidada.' %}</p>
+      <p class="lead">{% trans 'Ubicado en pleno centro de la ciudad de Lorca, nuestro establecimiento está diseñado expresamente para que disfrutes del máximo confort durante su estancia. Su refinada ambientación, dotada de abundante luz natural y su inmejorable localización, es ideal para generar experiencias únicas en nuestros huéspedes.' %}</p>
+      <p class="lead">{% trans 'Este hotel tiene a su disposición Habitaciones Individuales, Habitaciones Dobles, Habitaciones Triples y Suites' %}</p>
       <div class="d-flex">
-        <p><a class="btn btn-secondary" href="{% url 'room' %}"><i class="fa-solid fa-bed"></i> Nuestras habitaciones </a></p>
+        <p><a class="btn btn-secondary" href="{% url 'room' %}"><i class="fa-solid fa-bed"></i> {% trans 'Nuestras habitaciones' %} </a></p>
       </div>
     </div>
     <div class="col-md-5">
@@ -120,17 +121,17 @@
 
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
-      <h2 class="featurette-heading fw-normal lh-1">Servicios del hotel</h2>
+      <h2 class="featurette-heading fw-normal lh-1">{% trans 'Servicios del hotel' %}</h2>
       <ul style="list-style: none;" class="lead">
-        <li>Aire acondicionado <i class="fa-regular fa-snowflake"></i></li>
-        <li>Asistencia médica <i class="fa-solid fa-briefcase-medical"></i></li>
-        <li>Gimnasio <i class="fa-solid fa-dumbbell"></i></li>
-        <li>Parking cubierto <i class="fa-solid fa-square-parking"></i></li>
-        <li>Piscina exterior <i class="fa-solid fa-water-ladder"></i></li>
-        <li>Recepción y servicio de habitaciones 24 h <i class="fa-solid fa-bell-concierge"></i></li>
-        <li>Restaurante <i class="fa-solid fa-utensils"></i></li>
-        <li>Jardín <i class="fa-solid fa-tree"></i></li>
-        <li>Wifi de alta velocidad <i class="fa-solid fa-wifi"></i></li>
+        <li>{% trans 'Aire acondicionado' %} <i class="fa-regular fa-snowflake"></i></li>
+        <li>{% trans 'Asistencia médica' %} <i class="fa-solid fa-briefcase-medical"></i></li>
+        <li>{% trans 'Gimnasio' %} <i class="fa-solid fa-dumbbell"></i></li>
+        <li>{% trans 'Parking cubierto' %} <i class="fa-solid fa-square-parking"></i></li>
+        <li>{% trans 'Piscina exterior' %} <i class="fa-solid fa-water-ladder"></i></li>
+        <li>{% trans 'Recepción y servicio de habitaciones 24 h' %} <i class="fa-solid fa-bell-concierge"></i></li>
+        <li>{% trans 'Restaurante' %} <i class="fa-solid fa-utensils"></i></li>
+        <li>{% trans 'Jardín' %} <i class="fa-solid fa-tree"></i></li>
+        <li>{% trans 'Wifi de alta velocidad' %} <i class="fa-solid fa-wifi"></i></li>
       </ul>    
     </div>
     <div class="col-md-5 order-md-1">
@@ -142,15 +143,12 @@
 
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">Ubicación</h2>
-      <p class="lead">Situado a 300 metros del centro de urbano de Lorca, esto le confiere al hotel un fácil acceso y,
-        sobre todo, la capacidad de recorrer a pie los principales atractivos de la ciudad tales como monumentos, museos
-        o lugares emblemáticos.</p>
-      <p class="lead">El hotel está apenas a 600 metros de la estación de tren (regional y alta velocidad) y hay
-        diversas paradas de autobús próximas a nuestro establecimiento.</p>
+      <h2 class="featurette-heading fw-normal lh-1">{% trans 'Ubicación' %}</h2>
+      <p class="lead">{% trans 'Situado a 300 metros del centro de urbano de Lorca, esto le confiere al hotel un fácil acceso y, sobre todo, la capacidad de recorrer a pie los principales atractivos de la ciudad tales como monumentos, museos o lugares emblemáticos.' %}</p>
+      <p class="lead">{% trans 'El hotel está apenas a 600 metros de la estación de tren (regional y alta velocidad) y hay diversas paradas de autobús próximas a nuestro establecimiento.' %}</p>
       <div class="d-flex" style="text-align: center;">
-        <p><a class="btn btn-secondary mx-5" href="{% url 'monuments' %}"><i class="fa-solid fa-map"></i> Lugares emblemáticos</a></p>
-        <p><a class="btn btn-secondary mx-5" href="{% url 'busStop' %}"><i class="fa-solid fa-bus"></i> Transporte público</a></p>
+        <p><a class="btn btn-secondary mx-5" href="{% url 'monuments' %}"><i class="fa-solid fa-map"></i> {% trans 'Lugares emblemáticos' %}</a></p>
+        <p><a class="btn btn-secondary mx-5" href="{% url 'busStop' %}"><i class="fa-solid fa-bus"></i> {% trans 'Transporte público' %}</a></p>
       </div>
     </div>
     <div class="col-md-5">

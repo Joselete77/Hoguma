@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User 
+from django.utils.translation import gettext as _
 from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
@@ -341,7 +342,7 @@ def room(request):
 
 def reservationsRoom(request, id): #Store data in session and check availability of room    
     room_selected = typeRoomHotel.objects.get(id=id)
-
+    
     if request.method=='POST':
         email = request.POST.get('email')
         entry_date = request.POST.get('entry_date')
@@ -401,6 +402,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         
     else:
         return render(request, 'core/Hotel/formReservationRoom.html', {'room_selected' : room_selected})
+
 
 def reservationsRoomPromotion(request): #Store data in session and check availability of room
     if request.method=='POST':
@@ -585,16 +587,11 @@ def updateReservationHotel(request):
     request.session['days'] = totalDays
     request.session['guests'] = guests
     request.session['roomName'] = nameRoom
+    request.session['idRoom'] = idRoom
 
     now = datetime.now()
 
     if entry_date < departure_date and dateEntry_convert.date() > now.date():
-        reservation.email = email
-        reservation.entry_date = entry_date
-        reservation.departure_date = departure_date
-        reservation.typeRoom = typeRoom
-        reservation.guests = guests
-        reservation.save()
 
         if totalDaysNew < totalDaysReservation:
             priceTotal = abs(priceTotal)   
@@ -604,14 +601,27 @@ def updateReservationHotel(request):
                 refundRoom.save()
             else:
                 refund(email=email, idReservation=idRoom, price=priceTotal).save()
-            
+
+            reservation.email = email
+            reservation.entry_date = entry_date
+            reservation.departure_date = departure_date
+            reservation.typeRoom = typeRoom
+            reservation.guests = guests
+            reservation.save()
+
             message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
             messages.success(request, message)
         
         if totalDaysNew > totalDaysReservation:
             return render(request, 'core/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
         
-        if totalDaysNew == totalDaysReservation:     
+        if totalDaysNew == totalDaysReservation:
+            reservation.email = email
+            reservation.entry_date = entry_date
+            reservation.departure_date = departure_date
+            reservation.typeRoom = typeRoom
+            reservation.guests = guests
+            reservation.save()     
             message = ('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
             messages.success(request, message)
     else:
@@ -627,6 +637,15 @@ def successPayRoomReservation(request):
     typeRoom = request.session['typeRoom']
     guests = request.session['guests']
     roomName = request.session['roomName']
+    idRoom = request.session['idRoom']
+
+    reservation=reservationsHotel.objects.get(id=idRoom)
+    reservation.email = email
+    reservation.entry_date = entry_date
+    reservation.departure_date = departure_date
+    reservation.typeRoom = typeRoom
+    reservation.guests = guests
+    reservation.save()
 
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     send_message = EmailMessage("Habitación reservada modificada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 

@@ -1,9 +1,10 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block login-register %}
 
 <head>
-  <title>Iniciar sesión</title>
+  <title>{% trans 'Iniciar sesión' %}</title>
 
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -25,16 +26,16 @@
     <form method="post">
 
       <img class="mb-4" src="../../static/core/assets/img/Hoguma.png" alt="Error" width="150" height="110">
-      <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
+      <h1 class="h3 mb-3 fw-normal">{% trans 'Inicio de sesión' %}</h1>
 
       {% csrf_token %}
       {{ form.as_p }}
 
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">{% trans 'Iniciar sesión' %}</button>
     </form>
     <br>
-    <div>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate ya</a></div>
-    <div><a href="{% url 'password_reset' %}">He olvidado mi contraseña</a></div>
+    <div>{% trans '¿No tienes cuenta?' %} <a href="{% url 'register' %}">{% trans 'Regístrate ya' %}</a></div>
+    <div><a href="{% url 'password_reset' %}">{% trans 'He olvidado mi contraseña' %}</a></div>
   </main>
 
 </body>

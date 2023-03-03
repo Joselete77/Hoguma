@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block indexRestaurant %}
 
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Restaurante</title>
+    <title>{% trans 'Restaurante' %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 </head>
@@ -20,7 +21,7 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Hoguma</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Reserva de mesas</p>
+                <p class="lead fw-normal text-white-50 mb-0">{% trans 'Reserva de mesas' %}</p>
             </div>
         </div>
     </header>
@@ -30,47 +31,47 @@
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <div class="col mb-5">
                     <div class="card h-100">
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Carta</div>
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{% trans 'Carta' %}</div>
                         <!-- Product image-->
                         <img class="card-img-top" src="../../../static/core/assets/img/menu.jpg" alt="Error" height="250" width="250" style="border: 2px black solid;"/>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Carta</h5>
+                                <h5 class="fw-bolder">{% trans 'Carta' %}</h5>
                                 <!-- Product price-->
-                                <a style="color: gray;">Descripción</a>
+                                <a style="color: gray;">{% trans 'Descripción' %}</a>
                                 <br>
-                                <a>Si desea ver los diferentes platos disponibles de nuestra carta.. ¡Está a solo un click!</a>
+                                <a>{% trans 'Si desea ver los diferentes platos disponibles de nuestra carta.. ¡Está a solo un click!' %}</a>
                                 <br>
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'menuRestaurant' %}">Ver carta</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'menuRestaurant' %}">{% trans 'Ver carta' %}</a></div>
                         </div>
                     </div>
                 </div>
                 <div class="col mb-5">
                     <div class="card h-100">
-                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Reserva</div>
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{% trans 'Reserva' %}</div>
                         <!-- Product image-->
                         <img class="card-img-top" src="../../../static/core/assets/img/reservation.png" alt="Error" height="250" width="250" style="border: 2px black solid;"/>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Reserva de mesa</h5>
+                                <h5 class="fw-bolder">{% trans 'Reserva de mesa' %}</h5>
                                 <!-- Product price-->
-                                <a style="color: gray;">Descripción</a>
+                                <a style="color: gray;">{% trans 'Descripción' %}</a>
                                 <br>
-                                <a>Si desea realizar una reserva de mesa en nuestro restaurante, pulse sobre el siguiente botón y será redirigido.</a>
+                                <a>{% trans 'Si desea realizar una reserva de mesa en nuestro restaurante, pulse sobre el siguiente botón y será redirigido.' %}</a>
                                 <br>
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'reservationRestaurant' %}">Reservar mesa</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'reservationRestaurant' %}">{% trans 'Reservar mesa' %}</a></div>
                         </div>
                     </div>
                 </div>
