@@ -20,6 +20,8 @@ class typeRoomHotel(models.Model):
     name=models.CharField(max_length=50)
     type=models.CharField(max_length=50, default=0, verbose_name='Type room')
     capacity=models.IntegerField()
+    capacityMax=models.IntegerField()
+    img=models.CharField(max_length=250)
     roomAvailable=models.IntegerField()
     price=models.IntegerField()
     description=models.CharField(max_length=300)
@@ -73,3 +75,14 @@ class refund(models.Model):
     
     def __str__(self):
         return self.email
+
+class hotelInformation(models.Model):
+    name=models.CharField(max_length=50)
+    email=models.EmailField()
+    phone=models.CharField(max_length=11)
+    address=models.CharField(max_length=250)
+    fax=models.CharField(max_length=11)
+    urlWeb=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

@@ -192,7 +192,7 @@
                       <span class="fa fa-map-marker"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>{% trans 'Dirección:' %}</span> C. Sta. Paula, 5, 30800 Lorca, Murcia</p>
+                      <p><span>{% trans 'Dirección:' %}</span> {{ hotel.address }}</p>
                     </div>
                   </div>
                   <div class="dbox w-100 d-flex align-items-center">
@@ -200,7 +200,7 @@
                       <span class="fa fa-phone"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>{% trans 'Teléfono:' %}</span> <a href="tel://968 706 706">968 706 706</a></p>
+                      <p><span>{% trans 'Teléfono:' %}</span> <a href="tel://{{ hotel.phone }}">{{ hotel.phone }}</a></p>
                     </div>
                   </div>
                   <div class="dbox w-100 d-flex align-items-center">
@@ -209,7 +209,7 @@
                     </div>
                     <div class="text pl-3">
                       <p><span>{% trans 'Correo electrónico:' %}</span> <a
-                          href="mailto:hotelhoguma@gmail.com">hotelhoguma@gmail.com</a></p>
+                          href="mailto:hotelhoguma@gmail.com">{{ hotel.email }}</a></p>
                     </div>
                   </div>
                   <div class="dbox w-100 d-flex align-items-center">
@@ -217,7 +217,7 @@
                       <span class="fa fa-fax"></span>
                     </div>
                     <div class="text pl-3">
-                      <p><span>{% trans 'Fax:' %}</span> <a href="fax:968 706 706">968 706 706</a></p>
+                      <p><span>{% trans 'Fax:' %}</span> <a href="fax:{{ hotel.fax }}">{{ hotel.fax }}</a></p>
                     </div>
                   </div>
                 </div>

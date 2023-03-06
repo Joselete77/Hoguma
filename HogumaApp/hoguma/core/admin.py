@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import locationBusStop, typeRoomHotel, reservationsHotel, Profile, promotion, refund
+from .models import locationBusStop, typeRoomHotel, reservationsHotel, Profile, promotion, refund, hotelInformation
 
 # Register your models here.
 admin.site.register(locationBusStop)
@@ -8,6 +8,7 @@ admin.site.register(reservationsHotel)
 admin.site.register(Profile)
 admin.site.register(promotion)
 admin.site.register(refund)
+admin.site.register(hotelInformation)
 
 
 admin.site.site_header = 'Hoguma'

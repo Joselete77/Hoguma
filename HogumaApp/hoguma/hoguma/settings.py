@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'jet',
     'jet.dashboard',
     'django.contrib.admin',
@@ -114,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 #LANGUAGE_CODE = 'en-us'
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 LANGUAGE_CODE = 'es'
 
 LANGUAGES = [

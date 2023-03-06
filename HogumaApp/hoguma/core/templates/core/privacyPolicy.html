@@ -10,7 +10,7 @@
         <h1>{% trans 'Protección de datos de carácter personal según la LOPDDD' %}</h1>
         </p>
 
-        <p>{% trans 'Hoguma, en aplicación de la normativa vigente en materia de protección de datos de carácter personal, informa que los datos personales que se recogen a través de los formularios del sitio web:' %} <a href="#">https://hoguma.com</a>,
+        <p>{% trans 'Hoguma, en aplicación de la normativa vigente en materia de protección de datos de carácter personal, informa que los datos personales que se recogen a través de los formularios del sitio web:' %} <a href="#">{{ hotel.urlWeb }}</a>,
             {% trans 'se incluyen en los ficheros automatizados específicos de usuarios de los servicios de Hoguma.' %}</p>
 
         <p>{% trans 'La recogida y tratamiento automatizado de los datos de carácter personal tiene como finalidad el mantenimiento de la relación comercial y el desempeño de tareas de información, formación, asesoramiento y otras actividades propias de nuestra empresa.' %}</p>
@@ -19,17 +19,17 @@
 
         <p>{% trans 'Hoguma adopta las medidas necesarias para garantizar la seguridad, integridad y confidencialidad de los datos conforme a lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de los mismos.' %}</p>
 
-        <p>{% trans 'El usuario podrá en cualquier momento ejercitar los derechos de acceso, oposición, rectificación y cancelación reconocidos en el citado Reglamento (UE). El ejercicio de estos derechos puede realizarlo el propio usuario a través de email a:' %} <a href="mailto:hotelhoguma@gmail.com">hotelhoguma@gmail.com</a> 
+        <p>{% trans 'El usuario podrá en cualquier momento ejercitar los derechos de acceso, oposición, rectificación y cancelación reconocidos en el citado Reglamento (UE). El ejercicio de estos derechos puede realizarlo el propio usuario a través de email a:' %} <a href="mailto:{{ hotel.email }}">{{ hotel.email }}</a> 
             {% trans 'o en la dirección:' %} <a
             href="https://www.google.com/maps/place/37%C2%B040'19.4%22N+1%C2%B041'56.8%22W/@37.6720556,-1.7012998,17z/data=!3m1!4b1!4m4!3m3!8m2!3d37.6720556!4d-1.6991111"
-            target="_blank">C. Sta. Paula, 5, 30800 Lorca, Murcia</a></p>
+            target="_blank">{{ hotel.address }}</a></p>
 
         <p>{% trans 'El usuario manifiesta que todos los datos facilitados por él son ciertos y correctos, y se compromete a mantenerlos actualizados, comunicando los cambios a Hoguma.' %}</p>
         <p>
             <h2>{% trans 'Finalidad del tratamiento de los datos personales:' %}</h2>
         </p>
         <h5>{% trans '¿Con qué finalidad trataremos tus datos personales?' %}</h5>
-        <p>{% trans 'En Hoguma, trataremos tus datos personales recabados a través del sitio Web:' %} <a href="#">https://hoguma.com</a>, {% trans 'con las siguientes finalidades:' %}</p>
+        <p>{% trans 'En Hoguma, trataremos tus datos personales recabados a través del sitio Web:' %} <a href="#">{{ hotel.urlWeb }}</a>, {% trans 'con las siguientes finalidades:' %}</p>
         <ol>
             <li> {% trans 'En caso de contratación de los bienes y servicios ofertados a través del sitio web, para mantener la relación contractual, así como la gestión, administración, información, prestación y mejora del servicio.' %}</li>
 
@@ -84,7 +84,7 @@
         <p>{% trans 'Hoguma es titular de todos los derechos de autor, propiedad intelectual, industrial, “know how” y cuantos otros derechos guardan relación con los contenidos del sitio web y los servicios ofertados en el mismo, así como de los programas necesarios para su implementación y la información relacionada.' %}</p>
 
         <p>{% trans 'No se permite la reproducción, publicación y/o uso no estrictamente privado de los contenidos, totales o parciales, del sitio web' %}
-            <a href="#">https://hoguma.com</a> {% trans 'sin el consentimiento previo y por escrito.' %}</p>
+            <a href="#">{{ hotel.urlWeb }}</a> {% trans 'sin el consentimiento previo y por escrito.' %}</p>
         <p>
         <h2>{% trans 'Propiedad intelectual del software' %}</h2>
         </p>

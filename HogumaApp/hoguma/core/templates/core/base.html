@@ -38,13 +38,13 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'room' %}>{% trans 'Habitaciones' %}</a>
+              <a class="nav-link" href="{% url 'room' %}">{% trans 'Habitaciones' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'monuments' %}>{% trans 'Lugares emblemáticos' %}</a>
+              <a class="nav-link" href="{% url 'monuments' %}">{% trans 'Lugares emblemáticos' %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={% url 'busStop' %}>{% trans 'Transporte público' %}</a>
+              <a class="nav-link" href="{% url 'busStop' %}">{% trans 'Transporte público' %}</a>
             </li>
             <li>
               <form action="{% url 'set_language' %}" method="POST" name="languageSelect">
@@ -79,13 +79,13 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'room' %}>{% trans 'Habitaciones' %}</a>
+                <a class="nav-link" href="{% url 'room' %}">{% trans 'Habitaciones' %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'monuments' %}>{% trans 'Lugares emblemáticos' %}</a>
+                <a class="nav-link" href="{% url 'monuments' %}">{% trans 'Lugares emblemáticos' %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href={% url 'busStop' %}>{% trans 'Transporte público' %}</a>
+                <a class="nav-link" href="{% url 'busStop' %}">{% trans 'Transporte público' %}</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Mis reservas' %}</a>
@@ -99,8 +99,8 @@
                   {% csrf_token %}
                   <input type="hidden" name="next" value="{{ redirect_to }}">
                   <div class="input-group">
-                    <select name="language" class="custom-select" id="inputGroupSelect04">
-                      <option selected="selected">Idioma</option>
+                    <select name="language" class="form-select" id="inputGroupSelect04">
+                      <option selected>Idioma</option>
                       {% get_available_languages as LANGUAGES %}
                       {% get_language_info_list for LANGUAGES as languages %}
                       {% for language in languages %}
@@ -108,7 +108,6 @@
                           {{ language.name_local }} {{language.code}}
                         </option>
                       {% endfor %}
-                
                     </select>
                   </div>
                 </form>

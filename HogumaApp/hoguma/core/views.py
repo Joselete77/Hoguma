@@ -12,11 +12,12 @@ from datetime import datetime, time
 import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
-from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund
+from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund, hotelInformation
 
 # Create your views here.
 
 def index(request):
+    hotel = hotelInformation.objects.all()
     return render(request, 'core/index.html')
 
 def register(request):
@@ -45,9 +46,6 @@ def register(request):
         form = CustomUserCreationForm()
 
     return render(request,'core/User/register.html',{'form' : form})
-
-def login(request):
-    return render(request,'core/User/login.html')
 
 def function_logout(request):
     logout(request)
@@ -188,6 +186,7 @@ def reservationRestaurant(request):
 def reservationsRestaurantUser(request):
     email = request.user.email
     reservationsDB = reservationsRestaurant.objects.filter(email=email)
+
     return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
 
 def deleteReservationRestaurant(request, id):
@@ -331,14 +330,10 @@ def updateReservationRestaurantUserAnonymous(request):
 
 #HOTEL
 def room(request):
-    ruta = '/home/jose/UCO/TFG/HogumaApp/hoguma/core/static/core/assets/dist/js/rooms.json'
-    plantilla = open("/home/jose/UCO/TFG/HogumaApp/hoguma/core/templates/core/Hotel/room.html")
-    template = Template(plantilla.read())
-    plantilla.close()
+    room = typeRoomHotel.objects.all()
+    room = room.order_by('id')
 
-    with open(ruta) as contenido:
-        document_json =json.load(contenido)
-    return render(request, 'core/Hotel/room.html', {'room': document_json})
+    return render(request, 'core/Hotel/room.html', {'room': room})
 
 def reservationsRoom(request, id): #Store data in session and check availability of room    
     room_selected = typeRoomHotel.objects.get(id=id)
@@ -377,7 +372,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['roomName'] = roomName
 
         if entry_date < departure_date and dateEntry_convert.date() > now:
-            if int(guests) < roomsAvalaible.capacity:
+            if int(guests) < roomsAvalaible.capacityMax:
                 if roomsAvalaible.roomAvailable < 1 : #check if there is any room
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
                     countRoom = roomsAvalaible2.count()
@@ -441,7 +436,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['roomName'] = roomName
 
         if entry_date < departure_date and dateEntry_convert.date() > now:
-            if int(guests) < roomsAvalaible.capacity:
+            if int(guests) < roomsAvalaible.capacityMax:
                 if roomsAvalaible.roomAvailable < 1 : #check if there is any room
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
                     countRoom = roomsAvalaible2.count()
@@ -692,6 +687,7 @@ def monuments(request):
     return render(request, 'core/monuments.html', {'monuments': document_json}) 
 
 def contact(request):
+    hotel = hotelInformation.objects.get(id=1)
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -711,7 +707,7 @@ def contact(request):
             messages.error(request, message)
             return redirect(contact)
     else:
-        return render(request, 'core/contact.html')
+        return render(request, 'core/contact.html', {'hotel' : hotel})
     
 def busStop(request):
     locations = locationBusStop.objects.all()
@@ -742,4 +738,5 @@ def promotions(request):
     return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
 
 def termsAndPrivacity(request):
-    return render(request, 'core/privacyPolicy.html')
+    hotel = hotelInformation.objects.get(id=1)
+    return render(request, 'core/privacyPolicy.html', {'hotel' : hotel})
