@@ -9,8 +9,9 @@
   <meta name="description" content="">
   <meta name="author" content="Jose Angel Dorado Gonzalez">
   <meta name="generator" content="Hugo 0.108.0">
+  {% block title %}
   <title>Hoguma</title>
-
+  {% endblock %}
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../../static/core/assets/dist/css/carousel.css" rel="stylesheet">
@@ -51,20 +52,16 @@
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_to }}">
                 <div class="input-group">
-                  <select name="language" class="custom-select" id="inputGroupSelect04">
-                    <option selected="selected">Idioma</option>
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
-                      <option onclick="send()" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                        {{ language.name_local }} {{language.code}}
-                      </option>
+                    <button class="btn transparent" type="submit" value="{{language.code}}" name="language">
+                      <img width="30" {% if language.code == "es" %} src="https://www.comprarbanderas.es/images/banderas/400/60-espana-sin-escudo_400px.jpg" {% else %} src="https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg" {% endif %}> 
+                    </button>
                     {% endfor %}
-              
-                  </select>
                 </div>
               </form>
-            </li>
+            </li>      
           </ul>
           {% else %}
 
@@ -99,19 +96,16 @@
                   {% csrf_token %}
                   <input type="hidden" name="next" value="{{ redirect_to }}">
                   <div class="input-group">
-                    <select name="language" class="form-select" id="inputGroupSelect04">
-                      <option selected>Idioma</option>
                       {% get_available_languages as LANGUAGES %}
                       {% get_language_info_list for LANGUAGES as languages %}
                       {% for language in languages %}
-                        <option onclick="send()" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                          {{ language.name_local }} {{language.code}}
-                        </option>
+                      <button class="btn transparent" type="submit" value="{{language.code}}" name="language">
+                        <img width="30" {% if language.code == "es" %} src="https://www.comprarbanderas.es/images/banderas/400/60-espana-sin-escudo_400px.jpg" {% else %} src="https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg" {% endif %}> 
+                      </button>
                       {% endfor %}
-                    </select>
                   </div>
                 </form>
-              </li>
+              </li>  
             </ul>
             {% endif %}
 
@@ -182,7 +176,7 @@
     {% block termsPrivacity %}{% endblock %}
     {% block reservationsUserAnonymous %}{% endblock %}
     {% block resetPassword %}{% endblock %}
-    {% block hola %}{% endblock %}
+    <!--{% block hola %}{% endblock %}--> 
 
     <!-- FOOTER -->
     <footer class="container">

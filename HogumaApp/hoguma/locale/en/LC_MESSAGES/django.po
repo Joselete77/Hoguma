@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 11:00+0100\n"
+"POT-Creation-Date: 2023-03-07 08:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgid "Dia de salida"
 msgstr "Departure day"
 
 #: core/templates/core/Hotel/formReservationRoom.html:243
-#: core/templates/core/Restaurant/formReservationRestaurant.html:245
+#: core/templates/core/Restaurant/formReservationRestaurant.html:250
 #: core/templates/core/User/profile.html:57
 msgid "Reservar ya"
 msgstr "Reserve now"
@@ -225,31 +225,31 @@ msgstr "We assure you that you won't regret it!"
 msgid "Número de personas"
 msgstr "Number of people"
 
-#: core/templates/core/Restaurant/formReservationRestaurant.html:221
+#: core/templates/core/Restaurant/formReservationRestaurant.html:226
 #: core/templates/core/Restaurant/updateReservationRestaurant.html:227
 #: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:227
 msgid "¿Alérgico?"
 msgstr "Allergic?"
 
-#: core/templates/core/Restaurant/formReservationRestaurant.html:223
+#: core/templates/core/Restaurant/formReservationRestaurant.html:228
 #: core/templates/core/Restaurant/updateReservationRestaurant.html:229
 #: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:229
 msgid "Sí"
 msgstr "Yes"
 
-#: core/templates/core/Restaurant/formReservationRestaurant.html:224
+#: core/templates/core/Restaurant/formReservationRestaurant.html:229
 #: core/templates/core/Restaurant/updateReservationRestaurant.html:230
 #: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:230
 msgid "No"
 msgstr "No"
 
-#: core/templates/core/Restaurant/formReservationRestaurant.html:234
+#: core/templates/core/Restaurant/formReservationRestaurant.html:239
 #: core/templates/core/Restaurant/updateReservationRestaurant.html:240
 #: core/templates/core/Restaurant/updateReservationRestaurantUserAnonymous.html:240
 msgid "Día"
 msgstr "Day"
 
-#: core/templates/core/Restaurant/formReservationRestaurant.html:240
+#: core/templates/core/Restaurant/formReservationRestaurant.html:245
 #: core/templates/core/Restaurant/reservationsRestaurantUser.html:148
 #: core/templates/core/Restaurant/reservationsRestaurantUserAnonymous.html:148
 #: core/templates/core/Restaurant/updateReservationRestaurant.html:246
@@ -428,7 +428,7 @@ msgid "Cambiar contraseña"
 msgstr "Change password"
 
 #: core/templates/core/User/login.html:7 core/templates/core/User/login.html:34
-#: core/templates/core/base.html:143
+#: core/templates/core/base.html:142
 msgid "Iniciar sesión"
 msgstr "Log in"
 
@@ -532,31 +532,31 @@ msgstr "Emblematic places"
 msgid "Transporte público"
 msgstr "Public transport"
 
-#: core/templates/core/base.html:93 core/templates/core/base.html:128
+#: core/templates/core/base.html:93 core/templates/core/base.html:127
 msgid "Mis reservas de hotel"
 msgstr "My hotel reservations"
 
-#: core/templates/core/base.html:94 core/templates/core/base.html:129
+#: core/templates/core/base.html:94 core/templates/core/base.html:128
 msgid "Mis reservas de restaurante"
 msgstr "My restaurant reservations"
 
-#: core/templates/core/base.html:130
+#: core/templates/core/base.html:129
 msgid "Mi perfil"
 msgstr "My profile"
 
-#: core/templates/core/base.html:134
+#: core/templates/core/base.html:133
 msgid "Cerrar sesión"
 msgstr "Log out"
 
-#: core/templates/core/base.html:144
+#: core/templates/core/base.html:143
 msgid "Registrarse"
 msgstr "Register"
 
-#: core/templates/core/base.html:190
+#: core/templates/core/base.html:189
 msgid "Volver al inicio"
 msgstr "Back to home"
 
-#: core/templates/core/base.html:191
+#: core/templates/core/base.html:190
 msgid "Privacidad"
 msgstr "Privacy"
 
@@ -1370,6 +1370,156 @@ msgstr ""
 "In any case, the user, after proving his or her identity, may request that "
 "no further commercial information be sent to him or her through the Customer "
 "Service channels."
+
+#: core/views.py:39
+#, python-format
+msgid "Usuario %(username)s registrado satisfactoriamente."
+msgstr "User %(username)s successfully registered."
+
+#: core/views.py:76 core/views.py:90
+#, python-format
+msgid "Usuario %(username)s modificado satisfactoriamente."
+msgstr "User %(username)s successfully modified."
+
+#: core/views.py:79
+msgid "El correo electrónico introducido ya se encuentra registrado"
+msgstr "The entered e-mail address is already registered"
+
+#: core/views.py:82
+msgid "El nombre de usuario ya se encuentra registrado"
+msgstr "The username is already registered"
+
+#: core/views.py:178
+#, python-format
+msgid ""
+"Reserva para el día %(date)s no se ha podido completar. Ya tiene usted una "
+"reserva para ese día."
+msgstr ""
+"Reservation for day %(date)s could not be completed. You already have a "
+"reservation for that day."
+
+#: core/views.py:186
+#, python-format
+msgid "Mesa reservada satisfactoriamente para el %(date)s a las %(hour)s."
+msgstr "Table successfully reserved for %(date)s at %(hour)s."
+
+#: core/views.py:193
+#, python-format
+msgid ""
+"Para el día %(date)s están todas las mesas ocupadas. Inténtelo con otra "
+"fecha."
+msgstr "By day %(date)s all tables are occupied. Try another date."
+
+#: core/views.py:198
+#, python-format
+msgid ""
+"Reserva para el día %(date)s no se ha podido completar. Introduzca una hora "
+"válida. Horas válidas: 09:00 - 23:45"
+msgstr ""
+"Reservation for day %(date)s could not be completed. Please enter a valid "
+"time. Valid times: 09:00 - 23:45"
+
+#: core/views.py:203
+#, python-format
+msgid ""
+"Reserva para el día %(date)s no se ha podido completar. Introduzca fechas "
+"válidas."
+msgstr ""
+"Reservation for day %(date)s could not be completed. Please enter valid "
+"dates."
+
+#: core/views.py:222 core/views.py:299
+#, python-format
+msgid "Reserva para el día %(date)s cancelada correctamente."
+msgstr "Reservation for day %(date)s successfully cancelled."
+
+#: core/views.py:267 core/views.py:345
+#, python-format
+msgid "Reserva para el día %(date)s modificada correctamente."
+msgstr "Reservation for day %(date)s successfully modified."
+
+#: core/views.py:270 core/views.py:348
+#, python-format
+msgid ""
+"Reserva para el día %(date)s no se ha podido modificar. Introduzca una hora "
+"válida. Horas válidas: 09:00 - 23:45"
+msgstr ""
+"Reservation for day %(date)s could not be changed. Please enter a valid "
+"time. Valid times: 09:00 - 23:45"
+
+#: core/views.py:273 core/views.py:351
+#, python-format
+msgid ""
+"Reserva para el día %(date)s no se ha podido modificar. Introduzca fechas "
+"válidas."
+msgstr ""
+"Reservation for day %(date)s could not be modified. Please enter valid dates."
+
+#: core/views.py:409 core/views.py:473
+msgid ""
+"No se han encontrado habitaciones disponibles para las fechas seleccionadas."
+msgstr "No rooms were found available for the selected dates."
+
+#: core/views.py:415 core/views.py:479
+msgid ""
+"ERROR. No pueden ser tantos huéspedes en este tipo de habitación, ¿qué tal "
+"si miras otra?"
+msgstr ""
+"WRONG. There can't be that many guests in this type of room, how about "
+"looking at another one?"
+
+#: core/views.py:419 core/views.py:483
+msgid "ERROR. Las fechas para la reserva deben ser válidas."
+msgstr "WRONG. The dates for the booking must be valid."
+
+#: core/views.py:558
+#, python-format
+msgid ""
+"%(nameRoom)s para el día %(date_entry)s cancelada correctamente. Para el "
+"reembolso nuestro equipo técnico se pondrá en contacto con usted."
+msgstr ""
+"%(nameRoom)s for the day %(date_entry)s successfully cancelled. For the "
+"refund our technical team will contact you."
+
+#: core/views.py:632
+#, python-format
+msgid ""
+"%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el "
+"reembolso nuestro equipo técnico se pondrá en contacto con usted."
+msgstr ""
+"%(nameRoom)s for the day %(entry_date)s modified successfully. For "
+"reimbursement our technical team will contact you."
+
+#: core/views.py:645
+#, python-format
+msgid "%(nameRoom)s para el día %(entry_date)s modificada correctamente."
+msgstr "%(nameRoom)s for the day %(entry_date)s modified successfully."
+
+#: core/views.py:648
+#, python-format
+msgid ""
+"%(nameRoom)s para el día %(entry_date)s no se ha podido modificar. "
+"Introduzca fechas válidas."
+msgstr ""
+"%(nameRoom)s for the day %(entry_date)s could not be changed. Enter valid "
+"dates."
+
+#: core/views.py:675
+#, python-format
+msgid ""
+"%(nameRoom)s para el día %(entry_date)s modificada y pagada correctamente."
+msgstr ""
+"%(nameRoom)s for the day %(entry_date)s modified and successfully paid."
+
+#: core/views.py:727
+msgid ""
+"Mensaje enviado correctamente. Nos pondremos en contacto con usted lo antes "
+"posible."
+msgstr "Message sent successfully. We will contact you as soon as possible."
+
+#: core/views.py:731
+msgid "ERROR. El mensaje no se ha podido enviar."
+msgstr "ERROR. The message could not be sent."
 
 #: hoguma/urls.py:28
 msgid "administrador/"

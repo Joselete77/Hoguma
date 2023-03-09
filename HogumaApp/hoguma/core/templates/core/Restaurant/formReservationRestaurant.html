@@ -212,7 +212,12 @@
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
 											<span class="form-label">{% trans 'Número de personas' %}</span>
-											<input type="number" class="form-control" name="people">
+											<select class="form-control" name="people">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+											</select>
 											<span class="select-arrow"></span>
 										</div>
 									</div>
@@ -271,5 +276,6 @@
 			}
 		}
 	</script>
-
-	{% endblock %}
+</body>
+	
+{% endblock %}

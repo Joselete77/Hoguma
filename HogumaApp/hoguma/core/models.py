@@ -9,6 +9,9 @@ class reservationsRestaurant(models.Model):
     people=models.IntegerField()
     allergy=models.BooleanField()
 
+    def __str__(self):
+        return self.email    
+
 class reservationsHotel(models.Model):
     email=models.EmailField()
     typeRoom=models.CharField(max_length=50)
@@ -86,3 +89,11 @@ class hotelInformation(models.Model):
 
     def __str__(self):
         return self.name
+    
+class restaurantDetails(models.Model):
+    tipeTable=models.CharField(max_length=150)
+    capacity=models.IntegerField()
+    totalTable=models.IntegerField()
+
+    def __str__(self) -> str:
+        return self.tipeTable

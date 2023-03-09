@@ -218,7 +218,12 @@
 									<div class="col-md-6 col-sm-6">
 										<div class="form-group">
 											<span class="form-label">{% trans 'Número de personas' %}</span>
-											<input type="number" class="form-control" name="people" value="{{reservation.people }}">
+											<select class="form-control" name="people">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+											</select>
 											<span class="select-arrow"></span>
 										</div>
 									</div>
@@ -277,50 +282,5 @@
 			}
 		}
 	</script>
-
-
-<!--
-
-  <body class="text-center" style="display: flex; justify-content: center;">  
-    
-    <main class="form-signin w-100 m-auto">
-      
-      <form action="/updateReservationRestaurant/" method="post">
-        
-        {% csrf_token %}
-        <input type="hidden" value="{{reservation.id }}" name="id">
-        <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Modificar reserva de restaurante</h1>
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="usuario@usuario.com" name="email" value="{{reservation.email }}">
-          <label for="floatingInput">Correo electrónico</label>
-        </div>
-        <div class="form-floating">
-          <input type="date" class="form-control" id="floatingInput" placeholder="01/01/2000" name="date" value="{{reservation.date }}">
-        <label for="floatingInput">Fecha</label>
-      </div>
-      <div class="form-floating">
-        <input type="time" class="form-control" id="floatingInput" placeholder="01/01/2000" name="hour" value="{{reservation.hour }}">
-        <label for="floatingInput">Hora</label>
-      </div>
-      <div class="form-floating">
-        <input type="number" class="form-control" id="floatingPassword" placeholder="1" name="people" value="{{reservation.people }}">
-        <label for="floatingPassword">Número de personas</label>
-      </div>
-      <div>
-        <p></p>
-        <strong>*¿Es usted alérgico a algún alimento?</strong>
-        <select name="allergy" style="width: 180px;">
-          <option value="False" selected> No </option>
-          <option value="True"> Sí </option>
-        </select> 
-      </div>
-      <p></p>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Modificar reserva</button>
-    </form>
-  </main>
-  
-</body>
--->
 
 {% endblock %}  
