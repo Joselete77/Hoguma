@@ -4,42 +4,55 @@
 {% block monuments %}
 
 <head>
-    <title>{% trans 'Lugares emblemáticos' %}</title>
+    <title>{% block title %}{% trans 'Lugares emblemáticos' %}{% endblock %}</title>
 </head>
 <style>
-    .format-page{background: linear-gradient(to right,#ffffff ,#585858 );min-height: 100vh}.text-gray{color: #aaa}
+    body {
+        background: linear-gradient(to right, #ffffff, #585858);
+        min-height: 100vh
+    }
+
+    .text-gray {
+        color: #aaa
+    }
 </style>
-<div class="format-page">
-    <div class="container py-5">
-        <div class="row text-center text-white mb-5">
-            <div class="col-lg-7 mx-auto">
-                <h1 class="display-4">{% trans 'Lugares de interés' %}</h1>
+
+<body>
+    <div class="format-page">
+        <div class="container py-5">
+            <div class="row text-center text-white mb-5">
+                <div class="col-lg-7 mx-auto">
+                    <h1 class="display-4">{% trans 'Lugares de interés' %}</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <ul class="list-group shadow">
-                    <li class="list-group-item">
-                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                            {% for dic in monuments %}
-                            <div style="display: grid; grid-auto-flow: column; grid-template-columns: 600px 1fr; gap: 20px;">
-                                <div class="media-body order-2 order-lg-1">
-                                    <h5 class="mt-0 font-weight-bold mb-2">{{ dic.nombre }}</h5>
-                                    <p class="font-italic text-muted mb-0 small">{{ dic.descripcion }}.</p>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <h6 class="font-weight-bold my-2">{% trans 'Dirección:' %} {{ dic.direccion }}</h6>
-                                        <h6 class="font-weight-bold my-2">{% trans 'Teléfono:' %} {{ dic.telefono }}</h6>
-                                    </div>
-                                </div><img src="{{ dic.foto }}" alt="Generic placeholder image" height="170px" width="170px" class="ml-lg-5 order-1 order-lg-2">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <ul class="list-group shadow">
+                        <li class="list-group-item">
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                {% for dic in monuments %}
+                                <div
+                                    style="display: grid; grid-auto-flow: column; grid-template-columns: 600px 1fr; gap: 20px;">
+                                    <div class="media-body order-2 order-lg-1">
+                                        <h5 class="mt-0 font-weight-bold mb-2">{{ dic.nombre }}</h5>
+                                        <p class="font-italic text-muted mb-0 small">{{ dic.descripcion }}.</p>
+                                        <div class="d-flex align-items-center justify-content-between mt-1">
+                                            <h6 class="font-weight-bold my-2">{% trans 'Dirección:' %} {{ dic.direccion}}</h6>
+                                            <h6 class="font-weight-bold my-2">{% trans 'Teléfono:' %} {{ dic.telefono }}
+                                            </h6>
+                                        </div>
+                                    </div><img src="{{ dic.foto }}" alt="Generic placeholder image" height="170px"
+                                        width="170px" class="ml-lg-5 order-1 order-lg-2">
+                                </div>
+                                <br>
+                                {% endfor %}
                             </div>
-                            <br>
-                            {% endfor %}
-                        </div> 
-                    </li> 
-                </ul> 
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 
 {% endblock %}

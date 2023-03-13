@@ -1,9 +1,11 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block login-register %}
 
 <head>
-  <title>Registro</title>
+  <title>{% block title %}{% trans 'Registro' %}{% endblock %}</title>
+
 
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
@@ -28,12 +30,12 @@ footer{
 
       {% csrf_token %}
       <img class="mb-4" src="../../static/core/assets/img/Hoguma.png" alt="Error" width="150" height="110">
-      <h1 class="h3 mb-3 fw-normal">Registro</h1>
+      <h1 class="h3 mb-3 fw-normal">{% trans 'Registro' %}</h1>
 
       {{ form }}
 
       <br><br>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarme</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">{% trans 'Registrarme' %}</button>
     </form>
   </main>
 

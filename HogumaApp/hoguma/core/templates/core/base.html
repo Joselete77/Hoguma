@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 <!doctype html>
 <html lang="es">
@@ -9,12 +10,14 @@
   <meta name="description" content="">
   <meta name="author" content="Jose Angel Dorado Gonzalez">
   <meta name="generator" content="Hugo 0.108.0">
-  {% block title %}
-  <title>Hoguma</title>
-  {% endblock %}
+  <title>
+    {% block title %}
+      Hoguma
+    {% endblock %}
+  </title>
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
   <link href="../../static/core/assets/dist/css/carousel.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> 
 </head>
 
 <body>

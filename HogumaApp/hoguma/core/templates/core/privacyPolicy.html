@@ -3,11 +3,19 @@
 
 {% block termsPrivacity %}
 
+<head>
+    <title>
+        {% block title %}
+            {% trans 'Políticas de privacidad' %}
+        {% endblock %}
+    </title>
+</head>
+
 <body>
     <div style="margin-left: 300px; margin-right: 300px;">
         <br>
         <p>
-        <h1>{% trans 'Protección de datos de carácter personal según la LOPDDD' %}</h1>
+        <h1>{% trans 'Protección de datos de carácter personal según la LOPD' %}</h1>
         </p>
 
         <p>{% trans 'Hoguma, en aplicación de la normativa vigente en materia de protección de datos de carácter personal, informa que los datos personales que se recogen a través de los formularios del sitio web:' %} <a href="#">{{ hotel.urlWeb }}</a>,

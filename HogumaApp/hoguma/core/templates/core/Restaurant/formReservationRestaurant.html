@@ -5,7 +5,11 @@
 {% block reservationRestaurant %}
 
 <head>
-	<title>{% trans 'Reservar mesa' %}</title>
+	<title>
+		{% block title %}
+			{% trans 'Reservar mesa' %}
+		{% endblock %}
+	</title>
 
 	<link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">

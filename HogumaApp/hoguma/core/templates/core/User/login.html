@@ -4,7 +4,7 @@
 {% block login-register %}
 
 <head>
-  <title>{% trans 'Iniciar sesión' %}</title>
+  <title>{% block title %}{% trans 'Iniciar sesión' %}{% endblock %}</title>
 
   <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">

@@ -5,7 +5,11 @@
 {% block menuRestaurant %}
 
 <head>
-    <title>{% trans 'Carta' %}</title>
+  <title>
+		{% block title %}
+			{% trans 'Carta' %}
+		{% endblock %}
+	</title>
 </head>
 
 <style>

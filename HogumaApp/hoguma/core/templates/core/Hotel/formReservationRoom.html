@@ -4,7 +4,11 @@
 {% block reservationRoom %}
 
 <head>
-	<title>{% trans 'Reservar habitación' %}</title>
+	<title>
+		{% block title %}
+			{% trans 'Reservar habitación' %}
+		{% endblock %}
+	</title>
 
 	<link href="../../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">

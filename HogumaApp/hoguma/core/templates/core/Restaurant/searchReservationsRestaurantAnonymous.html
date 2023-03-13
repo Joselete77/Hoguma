@@ -4,7 +4,11 @@
 {% block searchReservationsHotel %}
 
 <head>
-    <title>{% trans 'Consultar reservas restaurante' %}</title>
+    <title>
+		{% block title %}
+			{% trans 'Consultar reservas restaurante' %}
+		{% endblock %}
+	</title>
 
     <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">

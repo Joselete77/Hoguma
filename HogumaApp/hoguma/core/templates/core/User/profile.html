@@ -5,9 +5,8 @@
 
 <!--User-->
 <head>
-	<title>{% block title %}Perfil{% endblock %}</title>
+	<title>{% block title %}{% trans 'Mi perfil' %}{% endblock %}</title>
 </head>
-
 
 <br><br>
 <div class="container mx-auto" style="padding-bottom: 308px;">
@@ -78,7 +77,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<b>{% trans 'Avatar actual:' %}</b> 
+				<a>{% trans 'Avatar actual:' %}</a> 
 				<img src="../../../../media/{{ user.profile.avatar }}" height="50" width="50" class="rounded-circle">
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
