@@ -4,22 +4,29 @@
 {% block paypal %}
 
 <head>
-  <title>{% trans 'Pago' %}</title>
+  <title>{% block tittle %}{% trans 'Pago' %}{% endblock %}</title>
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
 </head>
+
+<style>
+  footer {
+    position: relative;
+    top: 230px;
+  }
+</style>
 
 <body>
   <script
     src="https://www.paypal.com/sdk/js?client-id=AXP_MYXrBZshAVzILS3ln1jbrmIiKHfLdrU-q70MWazv2A_qXUBsF_4hXyfEl2NUnFt54UaHo7uAgXhZ&currency=EUR"></script>
 
-  <div style="display: grid; grid-auto-flow: column; gap: 250px; justify-content: center;">
+  <div style="display: grid; grid-auto-flow: column; gap: 250px; justify-content: center; border: 1px solid gray; padding: 20px;">
     <div>
       <h3>{% trans 'Detalles de la compra:' %}</h3>
 
       <ol style="border: 1px solid gray; padding: 20px;">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">{% trans 'Correo electrónico:' %}</div>
+            <div class="fw-bold">{% trans 'Email:' %}</div>
             {{ request.session.email }}
           </div>
         </li>
@@ -91,7 +98,7 @@
           // const element = document.getElementById('paypal-button-container');
           // element.innerHTML = '<h3>Thank you for your payment!</h3>';
           // Or go to another URL:  actions.redirect('thank_you.html');
-          var url = "{% url 'successPay' %}"
+          var url = "{% url 'successPayRoomReservation' %}"
           window.location = url;
         });
       }

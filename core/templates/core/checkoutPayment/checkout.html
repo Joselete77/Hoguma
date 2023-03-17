@@ -4,9 +4,16 @@
 {% block paypal %}
 
 <head>
-  <title>{% block tittle %}{% trans 'Pago' %}{% endblock %}</title>
+  <title>{% trans 'Pago' %}</title>
   <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
 </head>
+
+<style>
+  footer {
+    position: relative;
+    top: 230px;
+  }
+</style>
 
 <body>
   <script
@@ -19,7 +26,7 @@
       <ol style="border: 1px solid gray; padding: 20px;">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
-            <div class="fw-bold">{% trans 'Email:' %}</div>
+            <div class="fw-bold">{% trans 'Correo electrónico:' %}</div>
             {{ request.session.email }}
           </div>
         </li>
@@ -91,7 +98,7 @@
           // const element = document.getElementById('paypal-button-container');
           // element.innerHTML = '<h3>Thank you for your payment!</h3>';
           // Or go to another URL:  actions.redirect('thank_you.html');
-          var url = "{% url 'successPayRoomReservation' %}"
+          var url = "{% url 'successPay' %}"
           window.location = url;
         });
       }

@@ -106,13 +106,13 @@ def restaurant(request):
     return render(request, 'core/Restaurant/indexRestaurant.html')
 
 def menuRestaurant(request):
-    rutaBurger = 'core/static/core/assets/dist/js/burgers.json'
-    rutaPizza = 'core/static/core/assets/dist/js/pizzas.json'
-    rutaSandwich = 'core/static/core/assets/dist/js/sandwiches.json'
-    rutaSteak = 'core/static/core/assets/dist/js/steaks.json'
-    rutaBestFood = 'core/static/core/assets/dist/js/best-food.json'
-    rutaDessert = 'core/static/core/assets/dist/js/desserts.json'
-    rutaDrinks = 'core/static/core/assets/dist/js/drinks.json'
+    rutaBurger = 'core/static/core/assets/dist/json/burgers.json'
+    rutaPizza = 'core/static/core/assets/dist/json/pizzas.json'
+    rutaSandwich = 'core/static/core/assets/dist/json/sandwiches.json'
+    rutaSteak = 'core/static/core/assets/dist/json/steaks.json'
+    rutaBestFood = 'core/static/core/assets/dist/json/best-food.json'
+    rutaDessert = 'core/static/core/assets/dist/json/desserts.json'
+    rutaDrinks = 'core/static/core/assets/dist/json/drinks.json'
     
     with open(rutaBurger) as contenido:
         document_burger =json.load(contenido)
@@ -448,14 +448,14 @@ def reservationsRoom(request, id): #Store data in session and check availability
                     countRoom = roomsAvalaible2.count()
                     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
                     if countRoom > 0:
-                        return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+                        return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
                     else:
                         message = _('No se han encontrado habitaciones disponibles para las fechas seleccionadas.')
                         messages.error(request, message)  
                         return redirect(reservationsRoom, id=room_selected.id)
                 else:
-                    return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+                    return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
             else:
                 message = _('ERROR. No pueden ser tantos huéspedes en este tipo de habitación, ¿qué tal si miras otra?')
                 messages.error(request, message)  
@@ -512,14 +512,14 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
                     countRoom = roomsAvalaible2.count()
                     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
                     if countRoom > 0:
-                        return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+                        return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
                     else:
                         message = _('No se han encontrado habitaciones disponibles para las fechas seleccionadas.')
                         messages.error(request, message)  
                         return redirect(profile)
                 else:
-                    return render(request, 'core/checkout.html', {'price' : price, 'totalDays' : totalDays})
+                    return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
             else:
                 message = _('ERROR. No pueden ser tantos huéspedes en este tipo de habitación, ¿qué tal si miras otra?')
                 messages.error(request, message)  
@@ -533,7 +533,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         return render(request, 'core/Hotel/formReservationRoom.html')
 
 def create_checkout_session(request):
-    return render(request, 'core/checkout.html')
+    return render(request, 'core/checkoutPayment/checkout.html')
 
 def successPay(request):
     email = request.session['email']
@@ -678,7 +678,7 @@ def updateReservationHotel(request):
             messages.success(request, message)
         
         if totalDaysNew > totalDaysReservation:
-            return render(request, 'core/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
+            return render(request, 'core/checkoutPayment/checkout_updateRoom.html', {'price' : price, 'totalDays' : totalDays})
         
         if totalDaysNew == totalDaysReservation:
             reservation.email = email
@@ -747,15 +747,15 @@ def searchReservationsHotelAnonymous(request):
 
 def monuments(request):
     if get_language() == ("es"):
-        ruta = 'core/static/core/assets/dist/js/monumentos.json'
+        ruta = 'core/static/core/assets/dist/json/monumentos.json'
         with open(ruta) as contenido:
             document_json =json.load(contenido)
     else:
-        ruta = 'core/static/core/assets/dist/js/monuments.json'
+        ruta = 'core/static/core/assets/dist/json/monuments.json'
         with open(ruta) as contenido:
             document_json =json.load(contenido)
 
-    return render(request, 'core/monuments.html', {'monuments': document_json}) 
+    return render(request, 'core/differentInformation/monuments.html', {'monuments': document_json}) 
 
 def contact(request):
     hotel = hotelInformation.objects.get(id=1)
@@ -778,7 +778,7 @@ def contact(request):
             messages.error(request, message)
             return redirect(contact)
     else:
-        return render(request, 'core/contact.html', {'hotel' : hotel})
+        return render(request, 'core/differentInformation/contact.html', {'hotel' : hotel})
     
 def busStop(request):
     locations = locationBusStop.objects.all()
@@ -800,7 +800,7 @@ def busStop(request):
         ).add_to(initialMap)
 
     context = {'map' : initialMap._repr_html_(), 'locations': locations}
-    return render(request, 'core/busStop.html', context)
+    return render(request, 'core/differentInformation/busStop.html', context)
 
 def promotions(request):
     now = datetime.now()
@@ -810,4 +810,4 @@ def promotions(request):
 
 def termsAndPrivacity(request):
     hotel = hotelInformation.objects.get(id=1)
-    return render(request, 'core/privacyPolicy.html', {'hotel' : hotel})
+    return render(request, 'core/webPolicy/privacyPolicy.html', {'hotel' : hotel})
