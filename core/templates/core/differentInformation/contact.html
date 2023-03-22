@@ -138,6 +138,17 @@
   .text-gray {
     color: #aaa
   }
+
+  @media screen and (max-width: 700px){
+    div.wrapper {
+      width: 100%;
+    }
+    div.col-md-5 {
+      width: 100%;
+      position: relative;
+      left: 4%;
+    }
+  }
 </style>
 
 <div class="format-page">
@@ -230,78 +241,5 @@
   </section>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-  <head>
-    <title>Contacto</title>
-  
-    <link href="../../static/core/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/core/assets/dist/css/sign-up.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/603fc9827d.js" crossorigin="anonymous"></script>
-    
-  </head>
-  
-  <body class="text-center" style="display: flex; justify-content: center;">  
-    
-    <main style="display: grid; grid-auto-flow: column; gap: 50px;">
-      <div style="border-right: 1px solid gray; padding: 20px;">
-        <h1>Contáctenos</h1>
-        <h2>No dudes ponerte en contacto con nosotros ante cualquier duda o incidencia.</h2>
-        <i class="fa-solid fa-envelope"></i><a href="mailto:hotelhoguma@gmail.com"> hotelhoguma@gmail.com</a>
-        <p><i class="fa-solid fa-phone"></i> 968 706 706</p>
-        <p><i class="fa-solid fa-fax"></i> 968 706 706</p>
-        <p><i class="fa-sharp fa-solid fa-location-dot"></i> Localización</p>
-      </div>
-      
-      <form action="/contact/" method="post">
-        
-        {% csrf_token %}
-        <img class="mb-4" src="../../static/core/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Contactar por email</h1>
-      <div class="row">
-        <label class="required" for="name">Nombre completo:</label><br />
-        <input id="name" class="input" name="name" type="text" value="{{ user.first_name }} {{ user.last_name }}" size="30" /><br />
-        <span id="name_validation" class="error_message"></span>
-      </div>
-      <div class="row">
-        <label class="required" for="email">Email:</label><br />
-        <input id="email" class="input" name="email" type="text" value="{{ user.email }}" size="30" /><br />
-        <span id="email_validation" class="error_message"></span>
-      </div>
-      <div class="row">
-        <label class="required" for="email">Asunto:</label><br />
-        <input id="email" class="input" name="subjectEmail" type="text" value="" size="30" /><br />
-        <span id="email_validation" class="error_message"></span>
-      </div>
-      <div class="row">
-        <label class="required" for="message">Mensaje:</label><br />
-        <textarea id="message" class="input" name="messageEmail" rows="7" cols="30"></textarea><br />
-        <span id="message_validation" class="error_message"></span>
-      </div>
-      <p></p>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
-    </form>
-  </main>
-  
-</body>
--->
 
 {% endblock %}
