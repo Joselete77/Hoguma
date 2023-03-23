@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib import messages
-from django.template import Template
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
@@ -15,10 +14,10 @@ from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
 from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund, hotelInformation, restaurantDetails
 
-# Create your views here.
-
 def index(request):
     return render(request, 'core/index.html')
+
+#USER MANAGEMENT
 
 def register(request):
     if request.method == 'POST':
@@ -101,11 +100,16 @@ class changePassword(PasswordChangeView):
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('index')
 
-#RESTAURANT
+#RESTAURANT MANGEMENT
+
 def restaurant(request):
     return render(request, 'core/Restaurant/indexRestaurant.html')
 
 def menuRestaurant(request):
+    """
+    This function collects the information from the JSON files meal and passes it to the template via dictionaries.
+    """
+
     rutaBurger = 'core/static/core/assets/dist/json/burgers.json'
     rutaPizza = 'core/static/core/assets/dist/json/pizzas.json'
     rutaSandwich = 'core/static/core/assets/dist/json/sandwiches.json'
@@ -136,9 +140,13 @@ def menuRestaurant(request):
         document_steak =json.load(contenido)
     
     return render(request, 'core/Restaurant/menu.html', {'burger' : document_burger, 'pizza' : document_pizza, 'sandwich' : document_sandwich,
-                                                             'bestFood' : document_bestFood, 'dessert' : document_dessert, 'drink' : document_drink ,'steak' : document_steak, })
+                                                        'bestFood' : document_bestFood, 'dessert' : document_dessert, 'drink' : document_drink ,
+                                                        'steak' : document_steak, })
 
 def reservationRestaurant(request):
+    """
+    This function is responsible for making reservations in the restaurant if the conditions are met.
+    """
     if request.method=='POST':
         email = request.POST.get('email')
         hour = request.POST.get('hour')
@@ -311,7 +319,8 @@ def updateReservationRestaurant(request):
 
     return redirect(index)
 
-# RESTAURANT USER ANONYMOUS
+#RESTAURANT MANGEMENT ANONYMOUS USERS
+
 def reservationsRestaurantUserAnonymous(request):
     return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html')
 
@@ -398,7 +407,8 @@ def updateReservationRestaurantUserAnonymous(request):
 
     return redirect(index)
 
-#HOTEL
+#HOTEL MANAGEMENT
+
 def room(request):
     room = typeRoomHotel.objects.all()
     room = room.order_by('id')
@@ -732,7 +742,8 @@ def successPayRoomReservation(request):
 
     return redirect(index)
 
-#HOTEL USER ANONYMOUS
+#HOTEL MANAGEMENT ANONYMOUS USERS
+
 def searchReservationsHotelAnonymous(request):
     if request.method == 'POST':
         id_anonymous = request.POST['id']
@@ -744,6 +755,8 @@ def searchReservationsHotelAnonymous(request):
             return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
     else:
         return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
+
+#MANAGEMENT OF DIFFERENT INFORMATION
 
 def monuments(request):
     if get_language() == ("es"):
