@@ -440,7 +440,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         now = now.date()
         roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
         price = roomsAvalaible.price
-
+ 
         request.session['email'] = email
         request.session['entry_date'] = entry_date
         request.session['departure_date'] = departure_date
@@ -451,13 +451,14 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['guests'] = guests
         request.session['roomName'] = roomName
 
-        if entry_date < departure_date and dateEntry_convert.date() > now:
+        if entry_date < departure_date and dateEntry_convert.date() >= now:
             if int(guests) <= roomsAvalaible.capacityMax:
                 if roomsAvalaible.roomAvailable < 1 : #check if there is any room
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
                     countRoom = roomsAvalaible2.count()
                     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
                     if countRoom > 0:
+                        roomsAvalaible.save()
                         return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
 
                     else:
@@ -515,7 +516,7 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
         request.session['guests'] = guests
         request.session['roomName'] = roomName
 
-        if entry_date < departure_date and dateEntry_convert.date() > now:
+        if entry_date < departure_date and dateEntry_convert.date() >= now:
             if int(guests) <= roomsAvalaible.capacityMax:
                 if roomsAvalaible.roomAvailable < 1 : #check if there is any room
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
@@ -750,6 +751,20 @@ def searchReservationsHotelAnonymous(request):
         email_anonymous = request.POST['email']
         reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
         if reservationsDB.count() > 0:
+            for x in reservationsDB:
+                if x.typeRoom == 'singleRoom':          
+                    typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+                    x.typeRoom = typeRoom.name
+                if x.typeRoom == 'doubleRoom':          
+                    typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+                    x.typeRoom = typeRoom.name
+                if x.typeRoom == 'tripleRoom':          
+                    typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+                    x.typeRoom = typeRoom.name
+                if x.typeRoom == 'suiteRoom':          
+                    typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
+                    x.typeRoom = typeRoom.name
+            reservationsDB.typeRoom = typeRoom.type
             return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
         else:
             return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')

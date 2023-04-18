@@ -68,8 +68,7 @@
             </div>
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                onclick="sub({{ dic.id }})" href="reservationsRoom/{{ dic.id }}">{% trans 'Reservar' %}</a></div>
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="reservationsRoom/{{ dic.id }}">{% trans 'Reservar' %}</a></div>
             </div>
           </div>
         </div>
@@ -79,10 +78,12 @@
   </section>
 </body>
 
-<script>
-	function sub(id) {
-		document.getElementById("idTypeRoomForm").value = id;
-	};
-</script>
+<!--
+  <script>
+    function sub(id) {
+      document.getElementById("idTypeRoomForm").value = id;
+    };
+  </script>
+-->
 
 {% endblock %}
