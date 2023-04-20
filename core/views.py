@@ -14,15 +14,21 @@ from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
 from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund, hotelInformation, restaurantDetails
 
+"""Index redirection code"""
 def index(request):
     return render(request, 'core/index.html')
 
 #USER MANAGEMENT
 
+"""Register code"""
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid():            
+
+            """
+            Creation user
+            """            
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
@@ -31,7 +37,10 @@ def register(request):
 
             user = User.objects.get(username=username)
 
-            avatar = "avatar/default.png" #Creation profile
+            """
+            #Creation profile
+            """             
+            avatar = "avatar/default.png" 
             profile = Profile(avatar=avatar, user_id=user.id)
             profile.save()
 
@@ -46,10 +55,12 @@ def register(request):
 
     return render(request,'core/User/register.html',{'form' : form})
 
+"""Logout code"""
 def function_logout(request):
     logout(request)
     return redirect('index')
 
+"""Profile code"""
 def profile(request):
     now = datetime.now()
     now = now.date()
@@ -63,6 +74,9 @@ def profile(request):
         form = UpdateUserForm(request.POST, instance=request.user, files=request.FILES)
         formAvatar = UpdateAvatarUser(request.POST, instance=request.user.profile, files=request.FILES)
         
+        """
+        Form to modify user data
+        """
         if form.is_valid():
             usernameForm = form.cleaned_data['username']
             emailForm = form.cleaned_data['email']
@@ -82,7 +96,10 @@ def profile(request):
                 messages.error(request, message)
             
             return redirect('profile')
-        
+
+        """
+        Form to modify the profile avatar
+        """
         if formAvatar.is_valid():
             username = request.user.username
             formAvatar.save()
@@ -95,6 +112,7 @@ def profile(request):
 
     return render(request,'core/User/profile.html',{'allPromotion' : allPromotion, 'form' : form, 'formAvatar' : formAvatar, 'firstNameUser' : firstNameUser})
 
+"""Change password code"""
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
     success_message = "Successfully Changed Your Password"
@@ -102,9 +120,11 @@ class changePassword(PasswordChangeView):
 
 #RESTAURANT MANGEMENT
 
+"""Index restaurant redirection code"""
 def restaurant(request):
     return render(request, 'core/Restaurant/indexRestaurant.html')
 
+"""Restaurant menu code"""
 def menuRestaurant(request):
     """
     This function collects the information from the JSON files meal and passes it to the template via dictionaries.
@@ -143,11 +163,17 @@ def menuRestaurant(request):
                                                         'bestFood' : document_bestFood, 'dessert' : document_dessert, 'drink' : document_drink ,
                                                         'steak' : document_steak, })
 
+"""Restaurant reservation code"""
 def reservationRestaurant(request):
     """
     This function is responsible for making reservations in the restaurant if the conditions are met.
     """
+
     if request.method=='POST':
+        """
+        We get the data and convert it to the format we want to use
+        """
+        
         email = request.POST.get('email')
         hour = request.POST.get('hour')
         people = request.POST.get('people')
@@ -163,46 +189,61 @@ def reservationRestaurant(request):
         schedule_work1 = time(9,0)
         schedule_work2 = time(23,45)
 
-        if int(people) <= 2: #Si es menor o igual a dos personas le asigno una mesa para dos
+        """
+        We check the number of people to allocate a table
+        """
+        if int(people) <= 2:
             restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
-        else: #Si son 3 o 4 les asigno una mesa para 4
+        else: 
             restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
         
-
+        """
+        We obtain the number of reservations that are less than or equal to today's date
+        """
         reservationsDB = reservationsRestaurant.objects.filter(date__lte = now.date()) #Creamos un objeto de la clase reservas del restaurante, y la filtramos por la fecha que sea menor o igual a la de hoy
         reservationsDBCount = reservationsDB.count() #Nos devuelve el número de registros que cumplen estos filtros
 
-        if reservationsDBCount > 0: #Si hay reservas menores o iguales a la fecha de hoy ...
-            for x in reservationsDB: #Recorremos todas las reservas que se nos han devuelto
-                if x.date == now and x.hour < now.hour(): #Si la fecha de cada reserva es igual a la de hoy y además la hora de la reserva es menor a la actual...           
-                    x.delete()#Borramos la reserva ya pasada
-                    restaurantTable.totalTable = restaurantTable.totalTable + 1 #Significa que la reserva del usuario ya ha pasado, por lo que sumamos una mesa al total del restaurante
-                    restaurantTable.save() #Guardamos
-                if x.date < now.date(): #Si es menor a la fecha actual, directamente sumaremos uno a las mesas totales porque ya pasó la reserva
-                    x.delete()#Borramos la reserva ya pasada
+        """
+        We check for reservations that have already ended and delete them
+        """
+        if reservationsDBCount > 0: 
+            for x in reservationsDB: 
+                if x.date == now and x.hour < now.hour():           
+                    x.delete()
+                    restaurantTable.totalTable = restaurantTable.totalTable + 1
+                    restaurantTable.save()
+                if x.date < now.date():
+                    x.delete()
                     restaurantTable.totalTable = restaurantTable.totalTable + 1
                     restaurantTable.save()      
 
-        if now.date() < date_convert.date(): #check if date is valid
-            if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #check if time is valid
-                if reservationsRestaurant.objects.filter(email=email, hour=hour, date=date).count() == 1: #check if the user has a reservation for that moment 
+        """
+        We check if the reservation meets the conditions of time, date, avalaible tables or if the user already has a reservation
+        """
+        if now.date() < date_convert.date(): #Check if date is valid
+            if hour_convert.time() > schedule_work1 and hour_convert.time() < schedule_work2: #Check if time is valid
+                if reservationsRestaurant.objects.filter(email=email, hour=hour, date=date).count() == 1: #Check if the user has a reservation for that moment 
                     message = _('Reserva para el día %(date)s no se ha podido completar. Ya tiene usted una reserva para ese día.') % {'date' : date}
                     messages.error(request, message)                    
                     return redirect(index)
                 else:
-                    if restaurantTable.totalTable > 0: #Si hay mesas de ese tipo, guardaremos la reserva
+                    """
+                    We check if there are tables available, if so, we make the reservation
+                    """
+
+                    if restaurantTable.totalTable > 0: 
                         reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
                         reservation = reservationsRestaurant.objects.get(date=date, hour=hour, people=people, allergy=allergy, email=email)
                         restaurantTable.save()
                         message = _('Mesa reservada satisfactoriamente para el %(date)s a las %(hour)s.') % {'date' : date, 'hour' : hour}
                         messages.success(request, message)
                         send_message = EmailMessage("Mesa reservada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
-                                                'hogumahotel@gmail.com', [email]) #send email to the customer with the reservation
+                                                'hogumahotel@gmail.com', [email])
                         send_message.send()
 
                         restaurantTable.totalTable = restaurantTable.totalTable - 1
                         restaurantTable.save()
-                    else: #Si no hay mesas, le devolvemos un mensaje al usuario
+                    else:
                         message = _('Para el día %(date)s están todas las mesas ocupadas. Inténtelo con otra fecha.') % {'date' : date}
                         messages.error(request, message)
 
@@ -221,17 +262,26 @@ def reservationRestaurant(request):
         user = request.user
         return render(request, 'core/Restaurant/formReservationRestaurant.html', {'user':user})
 
+"""
+Code to obtain user reservations
+"""
 def reservationsRestaurantUser(request):
     email = request.user.email
     reservationsDB = reservationsRestaurant.objects.filter(email=email)
 
     return render(request, 'core/Restaurant/reservationsRestaurantUser.html', {'reservationsDB': reservationsDB})
 
+"""
+Code to delete user reservations
+"""
 def deleteReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
     reservation.delete()
     date_reservation = reservation.date
 
+    """
+    We check the table type of the reservation
+    """
     if int(reservation.people) <= 2: 
         restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
     else:
@@ -246,8 +296,15 @@ def deleteReservationRestaurant(request, id):
 
     return redirect(reservationsRestaurantUser)
 
+"""
+Form code to update a reservation
+"""
 def formUpdateReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
+    
+    """
+    We perform a data conversion
+    """
     if reservation.hour.minute == 0:
         reservation.hour = str(reservation.hour.hour)+':'+str(reservation.hour.minute)+str(0)
     else:
@@ -256,7 +313,14 @@ def formUpdateReservationRestaurant(request, id):
 
     return render(request, 'core/Restaurant/updateReservationRestaurant.html', {'reservation': reservation})
 
+"""
+Code to modify a reservation 
+"""
 def updateReservationRestaurant(request):
+    """
+    This function is similar to that of making a reservation, but in this the reservation is modified
+    """
+
     id = int(request.POST['id'])
     email = request.POST.get('email')
     hour = request.POST.get('hour')
@@ -273,22 +337,22 @@ def updateReservationRestaurant(request):
     schedule_work1 = time(9,0)
     schedule_work2 = time(23,45)
 
-    if int(people) <= 2: #Si es menor o igual a dos personas le asigno una mesa para dos
+    if int(people) <= 2:
         restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
-    else: #Si son 3 o 4 les asigno una mesa para 4
+    else: 
         restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
 
-    reservationsDB = reservationsRestaurant.objects.filter(date__lte = now.date()) #Creamos un objeto de la clase reservas del restaurante, y la filtramos por la fecha que sea menor o igual a la de hoy
-    reservationsDBCount = reservationsDB.count() #Nos devuelve el número de registros que cumplen estos filtros
+    reservationsDB = reservationsRestaurant.objects.filter(date__lte = now.date()) 
+    reservationsDBCount = reservationsDB.count()
 
-    if reservationsDBCount > 0: #Si hay reservas menores o iguales a la fecha de hoy ...
-        for x in reservationsDB: #Recorremos todas las reservas que se nos han devuelto
-            if x.date == now and x.hour < now.hour(): #Si la fecha de cada reserva es igual a la de hoy y además la hora de la reserva es menor a la actual...           
-                x.delete()#Borramos la reserva ya pasada
-                restaurantTable.totalTable = restaurantTable.totalTable + 1 #Significa que la reserva del usuario ya ha pasado, por lo que sumamos una mesa al total del restaurante
-                restaurantTable.save() #Guardamos
-            if x.date < now.date(): #Si es menor a la fecha actual, directamente sumaremos uno a las mesas totales porque ya pasó la reserva
-                x.delete()#Borramos la reserva ya pasada
+    if reservationsDBCount > 0:
+        for x in reservationsDB: 
+            if x.date == now and x.hour < now.hour():         
+                x.delete()
+                restaurantTable.totalTable = restaurantTable.totalTable + 1 
+                restaurantTable.save()
+            if x.date < now.date(): 
+                x.delete()
                 restaurantTable.totalTable = restaurantTable.totalTable + 1
                 restaurantTable.save()   
 
@@ -303,9 +367,9 @@ def updateReservationRestaurant(request):
                 reservation.date = date   
                 reservation.save()
 
-                #send_message = EmailMessage("Reserva de mesa modificada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
-                 #                                   'hogumahotel@gmail.com', [email]) #send email to the customer with the reservation
-                #send_message.send()
+                send_message = EmailMessage("Reserva de mesa modificada correctamente", "Su mesa para {} está reservada para el día {} a las {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(people, date, hour, reservation.id), 
+                                                   'hogumahotel@gmail.com', [email]) 
+                send_message.send()
                 restaurantTable.totalTable = restaurantTable.totalTable - 1
                 restaurantTable.save()
                 message = _('Reserva para el día %(date)s modificada correctamente.') % {'date' : date}
@@ -321,9 +385,15 @@ def updateReservationRestaurant(request):
 
 #RESTAURANT MANGEMENT ANONYMOUS USERS
 
+"""
+Code to obtain anonymous user reservations
+"""
 def reservationsRestaurantUserAnonymous(request):
     return render(request, 'core/Restaurant/reservationsRestaurantUserAnonymous.html')
 
+"""
+Code to search for the reservation of an anonymous user
+"""
 def searchReservationsRestaurantAnonymous(request):
     if request.method == 'POST':
         id_anonymous = request.POST['id']
@@ -336,6 +406,9 @@ def searchReservationsRestaurantAnonymous(request):
     else:
         return render(request, 'core/Restaurant/searchReservationsRestaurantAnonymous.html')
 
+"""
+Code to delete anonymous user reservations
+"""
 def deleteReservationRestaurantUserAnonymous(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
     reservation.delete()
@@ -355,6 +428,9 @@ def deleteReservationRestaurantUserAnonymous(request, id):
 
     return redirect(index)
 
+"""
+Form code to update a reservation
+"""
 def formUpdateReservationRestaurantUserAnonymous(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
     if reservation.hour.minute == 0:
@@ -365,6 +441,9 @@ def formUpdateReservationRestaurantUserAnonymous(request, id):
 
     return render(request, 'core/Restaurant/updateReservationRestaurantUserAnonymous.html', {'reservation': reservation})
 
+"""
+Code to modify a reservation 
+"""
 def updateReservationRestaurantUserAnonymous(request):
 
     id = int(request.POST['id'])
@@ -409,12 +488,18 @@ def updateReservationRestaurantUserAnonymous(request):
 
 #HOTEL MANAGEMENT
 
+"""
+Redirection code to the rooms page
+"""
 def room(request):
     room = typeRoomHotel.objects.all()
     room = room.order_by('id')
 
     return render(request, 'core/Hotel/room.html', {'room': room})
 
+"""
+Code to make a room reservation
+"""
 def reservationsRoom(request, id): #Store data in session and check availability of room    
     room_selected = typeRoomHotel.objects.get(id=id)
     
@@ -440,7 +525,10 @@ def reservationsRoom(request, id): #Store data in session and check availability
         now = now.date()
         roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
         price = roomsAvalaible.price
- 
+
+        """
+        We store the data in a session to later work with it
+        """
         request.session['email'] = email
         request.session['entry_date'] = entry_date
         request.session['departure_date'] = departure_date
@@ -451,12 +539,15 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['guests'] = guests
         request.session['roomName'] = roomName
 
+        """
+        We check if the reservation meets the entry date, departure date, guests or avalaible rooms
+        """
         if entry_date < departure_date and dateEntry_convert.date() >= now:
             if int(guests) <= roomsAvalaible.capacityMax:
-                if roomsAvalaible.roomAvailable < 1 : #check if there is any room
+                if roomsAvalaible.roomAvailable < 1 : #We check if there are no rooms available to see if they may already be vacant
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
                     countRoom = roomsAvalaible2.count()
-                    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
+                    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #We add the rooms already available
                     if countRoom > 0:
                         roomsAvalaible.save()
                         return render(request, 'core/checkoutPayment/checkout.html', {'price' : price, 'totalDays' : totalDays})
@@ -479,8 +570,14 @@ def reservationsRoom(request, id): #Store data in session and check availability
     else:
         return render(request, 'core/Hotel/formReservationRoom.html', {'room_selected' : room_selected})
 
+"""
+Code to make a room reservation with a promotion
+"""
+def reservationsRoomPromotion(request):
+    """
+    This function is the same as the previous one but taking into account the price of the promotion
+    """
 
-def reservationsRoomPromotion(request): #Store data in session and check availability of room
     if request.method=='POST':
         id = request.POST.get('idTypeRoomForm')
         entry_date = request.POST.get('entry_date')
@@ -543,10 +640,20 @@ def reservationsRoomPromotion(request): #Store data in session and check availab
     else:
         return render(request, 'core/Hotel/formReservationRoom.html')
 
+"""
+Code to redirect to the checkout, where the payment is made
+"""
 def create_checkout_session(request):
     return render(request, 'core/checkoutPayment/checkout.html')
 
+"""
+Code that performs the necessary operations when completing the payment
+"""
 def successPay(request):
+    
+    """
+    We collect the variables stored in the sessions previously
+    """
     email = request.session['email']
     entry_date = request.session['entry_date']
     departure_date = request.session['departure_date']
@@ -555,7 +662,7 @@ def successPay(request):
     roomName = request.session['roomName']
 
     roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
-    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1 #Remove room available
+    roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1 
     roomsAvalaible.save()
 
     reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
@@ -565,6 +672,9 @@ def successPay(request):
                                 'hogumahotel@gmail.com', [email]) #send email to the customer with the reservation
     send_message.send()
 
+    """
+    We delete the sessions because we don't need them
+    """
     del request.session['email']
     del request.session['entry_date']
     del request.session['departure_date']
@@ -577,9 +687,16 @@ def successPay(request):
 
     return redirect(index)
 
+"""
+Code to obtain user reservations
+"""
 def reservationsHotelUser(request):
     email = request.user.email
     reservationsDB = reservationsHotel.objects.filter(email=email)
+    
+    """
+    We filter the rooms to identify the type of room of the reservation
+    """
     for x in reservationsDB:
         if x.typeRoom == 'singleRoom':          
             typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
@@ -593,9 +710,14 @@ def reservationsHotelUser(request):
         if x.typeRoom == 'suiteRoom':          
             typeRoom = typeRoomHotel.objects.get(type=x.typeRoom)
             x.typeRoom = typeRoom.name
+    
     reservationsDB.typeRoom = typeRoom.type
+    
     return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
 
+"""
+Code to delete user reservations
+"""
 def deleteReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
     email=reservation.email
@@ -616,6 +738,9 @@ def deleteReservationHotel(request, id):
 
     return redirect(index)
 
+"""
+Form code to update a reservation
+"""
 def formUpdateReservationHotel(request, id):
     reservation=reservationsHotel.objects.get(id=id)
     reservation.entry_date = str(reservation.entry_date)
@@ -625,7 +750,14 @@ def formUpdateReservationHotel(request, id):
 
     return render(request, 'core/Hotel/updateReservationHotel.html', {'reservation': reservation, 'room' : room})
 
+"""
+Code to modify a reservation 
+"""
 def updateReservationHotel(request):
+    """
+    This function is similar to that of making a reservation, but in this the reservation is modified
+    """
+        
     idRoom = int(request.POST['id'])
     email = request.POST['email']
     entry_date = request.POST['entry_date']
@@ -669,6 +801,9 @@ def updateReservationHotel(request):
 
     if entry_date < departure_date and dateEntry_convert.date() > now.date():
 
+        """
+        We check if the user wants more, less or the same days when modifying the reservation
+        """
         if totalDaysNew < totalDaysReservation:
             priceTotal = abs(priceTotal)   
             if refund.objects.filter(idReservation=idRoom).count() > 0:
@@ -706,7 +841,14 @@ def updateReservationHotel(request):
 
     return render(request, 'core/index.html')
 
+"""
+Code that performs the necessary operations when completing the payment by adding more days to the reservation
+"""
 def successPayRoomReservation(request):
+    """
+    This function is the same as that of completing payment
+    """
+
     email = request.session['email']
     entry_date = request.session['entry_date']
     departure_date = request.session['departure_date']
@@ -745,11 +887,15 @@ def successPayRoomReservation(request):
 
 #HOTEL MANAGEMENT ANONYMOUS USERS
 
+"""
+Code to search for the reservation of an anonymous user
+"""
 def searchReservationsHotelAnonymous(request):
     if request.method == 'POST':
         id_anonymous = request.POST['id']
         email_anonymous = request.POST['email']
         reservationsDB = reservationsHotel.objects.filter(email=email_anonymous, id=id_anonymous)
+        
         if reservationsDB.count() > 0:
             for x in reservationsDB:
                 if x.typeRoom == 'singleRoom':          
@@ -766,14 +912,23 @@ def searchReservationsHotelAnonymous(request):
                     x.typeRoom = typeRoom.name
             reservationsDB.typeRoom = typeRoom.type
             return render(request, 'core/Hotel/reservationsHotelUser.html', {'reservationsDB': reservationsDB})
+        
         else:
             return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
+    
     else:
         return render(request, 'core/Hotel/searchReservationsHotelAnonymous.html')
 
 #MANAGEMENT OF DIFFERENT INFORMATION
 
+"""
+Code to extract the information from a JSON
+"""
 def monuments(request):
+    """
+    We check the language to extract one or the other JSON
+    """
+
     if get_language() == ("es"):
         ruta = 'core/static/core/assets/dist/json/monumentos.json'
         with open(ruta) as contenido:
@@ -785,8 +940,12 @@ def monuments(request):
 
     return render(request, 'core/differentInformation/monuments.html', {'monuments': document_json}) 
 
+"""
+Code to send the message of the contact form
+"""
 def contact(request):
-    hotel = hotelInformation.objects.get(id=1)
+    hotel = hotelInformation.objects.get(id=1) #We identify our hotel with the ID
+
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -796,29 +955,41 @@ def contact(request):
         recipient_list = ['hogumahotel@gmail.com']
 
         send_message = EmailMessage(subjectEmail, messageEmail, email_from ,recipient_list)
-        send_message.send()
-        
+        send_message.send()    
         message = _('Mensaje enviado correctamente. Nos pondremos en contacto con usted lo antes posible.')
+        
         if messages.success(request, message):
             return redirect('index')
+        
         else:
             message = _('ERROR. El mensaje no se ha podido enviar.')
             messages.error(request, message)
             return redirect(contact)
+    
     else:
         return render(request, 'core/differentInformation/contact.html', {'hotel' : hotel})
-    
-def busStop(request):
-    locations = locationBusStop.objects.all()
-    initialMap = folium.Map(location=[37.6720542,-1.6990989], zoom_start=17)
-    coordinates_initial = (37.6720542,-1.6990989)
 
+"""
+Code to show bus stops on the map
+"""
+def busStop(request):
+    hotel = hotelInformation.objects.get(id=1) #We identify our hotel with the ID
+    locations = locationBusStop.objects.all()
+    initialMap = folium.Map(location=[hotel.latitude,hotel.longitude], zoom_start=17)
+    coordinates_initial = (hotel.latitude,hotel.longitude)
+
+    """
+    We add a marker of the hotel location
+    """
     folium.Marker(
     location=coordinates_initial,
     popup=folium.Popup(_('¡Usted se encuentra aquí!'), max_width=300),
     icon=folium.Icon(color="red", icon="home"), 
     ).add_to(initialMap)
 
+    """
+    We add the markers of the bus stops.
+    """
     for location in locations:
         coordinates = (location.latitude, location.longitude)
         folium.Marker(
@@ -828,14 +999,23 @@ def busStop(request):
         ).add_to(initialMap)
 
     context = {'map' : initialMap._repr_html_(), 'locations': locations}
+
     return render(request, 'core/differentInformation/busStop.html', context)
 
+"""
+Code to show all the promotions available in the user's profile
+"""
 def promotions(request):
     now = datetime.now()
     now = now.date()
     allPromotion= promotion.objects.filter(finishDate__lte=now)
+
     return render(request, 'core/User/profile.html', {'allPromotion' : allPromotion})
 
+"""
+Code to show the privacy terms of the hotel
+"""
 def termsAndPrivacity(request):
-    hotel = hotelInformation.objects.get(id=1)
+    hotel = hotelInformation.objects.get(id=1)#We identify our hotel with the ID
+
     return render(request, 'core/webPolicy/privacyPolicy.html', {'hotel' : hotel})

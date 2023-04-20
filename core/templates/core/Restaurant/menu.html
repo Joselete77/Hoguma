@@ -10,209 +10,10 @@
 			{% trans 'Carta' %}
 		{% endblock %}
 	</title>
+  <link href="../../../static/core/assets/dist/css/Restaurant/menu.css" rel="stylesheet">
 </head>
 
-<style>
-    /**
-* Template Name: Yummy - v1.3.0
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
-/* Fonts */
-:root {
-  --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-primary: "Amatic SC", sans-serif;
-  --font-secondary: "Inter", sans-serif;
-}
-
-/* Colors */
-:root {
-  --color-default: #212529;
-  --color-primary: #ce1212;
-  --color-secondary: #37373f;
-}
-
-/* Smooth scroll behavior */
-:root {
-  scroll-behavior: smooth;
-}
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
-body {
-  font-family: var(--font-default);
-  color: var(--color-default);
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  color: #ec2727;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-secondary);
-}
-
-/*--------------------------------------------------------------
-# Sections & Section Header
---------------------------------------------------------------*/
-section {
-  overflow: hidden;
-  padding: 80px 0;
-}
-
-.section-bg {
-  background-color: #eee;
-}
-
-.section-header {
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-.section-header h2 {
-  font-size: 13px;
-  letter-spacing: 1px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-  color: #7f7f90;
-  text-transform: uppercase;
-  font-family: var(--font-default);
-}
-
-.section-header p {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 400;
-  font-family: var(--font-primary);
-}
-
-.section-header p span {
-  color: var(--color-primary);
-}
-
-/*--------------------------------------------------------------
-# Menu Section
---------------------------------------------------------------*/
-.menu .nav-tabs {
-  border: 0;
-}
-
-.menu .nav-link {
-  margin: 0 10px;
-  padding: 10px 5px;
-  transition: 0.3s;
-  color: var(--color-secondary);
-  border-radius: 0;
-  cursor: pointer;
-  height: 100%;
-  border: 0;
-  border-bottom: 2px solid #b6b6bf;
-}
-
-@media (max-width: 575px) {
-  .menu .nav-link {
-    margin: 0 10px;
-    padding: 10px 0;
-  }
-}
-
-.menu .nav-link i {
-  padding-right: 15px;
-  font-size: 48px;
-}
-
-.menu .nav-link h4 {
-  font-size: 18px;
-  font-weight: 400;
-  margin: 0;
-  font-family: var(--font-secondary);
-}
-
-@media (max-width: 575px) {
-  .menu .nav-link h4 {
-    font-size: 16px;
-  }
-}
-
-.menu .nav-link:hover {
-  color: var(--color-primary);
-}
-
-.menu .nav-link.active {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.menu .tab-content .tab-header {
-  padding: 30px 0;
-}
-
-.menu .tab-content .tab-header p {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #676775;
-  margin-bottom: 0;
-}
-
-.menu .tab-content .tab-header h3 {
-  font-size: 36px;
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
-.menu .tab-content .menu-item {
-  -moz-text-align-last: center;
-  text-align-last: center;
-}
-
-.menu .tab-content .menu-item .menu-img {
-  padding: 0 60px;
-  margin-bottom: 15px;
-}
-
-.menu .tab-content .menu-item h4 {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--color-secondary);
-  font-family: var(--font-secondary);
-  font-weight: 30px;
-  margin-bottom: 5px;
-}
-
-.menu .tab-content .menu-item .ingredients {
-  font-family: var(--font-secondary);
-  color: #8d8d9b;
-  margin-bottom: 5px;
-}
-
-.menu .tab-content .menu-item .price {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-primary);
-}
-</style>
-
 <body style="margin-top: 25px;">
-    <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
         <div class="container" data-aos="fade-up">
 
@@ -227,42 +28,42 @@ section {
                     <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-steak">
                         <h4>{% trans 'Carnes' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-burger">
                         <h4>{% trans 'Hamburguesas' %}</h4>
-                    </a><!-- End tab nav item -->
+                    </a>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-pizza">
                         <h4>{% trans 'Pizzas' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-sandwich">
                         <h4>{% trans 'Sandwiches' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-bestFood">
                         <h4>{% trans 'Platos estrella' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dessert">
                         <h4>{% trans 'Postres' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-drink">
                         <h4>{% trans 'Bebidas' %}</h4>
                     </a>
-                </li><!-- End tab nav item -->
+                </li>
 
             </ul>
 
@@ -281,10 +82,10 @@ section {
                             <img src="{{ steak.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ steak.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ steak.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
                     </div>
-                </div><!-- End Starter Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-burger">
 
@@ -299,11 +100,11 @@ section {
                             <img src="{{ burger.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ burger.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ burger.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Breakfast Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-pizza">
 
@@ -319,11 +120,11 @@ section {
                             <img src="{{ pizza.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ pizza.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ pizza.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Lunch Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-sandwich">
 
@@ -339,11 +140,11 @@ section {
                             <img src="{{ sandwich.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ sandwich.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ sandwich.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Dinner Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-bestFood">
 
@@ -359,11 +160,11 @@ section {
                             <img src="{{ bestFood.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ bestFood.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ bestFood.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Dinner Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-dessert">
 
@@ -379,11 +180,11 @@ section {
                             <img src="{{ dessert.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ dessert.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ dessert.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Dinner Menu Content -->
+                </div>
 
                 <div class="tab-pane fade" id="menu-drink">
 
@@ -399,16 +200,14 @@ section {
                             <img src="{{ drink.img }}" alt="Error" style="height: 200px; width: 200px; border: 2px black solid; border-radius: 10px;">
                             <h4>{{ drink.name }}</h4> 
                             <p class="price">{% trans 'Precio:' %} {{ drink.price }}€</p>
-                        </div><!-- Menu Item -->
+                        </div>
                         {% endfor %}
 
                     </div>
-                </div><!-- End Dinner Menu Content -->
-
+                </div>
             </div>
-
         </div>
-    </section><!-- End Menu Section -->
+    </section>
 
 </body>
 

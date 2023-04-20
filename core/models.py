@@ -86,6 +86,8 @@ class hotelInformation(models.Model):
     address=models.CharField(max_length=250)
     fax=models.CharField(max_length=11)
     urlWeb=models.CharField(max_length=50)
+    latitude=models.FloatField()
+    longitude=models.FloatField()
 
     def __str__(self):
         return self.name
