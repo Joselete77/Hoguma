@@ -1,3 +1,7 @@
+"""
+This file contains all the logical functions of our application.
+"""
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.views import PasswordChangeView
@@ -13,6 +17,7 @@ import folium
 from .forms import CustomUserCreationForm, UpdateUserForm, UpdateAvatarUser
 import json
 from .models import reservationsRestaurant, reservationsHotel, locationBusStop, typeRoomHotel, Profile, promotion, refund, hotelInformation, restaurantDetails
+
 
 """Index redirection code"""
 def index(request):
