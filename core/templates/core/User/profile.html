@@ -56,12 +56,10 @@
 									{{ p.startDate }}
 									{% trans 'al' %} {{ p.finishDate }}</p>
 								<p>
-									<strong style="font-size:15px;">{% trans 'Precio flash:' %} {{ p.newPrice
-										}}€</strong>
+									<strong style="font-size:15px;">{% trans 'Precio flash:' %} {{ p.newPrice}}€</strong>
 								</p>
 								<button type="button" class="btn btn-warning" data-bs-toggle="modal"
-									data-bs-target="#promotionModal" onclick="sub({{ p.id }})">{% trans 'Reservar ya'
-									%}</button>
+									data-bs-target="#promotionModal" onclick="sub({{ p.id }})">{% trans 'Reservar ya'%}</button>
 							</div>
 						</div>
 					</div>
