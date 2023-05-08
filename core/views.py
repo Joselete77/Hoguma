@@ -123,7 +123,7 @@ class changePassword(PasswordChangeView):
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('index')
 
-#RESTAURANT MANGEMENT
+#RESTAURANT MANAGEMENT
 
 """Index restaurant redirection code"""
 def restaurant(request):
@@ -514,6 +514,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         departure_date = request.POST.get('departure_date')
         guests = request.POST.get('guests')
         roomName = request.POST.get('roomName')
+        observations = request.POST.get('observations')
         typeRoom = room_selected.type
 
         parts_dateEntry = entry_date.split("-")
@@ -543,6 +544,7 @@ def reservationsRoom(request, id): #Store data in session and check availability
         request.session['days'] = totalDays
         request.session['guests'] = guests
         request.session['roomName'] = roomName
+        request.session['observations'] = observations
 
         """
         We check if the reservation meets the entry date, departure date, guests or avalaible rooms
@@ -591,6 +593,7 @@ def reservationsRoomPromotion(request):
         id_promotion = promotion.objects.get(id=id)
         typeRoom = str(id_promotion.typeRoom)
         guests = request.POST.get('guests')
+        observations = request.POST.get('observations')
         roomName = id_promotion.name
 
         parts_dateEntry = entry_date.split("-")
@@ -617,6 +620,7 @@ def reservationsRoomPromotion(request):
         request.session['days'] = totalDays
         request.session['guests'] = guests
         request.session['roomName'] = roomName
+        request.session['observations'] = observations
 
         if entry_date < departure_date and dateEntry_convert.date() >= now:
             if int(guests) <= roomsAvalaible.capacityMax:
@@ -665,12 +669,13 @@ def successPay(request):
     typeRoom = request.session['typeRoom']
     guests = request.session['guests']
     roomName = request.session['roomName']
+    observations = request.session['observations']
 
     roomsAvalaible = typeRoomHotel.objects.get(type=typeRoom)
     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable - 1 
     roomsAvalaible.save()
 
-    reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests).save()
+    reservationsHotel(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests, observations=observations).save()
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
     send_message = EmailMessage("Habitación reservada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
@@ -689,6 +694,7 @@ def successPay(request):
     del request.session['days']
     del request.session['guests']
     del request.session['roomName']
+    del request.session['observations']
 
     return redirect(index)
 
@@ -769,6 +775,7 @@ def updateReservationHotel(request):
     departure_date = request.POST['departure_date']
     typeRoom = request.POST['typeRoom']
     guests = request.POST['guests']
+    observations = request.POST['observations']
     room=typeRoomHotel.objects.get(type=typeRoom)
     nameRoom=room.name
     price = room.price
@@ -801,6 +808,7 @@ def updateReservationHotel(request):
     request.session['guests'] = guests
     request.session['roomName'] = nameRoom
     request.session['idRoom'] = idRoom
+    request.session['observations'] = observations
 
     now = datetime.now()
 
@@ -823,6 +831,7 @@ def updateReservationHotel(request):
             reservation.departure_date = departure_date
             reservation.typeRoom = typeRoom
             reservation.guests = guests
+            reservation.observations = observations
             reservation.save()
 
             message = _('%(nameRoom)s para el día %(entry_date)s modificada correctamente. Para el reembolso nuestro equipo técnico se pondrá en contacto con usted.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
@@ -837,6 +846,7 @@ def updateReservationHotel(request):
             reservation.departure_date = departure_date
             reservation.typeRoom = typeRoom
             reservation.guests = guests
+            reservation.observations = observations
             reservation.save()     
             message = _('%(nameRoom)s para el día %(entry_date)s modificada correctamente.') % {'nameRoom' :nameRoom ,'entry_date' : entry_date}
             messages.success(request, message)
@@ -861,6 +871,7 @@ def successPayRoomReservation(request):
     guests = request.session['guests']
     roomName = request.session['roomName']
     idRoom = request.session['idRoom']
+    observations = request.session['observations']
 
     reservation=reservationsHotel.objects.get(id=idRoom)
     reservation.email = email
@@ -868,6 +879,7 @@ def successPayRoomReservation(request):
     reservation.departure_date = departure_date
     reservation.typeRoom = typeRoom
     reservation.guests = guests
+    reservation.observations = observations
     reservation.save()
 
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
@@ -887,6 +899,7 @@ def successPayRoomReservation(request):
     del request.session['days']
     del request.session['guests']
     del request.session['roomName']
+    del request.session['observations']
 
     return redirect(index)
 

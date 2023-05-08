@@ -22,6 +22,7 @@ class reservationsHotel(models.Model):
     entry_date=models.DateField()
     departure_date=models.DateField()
     guests=models.IntegerField()
+    observations=models.CharField(max_length=255)
 
 class typeRoomHotel(models.Model):
     name=models.CharField(max_length=50)

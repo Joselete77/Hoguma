@@ -28,23 +28,26 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Identificador' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Correo electrónico' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Habitación' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Fecha de entrada' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Fecha de salida' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Huéspedes' %}
+                                    </th>
+                                    <th style="text-align: center;">
+                                        {% trans 'Observaciones' %}
                                     </th>
                                     <th style="width: 15%; text-align: center;">
                                         {% trans 'Opciones' %}
@@ -54,13 +57,14 @@
                             <tbody>
                                 {% for dic in reservationsDB %}
                                 <tr class="alert" role="alert">
-                                    <th scope="row">{{ dic.id }}</th>
-                                    <td>{{ dic.email }}</td>
-                                    <td>{{ dic.typeRoom }}</th>
-                                    <td>{{ dic.entry_date }}</td>
-                                    <td>{{ dic.departure_date }}</td>
-                                    <td>{{ dic.guests }}</td>
-                                    <td>
+                                    <th scope="row" style="text-align: center;">{{ dic.id }}</th>
+                                    <td style="text-align: center;">{{ dic.email }}</td>
+                                    <td style="text-align: center;">{{ dic.typeRoom }}</th>
+                                    <td style="text-align: center;">{{ dic.entry_date }}</td>
+                                    <td style="text-align: center;">{{ dic.departure_date }}</td>
+                                    <td style="text-align: center;">{{ dic.guests }}</td>
+                                    <td style="text-align: center;">{{ dic.observations }}</td>
+                                    <td style="text-align: center;">
                                         <a href="formUpdateReservationHotel/{{dic.id}}"
                                             class="btn btn-sm btn-block btn-info">{% trans 'Editar' %}</a>
                                         <a href="deleteReservationHotel/{{dic.id}}"

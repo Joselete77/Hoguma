@@ -27,25 +27,25 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Identificador' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Correo electrónico' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Fecha' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Hora' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Comensales' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Alergia' %}
                                     </th>
-                                    <th>
+                                    <th style="text-align: center;">
                                         {% trans 'Opciones' %}
                                     </th>
                                 </tr>
@@ -53,13 +53,17 @@
                             <tbody>
                                 {% for dic in reservationsDB %}
                                 <tr class="alert" role="alert">
-                                    <th scope="row">{{ dic.id }}</th>
-                                    <td>{{ dic.email }}</td>
-                                    <td>{{ dic.date }}</td>
-                                    <td>{{ dic.hour }}</td>
-                                    <td>{{ dic.people }}</td>
-                                    <td>{{ dic.allergy }}</td>
-                                    <td>
+                                    <th scope="row" style="text-align: center;">{{ dic.id }}</th>
+                                    <td style="text-align: center;">{{ dic.email }}</td>
+                                    <td style="text-align: center;">{{ dic.date }}</td>
+                                    <td style="text-align: center;">{{ dic.hour }}</td>
+                                    <td style="text-align: center;">{{ dic.people }}</td>
+                                    {% if dic.allergy == True %}
+                                        <td style="text-align: center;">Si</td>
+                                    {% else %}
+                                        <td style="text-align: center;">No</td>
+                                    {% endif %}
+                                    <td style="text-align: center;">
                                         <a href="formUpdateReservationRestaurant/{{dic.id}}"
                                             class="btn btn-sm btn-block btn-info">{% trans 'Editar' %}</a>
                                         <a href="deleteReservationRestaurant/{{dic.id}}"
