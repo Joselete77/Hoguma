@@ -58,7 +58,11 @@
                                     <td style="text-align: center;">{{ dic.date }}</td>
                                     <td style="text-align: center;">{{ dic.hour }}</td>
                                     <td style="text-align: center;">{{ dic.people }}</td>
-                                    <td style="text-align: center;">{{ dic.allergy }}</td>
+                                    {% if dic.allergy == True %}
+                                        <td style="text-align: center;">Si</td>
+                                    {% else %}
+                                        <td style="text-align: center;">No</td>
+                                    {% endif %}
                                     <td style="text-align: center;">
                                         <a href="formUpdateReservationRestaurantUserAnonymous/{{dic.id}}"
                                             class="btn btn-sm btn-block btn-info">{% trans 'Editar' %}</a>
