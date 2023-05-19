@@ -13,17 +13,56 @@
     position: relative;
     top: 230px;
   }
+
+  .details {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 250px;
+    justify-content: center;
+  }
+  
+  .paypal-button-containter {
+    min-width: none;
+    max-width: none;
+  }
+
+  .paypal-button {
+    width: 600px;
+    align-self: center;
+  }
+
+  .detailsReservation {
+    border: 1px solid gray;
+    padding: 20px;
+  }
+ 
+  @media screen and (max-width: 700px){
+    body {
+      position: relative;
+      top: 20%;
+    }
+    .purchase {
+      display: block;
+    }
+    .paypal-button {
+      width: auto;
+    }
+    .detailsReservation {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
 </style>
 
 <body>
   <script
     src="https://www.paypal.com/sdk/js?client-id=AXP_MYXrBZshAVzILS3ln1jbrmIiKHfLdrU-q70MWazv2A_qXUBsF_4hXyfEl2NUnFt54UaHo7uAgXhZ&currency=EUR"></script>
 
-  <div style="display: grid; grid-auto-flow: column; gap: 250px; justify-content: center; border: 1px solid gray; padding: 20px;">
+  <div class="purchase">
     <div>
       <h3>{% trans 'Detalles de la compra:' %}</h3>
 
-      <ol style="border: 1px solid gray; padding: 20px;">
+      <ol class="detailsReservation">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">{% trans 'Email:' %}</div>
@@ -74,7 +113,7 @@
         </li>
       </ol>
     </div>
-    <div id="paypal-button-container" style="width: 600px; align-self: center;"></div>
+    <div id="paypal-button-container" class="paypal-button"></div>
   </div>
   <script>
 

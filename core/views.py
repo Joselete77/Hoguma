@@ -205,8 +205,8 @@ def reservationRestaurant(request):
         """
         We obtain the number of reservations that are less than or equal to today's date
         """
-        reservationsDB = reservationsRestaurant.objects.filter(date__lte = now.date()) #Creamos un objeto de la clase reservas del restaurante, y la filtramos por la fecha que sea menor o igual a la de hoy
-        reservationsDBCount = reservationsDB.count() #Nos devuelve el número de registros que cumplen estos filtros
+        reservationsDB = reservationsRestaurant.objects.filter(date__lte = now.date()) 
+        reservationsDBCount = reservationsDB.count() 
 
         """
         We check for reservations that have already ended and delete them
@@ -235,7 +235,7 @@ def reservationRestaurant(request):
                     """
                     We check if there are tables available, if so, we make the reservation
                     """
-
+                    
                     if restaurantTable.totalTable > 0: 
                         reservationsRestaurant(date=date, hour=hour, people=people, allergy=allergy, email=email).save()
                         reservation = reservationsRestaurant.objects.get(date=date, hour=hour, people=people, allergy=allergy, email=email)
@@ -505,7 +505,7 @@ def room(request):
 """
 Code to make a room reservation
 """
-def reservationsRoom(request, id): #Store data in session and check availability of room    
+def reservationsRoom(request, id):  
     room_selected = typeRoomHotel.objects.get(id=id)
     
     if request.method=='POST':
@@ -624,7 +624,7 @@ def reservationsRoomPromotion(request):
 
         if entry_date < departure_date and dateEntry_convert.date() >= now:
             if int(guests) <= roomsAvalaible.capacityMax:
-                if roomsAvalaible.roomAvailable < 1 : #check if there is any room
+                if roomsAvalaible.roomAvailable < 1 : #Check if there is any room
                     roomsAvalaible2 = reservationsHotel.objects.filter(departure_date__lte = now, typeRoom = typeRoom) 
                     countRoom = roomsAvalaible2.count()
                     roomsAvalaible.roomAvailable = roomsAvalaible.roomAvailable + countRoom #Add new rooms availables
@@ -679,7 +679,7 @@ def successPay(request):
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     messages.success(request, 'Habitación reservada satisfactoriamente desde el '+entry_date+' hasta el '+departure_date+'.')
     send_message = EmailMessage("Habitación reservada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
-                                'hogumahotel@gmail.com', [email]) #send email to the customer with the reservation
+                                'hogumahotel@gmail.com', [email]) 
     send_message.send()
 
     """
@@ -884,7 +884,7 @@ def successPayRoomReservation(request):
 
     reservation = reservationsHotel.objects.get(email=email, entry_date=entry_date, departure_date=departure_date, typeRoom=typeRoom, guests=guests)
     send_message = EmailMessage("Habitación reservada modificada correctamente", "{} para {}, reservada desde el día {} hasta el {}.\nCodigo identificador: {} \n \nMuchas gracias, Hoguma.".format(roomName ,guests, entry_date, departure_date, reservation.id), 
-                                'hogumahotel@gmail.com', [email]) #send email to the customer with the reservation
+                                'hogumahotel@gmail.com', [email])
     send_message.send()
 
     message = _('%(nameRoom)s para el día %(entry_date)s modificada y pagada correctamente.') % {'nameRoom' :roomName ,'entry_date' : entry_date}
@@ -1034,6 +1034,6 @@ def promotions(request):
 Code to show the privacy terms of the hotel
 """
 def termsAndPrivacity(request):
-    hotel = hotelInformation.objects.get(id=1)#We identify our hotel with the ID
+    hotel = hotelInformation.objects.get(id=1) #We identify our hotel with the ID
 
     return render(request, 'core/webPolicy/privacyPolicy.html', {'hotel' : hotel})

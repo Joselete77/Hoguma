@@ -15,6 +15,19 @@
     <link href="../../../static/core/assets/dist/css/Restaurant/formReservationRestaurant.css" rel="stylesheet">
 </head>
 
+<style>
+    @media screen and (max-width: 700px){
+      div.row {
+      width: 100%;
+      height: 100%;
+      }
+
+      h1.text-h1 {
+        font-size: 230%;
+      }
+    }
+</style>
+
 <body>
 
     <div id="booking" class="section">
@@ -23,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="booking-cta">
-                            <h1>{% trans 'Consultar mesa' %}</h1>
+                            <h1 class="text-h1">{% trans 'Consultar mesa' %}</h1>
                             <h4>{% trans 'Introduzca el número identificador que se le proporcionó y su correo electrónico para comprobar sus reservas.' %}</h5>
                         </div>
                     </div>
