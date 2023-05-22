@@ -13,6 +13,9 @@ class reservationsRestaurant(models.Model):
     people=models.IntegerField()
     allergy=models.BooleanField()
 
+    class Meta:
+        ordering=['email']
+
     def __str__(self):
         return self.email    
 
@@ -23,6 +26,12 @@ class reservationsHotel(models.Model):
     departure_date=models.DateField()
     guests=models.IntegerField()
     observations=models.CharField(max_length=255)
+
+    class Meta:
+        ordering=['email']
+
+    def __str__(self):
+        return self.email  
 
 class typeRoomHotel(models.Model):
     name=models.CharField(max_length=50)
@@ -94,9 +103,12 @@ class hotelInformation(models.Model):
     latitude=models.FloatField()
     longitude=models.FloatField()
 
+    class Meta:
+        ordering=['name']
+
     def __str__(self):
         return self.name
-    
+
 class restaurantDetails(models.Model):
     tipeTable=models.CharField(max_length=150)
     capacity=models.IntegerField()
