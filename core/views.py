@@ -120,7 +120,6 @@ def profile(request):
 """Change password code"""
 class changePassword(PasswordChangeView):
     template_name = 'core/User/changePassword.html'
-    success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('index')
 
 #RESTAURANT MANAGEMENT
@@ -281,23 +280,27 @@ Code to delete user reservations
 """
 def deleteReservationRestaurant(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
-    reservation.delete()
-    date_reservation = reservation.date
+    if reservation.delete():
+        date_reservation = reservation.date
 
-    """
-    We check the table type of the reservation
-    """
-    if int(reservation.people) <= 2: 
-        restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
+        """
+        We check the table type of the reservation
+        """
+        if int(reservation.people) <= 2: 
+            restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
+        else:
+            restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
+
+        restaurantTables = restaurantDetails.objects.get(tipeTable=restaurantTable)
+        restaurantTables.totalTable = restaurantTables.totalTable + 1
+        
+        restaurantTables.save()
+        message = _('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
+        messages.success(request, message)
+
     else:
-        restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
-
-    restaurantTables = restaurantDetails.objects.get(tipeTable=restaurantTable)
-    restaurantTables.totalTable = restaurantTables.totalTable + 1
-    restaurantTables.save()
-
-    message = _('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
-    messages.success(request, message)
+        message = _('La reserva para el día %(date)s no se pudo cancelar.') % {'date' : date_reservation}
+        messages.error(request, message)
 
     return redirect(reservationsRestaurantUser)
 
@@ -416,20 +419,24 @@ Code to delete anonymous user reservations
 """
 def deleteReservationRestaurantUserAnonymous(request, id):
     reservation=reservationsRestaurant.objects.get(id=id)
-    reservation.delete()
-    date_reservation = reservation.date
+    if reservation.delete():
+        date_reservation = reservation.date
 
-    if int(reservation.people) <= 2: 
-        restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
+        if int(reservation.people) <= 2: 
+            restaurantTable = restaurantDetails.objects.get(tipeTable="Table for two")
+        else:
+            restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
+
+        restaurantTables = restaurantDetails.objects.get(tipeTable=restaurantTable)
+        restaurantTables = restaurantTables + 1
+        
+        restaurantTables.save()
+        message = _('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
+        messages.success(request, message)
+
     else:
-        restaurantTable = restaurantDetails.objects.get(tipeTable="Table for four")
-
-    restaurantTables = restaurantDetails.objects.get(tipeTable=restaurantTable)
-    restaurantTables = restaurantTables + 1
-    restaurantTables.save()
-
-    message = _('Reserva para el día %(date)s cancelada correctamente.') % {'date' : date_reservation}
-    messages.success(request, message)
+        message = _('La reserva para el día %(date)s no se pudo cancelar.') % {'date' : date_reservation}
+        messages.success(request, message)
 
     return redirect(index)
 
