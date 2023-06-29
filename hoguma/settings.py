@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-up^9u4=+xx%xur&d()td#k$)5hnbdzi_^rf^=-0$strla(7lh*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'hoguma.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'DATABASE_PORT': '',
+        'NAME': 'hoguma',
+        'USER': 'jose',
+        'PASSWORD': 'Usuario77',
+        'HOST': 'localhost',
+        'DATABASE_PORT': '5432',
     }
 }
 
@@ -158,8 +158,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'hogumahotel@gmail.com'
+EMAIL_HOST_PASSWORD = 'bjdngkjycmshwcmc'
 
 #Django jet admin
 JET_THEMES = [

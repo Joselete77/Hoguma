@@ -983,14 +983,9 @@ def contact(request):
         send_message.send()    
         message = _('Mensaje enviado correctamente. Nos pondremos en contacto con usted lo antes posible.')
         
-        if messages.success(request, message):
-            return redirect('index')
+        messages.success(request, message)
+        return redirect('index')
         
-        else:
-            message = _('ERROR. El mensaje no se ha podido enviar.')
-            messages.error(request, message)
-            return redirect(contact)
-    
     else:
         return render(request, 'core/differentInformation/contact.html', {'hotel' : hotel})
 

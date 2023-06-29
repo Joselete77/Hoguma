@@ -52,6 +52,16 @@
       margin-left: 10px;
     }
   }
+
+  @media screen and (min-width: 701px){
+    .purchase {
+      display: flex;
+      justify-content: center;
+    }
+    .block-information {
+      padding: 50px
+    }
+  }
 </style>
 
 <body>
@@ -59,7 +69,7 @@
     src="https://www.paypal.com/sdk/js?client-id=AXP_MYXrBZshAVzILS3ln1jbrmIiKHfLdrU-q70MWazv2A_qXUBsF_4hXyfEl2NUnFt54UaHo7uAgXhZ&currency=EUR"></script>
 
   <div class="purchase">
-    <div>
+    <div class="block-information">
       <h3>{% trans 'Detalles de la compra:' %}</h3>
 
       <ol class="detailsReservation">
